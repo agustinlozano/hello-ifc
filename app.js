@@ -7,7 +7,13 @@ import { IFCLoader } from "web-ifc-three/IFCLoader";
 // Sets up the IFC loading
 const ifcLoader = new IFCLoader();
 
+// Set location og wasm files
+ifcLoader.ifcManager.setWasmPath("wasm/");
+
 const input = document.getElementById("file-input");
+
+console.log(input)
+
 input.addEventListener(
   "change",
   (changed) => {
@@ -17,10 +23,8 @@ input.addEventListener(
   },
   false
 )
-/*----------------------------------------------*/
 
-// Set location og wasm files
-ifcLoader.ifcManager.setWasmPath("wasm/");
+/*----------------------------------------------*/
 
 // Creates the Three.js scene
 const scene = new Scene();
