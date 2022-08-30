@@ -11,8 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "three": "0.135.0",
-    "web-ifc-three": "0.0.120"
+    "web-ifc-viewer": "1.0.210"
   },
   "devDependencies": {
     "@rollup/plugin-node-resolve": "13.3.0",
