@@ -12,10 +12,16 @@ viewer.IFC.setWasmPath("wasm/");
 
 const input = document.getElementById("file-input");
 
-console.log(input)
-
 window.ondblclick = () => viewer.IFC.selector.pickIfcItem(true);
 window.onmousemove = () => viewer.IFC.selector.prePickIfcItem();
+window.onclick = async () => {
+  const {modelID, id} = await viewer.IFC.selector.pickIfcItem(true);
+  const props = await viewer.IFC.getProperties(modelID, id, true, false);
+  
+  // Look at the properties
+  console.log(props);
+}
+
 viewer.clipper.active = true;
 
 window.onkeydown = (event) => {
