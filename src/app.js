@@ -24,10 +24,6 @@ window.onclick = async () => {
   
   // Look at the properties
   console.log(props);
-  console.log(GlobalId)
-  console.log(PredefinedType)
-
-  getItemsOfAssembly(modelID, id);
 }
 
 viewer.clipper.active = true;
@@ -58,24 +54,20 @@ input.addEventListener(
   false
 );
 
-async function getItemsOfAssembly(modelID, groupID) {
+/**
+ * Esta funcion encuentra todos los slabs de un modelo y
+ * luego logea sus propiedades en la consola
+ */
+async function logAllSlabs(modelID = 0) {
   const manager = viewer.IFC.loader.ifcManager
   
-  // Get all ifcAssembly
-  //const asbs = await manager.getAllItemsOfType(modelID, IFCELEMENTASSEMBLY);
-  const asbs = await manager.getAllItemsOfType(modelID, IFCSLAB);
+  // Obtener todos los elementos del modelo segun el material
+  const slabsID = await manager.getAllItemsOfType(modelID, IFCSLAB);
 
-  console.log('asbs', asbs)
-  
-  let asb, props;		
-  
-  for(asb of asbs) {
-    console.log(asb);
-    // props = await manager.getItemProperties(modelID, asb);
-    // console.log('console from Pablo code', props);
+  console.log('My model slabs', slabsID)
+    
+  for(const slab of slabsID) {
+    const slabProps = await manager.getItemProperties(modelID, slab);
+    console.log(slabProps);
   }
-
-  var guIDs = [];
-  
-  return guIDs;
 }
