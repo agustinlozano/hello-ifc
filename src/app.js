@@ -1,97 +1,73 @@
-import { AmbientLight, AxesHelper, DirectionalLight, GridHelper, PerspectiveCamera, Scene, WebGLRenderer } from "three";
-import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
+import { IFCSLAB } from "web-ifc";
+import { Color } from "three";
+import { IfcViewerAPI } from "web-ifc-viewer";
 
-/*----------------------------------------------*/
-import { IFCLoader } from "web-ifc-three/IFCLoader";
+const container = document.getElementById("viewer-container");
+const viewer = new IfcViewerAPI({
+  container,
+  backgroundColor: new Color(0xffffff),
+});
+viewer.axes.setAxes();
+viewer.grid.setGrid();
+viewer.IFC.setWasmPath("wasm/");
 
-// Sets up the IFC loading
-const ifcLoader = new IFCLoader();
+window.ondblclick = () => viewer.IFC.selector.pickIfcItem(true);
+window.onmousemove = () => viewer.IFC.selector.prePickIfcItem();
+window.onclick = async () => {
+  const {modelID, id} = await viewer.IFC.selector.pickIfcItem(true);
 
-// Set location og wasm files
-ifcLoader.ifcManager.setWasmPath("wasm/");
+  console.log(modelID, id);
+
+  const props = await viewer.IFC.getProperties(modelID, id, true, false);
+
+  const {GlobalId, PredefinedType} = props;
+  
+  // Look at the properties
+  console.log(props);
+}
+
+viewer.clipper.active = true;
+
+window.onkeydown = (event) => {
+  if (event.code === "KeyP") {
+    viewer.clipper.createPlane();
+  } else if (event.code === "KeyO") {
+    viewer.clipper.deletePlane();
+  }
+};
 
 const input = document.getElementById("file-input");
 
-console.log(input)
-
+// Loading user's models
 input.addEventListener(
   "change",
-  (changed) => {
+
+  async (changed) => {
     const file = changed.target.files[0];
-    var ifcURL = URL.createObjectURL(file);
-    ifcLoader.load(ifcURL, (ifcModel) => scene.add(ifcModel));
+    const ifcURL = URL.createObjectURL(file);
+
+    const myModel = await viewer.IFC.loadIfcUrl(ifcURL);
+    
+    console.log('Lo que devuelve loadIfcUrl', myModel)
   },
+
   false
-)
+);
 
-/*----------------------------------------------*/
+/**
+ * Esta funcion encuentra todos los slabs de un modelo y
+ * luego logea sus propiedades en la consola
+ */
+async function logAllSlabs(modelID = 0) {
+  const manager = viewer.IFC.loader.ifcManager
+  
+  // Obtener todos los elementos del modelo segun el material
+  const slabsID = await manager.getAllItemsOfType(modelID, IFCSLAB);
 
-// Creates the Three.js scene
-const scene = new Scene();
-
-//Object to store the size of the viewport
-const size = {
-  width: window.innerWidth,
-  height: window.innerHeight,
-};
-
-//Creates the camera (point of view of the user)
-const aspect = size.width / size.height;
-const camera = new PerspectiveCamera(75, aspect);
-camera.position.z = 15;
-camera.position.y = 13;
-camera.position.x = 8;
-
-//Creates the lights of the scene
-const lightColor = 0xffffff;
-
-const ambientLight = new AmbientLight(lightColor, 0.5);
-scene.add(ambientLight);
-
-const directionalLight = new DirectionalLight(lightColor, 1);
-directionalLight.position.set(0, 10, 0);
-directionalLight.target.position.set(-5, 0, 0);
-scene.add(directionalLight);
-scene.add(directionalLight.target);
-
-//Sets up the renderer, fetching the canvas of the HTML
-const threeCanvas = document.getElementById("three-canvas");
-const renderer = new WebGLRenderer({
-  canvas: threeCanvas,
-  alpha: true,
-});
-
-renderer.setSize(size.width, size.height);
-renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-
-//Creates grids and axes in the scene
-const grid = new GridHelper(50, 30);
-scene.add(grid);
-
-const axes = new AxesHelper();
-axes.material.depthTest = false;
-axes.renderOrder = 1;
-scene.add(axes);
-
-//Creates the orbit controls (to navigate the scene)
-const controls = new OrbitControls(camera, threeCanvas);
-controls.enableDamping = true;
-controls.target.set(-2, 0, 0);
-
-//Animation loop
-const animate = () => {
-  controls.update();
-  renderer.render(scene, camera);
-  requestAnimationFrame(animate);
-};
-
-animate();
-
-//Adjust the viewport to the size of the browser
-window.addEventListener("resize", () => {
-  size.width = window.innerWidth;
-  size.height = window.innerHeight;
-  camera.aspect = size.width / size.height;
-  camera.updateProjectionMatrix();
-  renderer.setSize(size.width, size.height);
-});
+  console.log('My model slabs', slabsID)
+    
+  for(const slab of slabsID) {
+    const slabProps = await manager.getItemProperties(modelID, slab);
+    console.log(slabProps);
+  }
+}
