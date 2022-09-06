@@ -1,9 +1,14 @@
-import { 
-  logAllSlabs,
-} from "./utils/getStuff";
+import { highlightMaterial } from "./utils/highlight";
 import viewer from "./utils/initViewer";
 import loadIfc from "./utils/loadIfc";
+import renderProps from "./utils/renderProps";
 import shortcuts from "./utils/shortcuts";
+
+// Setear el efecto hover a los elementos
+const myOpacity = 0.7
+const myColor = 0xa7c957
+const preselectMat = highlightMaterial(myOpacity, myColor)
+viewer.IFC.selector.preselection.material = preselectMat
 
 // Destaca los elementos del modelo que tengan hover
 window.onmousemove = () => viewer.IFC.selector.prePickIfcItem();
@@ -14,11 +19,10 @@ window.ondblclick = () => viewer.IFC.selector.highlightIfcItem(true);
 // Logea las propiedades
 window.onclick = async () => {
   try {
-    const {modelID, id} = await viewer.IFC.selector.pickIfcItem(true);
+    const { modelID, id } = await viewer.IFC.selector.pickIfcItem(true);
     const props = await viewer.IFC.getProperties(modelID, id, true, false);
-    
-    // Look at the properties
-    console.log(props);
+
+    renderProps(props);
   } catch (error) {
     null
   }
