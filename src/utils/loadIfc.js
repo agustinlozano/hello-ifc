@@ -6,6 +6,9 @@ const loadIfc = async (changed) => {
   const ifcURL = URL.createObjectURL(file);
 
   const myModel = await viewer.IFC.loadIfcUrl(ifcURL);
+
+  // Genera la carga del modelo con sombra
+  // viewer.shadowDropper.renderShadow(myModel.modelID);
   
   console.log('Lo que devuelve loadIfcUrl', myModel)
   console.log('primer pick', await pickMyModel())
