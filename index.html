@@ -9,13 +9,22 @@
     <title>Hello IFC!</title>
   </head>
   <body>
-    <input type="file" name="load" id="file-input" />
-    <div class="bim-app">
-      <div class="tree-menu">
-        <ul id="tree"></ul>
+    <div id="load-model">
+      <label for="load">Select an IFC file </label>
+      <input type="file" name="load" id="file-input" />
+    </div>
+    <div id="app-container">
+      <div id="viewer-container"></div>
+      <div id="bim-app" class="border">
+        <div class="tree-menu border">
+          <ul id="tree"></ul>
+        </div>
+        <div id="props-container">
+          <p class="message">Properties:</p>
+          <pre class="message" id="id-output">None</pre>
+        </div>
       </div>
     </div>
-    <div id="viewer-container"></div>
     <script src="src/bundle.js"></script>
   </body>
 </html>
