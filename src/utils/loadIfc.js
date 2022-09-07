@@ -1,4 +1,6 @@
+import { getBtzDescription } from "./getStuff";
 import viewer from "./initViewer";
+import { renderBtzd } from "./renderStuff";
 
 const loadIfc = async (changed) => {
   const file = changed.target.files[0];
@@ -16,6 +18,14 @@ const loadIfc = async (changed) => {
 
   createNode(listRoot, ifcProject.type, ifcProject.children);
 	generateTreeLogic();
+
+  const btzds = getBtzDescription()
+
+  console.log(btzds)
+
+  // for (const btzd of btzds) {
+  //   renderBtzd(btzd)
+  // }
 }
 
 function createNode(parent, text, children) {
