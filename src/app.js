@@ -1,7 +1,7 @@
 import { highlightMaterial } from "./utils/highlight";
 import viewer from "./utils/initViewer";
 import loadIfc from "./utils/loadIfc";
-import renderProps from "./utils/renderProps";
+import { renderProps } from "./utils/renderStuff";
 import shortcuts from "./utils/shortcuts";
 
 // Setear el efecto hover a los elementos
