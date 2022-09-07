@@ -1,5 +1,4 @@
 import viewer from "./initViewer";
-import pickMyModel from "./pickMyModel";
 
 const loadIfc = async (changed) => {
   const file = changed.target.files[0];
@@ -11,13 +10,8 @@ const loadIfc = async (changed) => {
   // viewer.shadowDropper.renderShadow(myModel.modelID);
   
   console.log('Lo que devuelve loadIfcUrl', myModel)
-  console.log('primer pick', await pickMyModel())
 
   const ifcProject = await viewer.IFC.getSpatialStructure(myModel.modelID);
-
-  console.log('Lo que devuelve getSpatialStructure')
-  console.log(ifcProject)
-
   const listRoot = document.getElementById('tree');
 
   createNode(listRoot, ifcProject.type, ifcProject.children);

@@ -1,5 +1,5 @@
 import viewer from "./initViewer"
-import { IFCSLAB } from "web-ifc"
+import { IFCSLAB, IFCPROPERTYSINGLEVALUE } from "web-ifc"
 
 const manager = viewer.IFC.loader.ifcManager
 
@@ -18,4 +18,18 @@ export async function getAllSlabs(modelID = 0) {
   }
 
   return slabsID
+}
+
+export async function getBtzDescription(modelID = 0) {
+  const lotOfThingsID = await manager.getAllItemsOfType(modelID, IFCPROPERTYSINGLEVALUE)
+  const btzd = []
+
+  for (const id of lotOfThingsID) {
+    const props = await manager.getItemProperties(modelID, id)
+    const { Name } = props
+
+    if (Name.value.toLowerCase() === 'btz-description') btzd.push(props)
+  }
+
+  return btzd
 }
