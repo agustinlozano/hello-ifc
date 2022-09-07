@@ -6,9 +6,7 @@
 
 html,
 body {
-  overflow: hidden;
-  height: 100vh;
-  width: 100vw;
+  /* overflow: hidden; */
 }
 
 #load-model {
@@ -25,8 +23,8 @@ body {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  width: 100%;
-  height: 100%;
+  height: 100vh;
+  width: 100vw;
 }
 
 #viewer-container {
@@ -42,8 +40,9 @@ body {
 
 /* Nueva seccion para ifc-description */
 #btz-information {
-  height: 50vh;
-  
+  padding: 1rem;
+  height: 300px;
+  width: 100%;
 }
 
 .props-container {
