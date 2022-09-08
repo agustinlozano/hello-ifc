@@ -1,0 +1,76 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  font-family: 'Roboto', -apple-system, BlinkMacSystemFont,
+    'Segoe UI', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+    'Droid Sans', 'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#load-model {
+  padding: 1rem;
+}
+
+#load-model input{
+  z-index: 1;
+  position: absolute;
+  margin-left: 10px;
+}
+
+#app-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+}
+
+#viewer-container {
+  width: 65%;
+  height: 100%;
+}
+
+#bim-app {
+  width: 35%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Nueva seccion para ifc-description */
+#btz-information {
+  padding: 1rem;
+  min-height: 300px;
+  width: 100%;
+}
+
+.props-container {
+  background-color: rgba(255,255,255,0.8);
+  margin: 16px;
+  padding: 10px;
+  overflow: auto;
+}
+
+.message {
+  display: inline;
+  color: black;
+}
+
+/* My clases */
+.border {
+  border: 1px solid #ccc;
+}
+
+.border-top {
+  border-top: 1px solid #ccc;
+}
+
+.border-bottom {
+  border-bottom: 1px solid #ccc;
+}
