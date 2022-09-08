@@ -34,6 +34,11 @@ viewer.clipper.active = true;
 // My shortcuts
 window.onkeydown = shortcuts
 
-// Loading user's models
-const input = document.getElementById("file-input");
-input.addEventListener("change", loadIfc, false);
+function initMyApp() {
+  // Loading user's models
+  const input = document.getElementById("file-input");
+  
+  input.addEventListener("change", loadIfc, false);
+}
+
+initMyApp()
