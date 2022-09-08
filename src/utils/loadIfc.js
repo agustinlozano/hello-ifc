@@ -1,34 +1,40 @@
 import { getBtzDescription } from "./getStuff";
 import viewer from "./initViewer";
 import { renderBtzd } from "./renderStuff";
+import { getDescriptions, sortBtzDescription } from "./sortStuff";
 
 const loadIfc = async (changed) => {
   const file = changed.target.files[0];
   const ifcURL = URL.createObjectURL(file);
-
   const myModel = await viewer.IFC.loadIfcUrl(ifcURL);
 
   // Genera la carga del modelo con sombra
   // viewer.shadowDropper.renderShadow(myModel.modelID);
-  
-  console.log('Lo que devuelve loadIfcUrl', myModel)
 
+  // Crear el arbol a partir del modelo
   const ifcProject = await viewer.IFC.getSpatialStructure(myModel.modelID);
   const listRoot = document.getElementById('tree');
 
   createNode(listRoot, ifcProject.type, ifcProject.children);
-	generateTreeLogic();
+  generateTreeLogic();
 
-  const btzds = getBtzDescription()
+  // Renderizar la propiedad btz-description
+  const btzds = await getBtzDescription()
 
-  console.log(btzds)
-
-  // for (const btzd of btzds) {
-  //   renderBtzd(btzd)
-  // }
+  renderBtzd(sortBtzDescription((btzds) => {
+    const descriptions = []
+    for (const btz of btzds) {
+      const { NominalValue } = btz
+      const description = NominalValue.value
+      if (!descriptions.includes(description)) {
+        descriptions.push(description)
+      }
+    }
+    return descriptions
+  }, btzds))
 }
 
-function createNode(parent, text, children) {
+export function createNode(parent, text, children) {
 	if(children.length === 0) {
 		createLeafNode(parent, text);
 	} else {
@@ -38,8 +44,17 @@ function createNode(parent, text, children) {
 	}
 }
 
-function createBranchNode(parent, text, children) {
+export function generateTreeLogic() {
+	const toggler = document.getElementsByClassName("caret");
+	for (let i = 0; i < toggler.length; i++) {
+		toggler[i].addEventListener("click", function() {
+			this.parentElement.querySelector(".nested").classList.toggle("active");
+			this.classList.toggle("caret-down");
+		});
+	}
+}
 
+function createBranchNode(parent, text, children) {
 	// container
 	const nodeContainer = document.createElement('li');
 	parent.appendChild(nodeContainer);
@@ -80,16 +95,6 @@ function groupCategories(children) {
 		});
 	}
 	return children;
-}
-
-function generateTreeLogic() {
-	const toggler = document.getElementsByClassName("caret");
-	for (let i = 0; i < toggler.length; i++) {
-		toggler[i].addEventListener("click", function() {
-			this.parentElement.querySelector(".nested").classList.toggle("active");
-			this.classList.toggle("caret-down");
-		});
-	}
 }
 
 export default loadIfc

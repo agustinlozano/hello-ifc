@@ -20,16 +20,23 @@ export async function getAllSlabs(modelID = 0) {
   return slabsID
 }
 
+/**
+ * @output {Array} de objetos con las propiedades de btz-description
+ */
 export async function getBtzDescription(modelID = 0) {
   const lotOfThingsID = await manager.getAllItemsOfType(modelID, IFCPROPERTYSINGLEVALUE)
-  const btzd = []
+  const btzds = []
 
   for (const id of lotOfThingsID) {
     const props = await manager.getItemProperties(modelID, id)
     const { Name } = props
 
-    if (Name.value.toLowerCase() === 'btz-description') btzd.push(props)
+    const hasBtzDescription =
+      Name.value.toLowerCase() === 'btz-description' ||
+      Name.value.toLowerCase() === 'btz block description'
+
+    if (hasBtzDescription) btzds.push(props)
   }
 
-  return btzd
+  return btzds
 }
