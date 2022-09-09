@@ -1,0 +1,34 @@
+[
+  {
+    "expressID": 11614,
+    "type": 3650150729,
+    "Name": {
+      "type": 1,
+      "value": "BTZ Block Description"
+    },
+    "Description": null,
+    "NominalValue": {
+      "type": 2,
+      "label": "IFCTEXT",
+      "valueType": 1,
+      "value": "Ventanas PB"
+    },
+    "Unit": null
+  },
+  {
+    "expressID": 11615,
+    "type": 3650150729,
+    "Name": {
+      "type": 1,
+      "value": "BTZ Finish Date (Optional)"
+    },
+    "Description": null,
+    "NominalValue": {
+      "type": 2,
+      "label": "IFCTEXT",
+      "valueType": 1,
+      "value": "04/01/2023"
+    },
+    "Unit": null
+  }
+]

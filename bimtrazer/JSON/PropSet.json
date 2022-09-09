@@ -1,0 +1,27 @@
+{
+  "expressID": 11667,
+  "type": 1451395588,
+  "GlobalId": {
+    "type": 1,
+    "value": "1rj4YnIav09AtqlDAEtLqM"
+  },
+  "OwnerHistory": {
+    "type": 5,
+    "value": 41
+  },
+  "Name": {
+    "type": 1,
+    "value": "Texto"
+  },
+  "Description": null,
+  "HasProperties": [
+    {
+      "type": 5,
+      "value": 11614
+    },
+    {
+      "type": 5,
+      "value": 11615
+    }
+  ]
+}
