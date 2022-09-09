@@ -1,7 +1,7 @@
-import { getBtzDescription } from "./getStuff";
+import { getGuids, getPropSingleValue } from "./getStuff";
 import viewer from "./initViewer";
 import { renderBtzd } from "./renderStuff";
-import { getDescriptions, sortBtzDescription } from "./sortStuff";
+import { filterDescriptions, sortProperties } from "./sortStuff";
 
 const loadIfc = async (changed) => {
   const file = changed.target.files[0];
@@ -19,19 +19,13 @@ const loadIfc = async (changed) => {
   generateTreeLogic();
 
   // Renderizar la propiedad btz-description
-  const btzds = await getBtzDescription()
+  const rawProps = await getPropSingleValue('description');
+  console.log(rawProps)
+  
+  // const sortedProps = sortProperties(filterDescriptions, rawProps)
+  // renderBtzd(sortedProps)
 
-  renderBtzd(sortBtzDescription((btzds) => {
-    const descriptions = []
-    for (const btz of btzds) {
-      const { NominalValue } = btz
-      const description = NominalValue.value
-      if (!descriptions.includes(description)) {
-        descriptions.push(description)
-      }
-    }
-    return descriptions
-  }, btzds))
+  // console.log(await viewer.IFC.getProperties(0, 11615, false))
 }
 
 export function createNode(parent, text, children) {
