@@ -9,8 +9,6 @@ const manager = viewer.IFC.loader.ifcManager
  */
 export async function getAllSlabs(modelID = 0) {
   const slabsID = await manager.getAllItemsOfType(modelID, IFCSLAB)
-
-  console.log('Labs IDs', slabsID)
     
   for(const slab of slabsID) {
     const slabProps = await manager.getItemProperties(modelID, slab)
@@ -21,17 +19,17 @@ export async function getAllSlabs(modelID = 0) {
 }
 
 /**
- * @output {Array} de objetos con las propiedades de btz-description
+ * @output {Array} de objetos con las propiedades proventientes 
+ * de la clase PropSingleValue
  */
 export async function getPropSingleValue(parameter, modelID = 0) {
-  const lotOfThingsID = await manager.getAllItemsOfType(modelID, IFCPROPERTYSINGLEVALUE)
+  const lotOfID = await manager.getAllItemsOfType(modelID, IFCPROPERTYSINGLEVALUE)
   const rawProps = []
 
   if (parameter === 'description') {
-    for (const id of lotOfThingsID) {
+    for (const id of lotOfID) {
       const props = await manager.getItemProperties(modelID, id)
       const { Name } = props
-  
       const hasBtzDescription =
         Name.value.toLowerCase() === 'btz-description' ||
         Name.value.toLowerCase() === 'btz block description'
@@ -56,13 +54,33 @@ export async function getPropSingleValue(parameter, modelID = 0) {
   return rawProps
 }
 
-// export async function getPropertySet(modelID = 0) {
-//   const lotOfThingsID = await manager.getAllItemsOfType(modelID, IFCPROPERTYSET)
-//   const 
+/**
+ * @input  {Array} de btz-description ids
+ * @input  {Number} id de modelo
+ * @output {Array} de objetos con las propiedades proventientes 
+ * de la clase PropertySet
+*/
+export async function getPropertySet(btzdIds, modelID = 0) {
+  const lotOfID = await manager.getAllItemsOfType(modelID, IFCPROPERTYSET)
+  const rawProps = []
 
-//   console.log('Property Sets', propertySets)
-// }
+  for (const id of lotOfID) {
+    const props = await manager.getItemProperties(modelID, id)
+    const { HasProperties } = props
 
+    for (const child of HasProperties) {
+      for (const btzdId of btzdIds) {
+        if (child.value === btzdId) {
+          rawProps.push(props)
+        }
+      }
+    }
+  }
+
+  return rawProps
+}
+
+/* Funcion sin implementacion */
 export async function getGuids(modelID, blockProps) {
   for (const block of blockProps) {
     for (const item of block) {
