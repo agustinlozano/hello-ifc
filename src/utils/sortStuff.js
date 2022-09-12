@@ -45,19 +45,20 @@ export function sortPropertiesV2(filterFieldFrom, rawProps) {
   }
 }
 
-/* filter all btz-descriptions and store them into an array withh no duplicates */
-export const filterDescriptions = (btzds) => {
-  const descriptions = []
+export const filterProps = (btzParameters) => {
+  const propertyValues = []
 
-  for (const btz of btzds) {
-    const { NominalValue } = btz
-    const description = NominalValue.value
-    if (!descriptions.includes(description)) {
-      descriptions.push(description)
+  if (btzParameters.length === 0 ) return null
+
+  for (const param of btzParameters) {
+    const { NominalValue } = param
+    const startDate = NominalValue.value
+    if (!propertyValues.includes(startDate)) {
+      propertyValues.push(startDate)
     }
   }
 
-  return descriptions
+  return propertyValues
 }
 
 /* filter all btz-description IDs and store them into an array withh no duplicates */
@@ -78,7 +79,7 @@ export const filterDescriptionsIds = (btzds) => {
  * @input  {Array} de arrays de objetos con propiedades IFC
  * @input  {Object} con la clave y el valor de la propiedad a incorporar
  */
-export function extendProperties(props, newField) {
+export function linkProperties(props, newField) {
   return props.map(prop => {
     return { ...prop, ...newField };
   });
