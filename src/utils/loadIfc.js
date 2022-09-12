@@ -1,7 +1,7 @@
-import { getGuids, getPropSingleValue } from "./getStuff";
+import { getPropertySet, getPropSingleValue } from "./getStuff";
 import viewer from "./initViewer";
 import { renderBtzd } from "./renderStuff";
-import { filterDescriptions, sortProperties } from "./sortStuff";
+import { filterDescriptions, filterDescriptionsIds, sortProperties } from "./sortStuff";
 
 const loadIfc = async (changed) => {
   const file = changed.target.files[0];
@@ -9,7 +9,7 @@ const loadIfc = async (changed) => {
   const myModel = await viewer.IFC.loadIfcUrl(ifcURL);
 
   // Genera la carga del modelo con sombra
-  // viewer.shadowDropper.renderShadow(myModel.modelID);
+  viewer.shadowDropper.renderShadow(myModel.modelID);
 
   // Crear el arbol a partir del modelo
   const ifcProject = await viewer.IFC.getSpatialStructure(myModel.modelID);
@@ -19,11 +19,15 @@ const loadIfc = async (changed) => {
   generateTreeLogic();
 
   // Renderizar la propiedad btz-description
-  const rawProps = await getPropSingleValue('description');
-  console.log(rawProps)
+  const rawPropsSingleValue = await getPropSingleValue('description');
   
-  // const sortedProps = sortProperties(filterDescriptions, rawProps)
-  // renderBtzd(sortedProps)
+  // Pruebas de PropertiesSet
+  const rawPropsSet = await getPropertySet(
+    filterDescriptionsIds(rawPropsSingleValue),
+    myModel.modelID);
+
+  const sortedProps = sortProperties(filterDescriptions, rawPropsSingleValue)
+  renderBtzd(sortedProps)
 
   // console.log(await viewer.IFC.getProperties(0, 11615, false))
 }

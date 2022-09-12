@@ -45,7 +45,7 @@ export function sortPropertiesV2(filterFieldFrom, rawProps) {
   }
 }
 
-// filter all descriptions and store them into an array withh no duplicates
+/* filter all btz-descriptions and store them into an array withh no duplicates */
 export const filterDescriptions = (btzds) => {
   const descriptions = []
 
@@ -58,6 +58,20 @@ export const filterDescriptions = (btzds) => {
   }
 
   return descriptions
+}
+
+/* filter all btz-description IDs and store them into an array withh no duplicates */
+export const filterDescriptionsIds = (btzds) => {
+  const btzdIds = []
+
+  for (const btz of btzds) {
+    const { expressID } = btz
+    if (!btzdIds.includes(expressID)) {
+      btzdIds.push(expressID)
+    }
+  }
+
+  return btzdIds
 }
 
 /**
