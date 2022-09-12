@@ -1,7 +1,7 @@
 import { getPropertySet, getPropSingleValue } from "./getStuff";
-import viewer from "./initViewer";
-import { renderBtzd } from "./renderStuff";
-import { filterDescriptions, filterDescriptionsIds, sortProperties } from "./sortStuff";
+import viewer from "../config/initViewer";
+import { renderBtzd, renderBtzdV2 } from "./renderStuff";
+import { filterDescriptionsIds, filterPropertiesIds, filterProps, sortProperties, sortPropertiesV2 } from "./sortStuff";
 
 const loadIfc = async (changed) => {
   const file = changed.target.files[0];
@@ -9,7 +9,7 @@ const loadIfc = async (changed) => {
   const myModel = await viewer.IFC.loadIfcUrl(ifcURL);
 
   // Genera la carga del modelo con sombra
-  viewer.shadowDropper.renderShadow(myModel.modelID);
+  // viewer.shadowDropper.renderShadow(myModel.modelID);
 
   // Crear el arbol a partir del modelo
   const ifcProject = await viewer.IFC.getSpatialStructure(myModel.modelID);
@@ -18,18 +18,34 @@ const loadIfc = async (changed) => {
   createNode(listRoot, ifcProject.type, ifcProject.children);
   generateTreeLogic();
 
-  // Renderizar la propiedad btz-description
-  const rawPropsSingleValue = await getPropSingleValue('description');
+  // Clasificacion de informacion cruda del modelo IFC
+  const rawBtzDescription = await getPropSingleValue('description');
+  const rawFinishProps = await getPropSingleValue('ending');
+  const rawBeginningProps = await getPropSingleValue('beginning');
   
   // Pruebas de PropertiesSet
   const rawPropsSet = await getPropertySet(
-    filterDescriptionsIds(rawPropsSingleValue),
+    filterDescriptionsIds(rawBtzDescription),
     myModel.modelID);
 
-  const sortedProps = sortProperties(filterDescriptions, rawPropsSingleValue)
-  renderBtzd(sortedProps)
+  const parameterDict = {
+    btzDescription: filterPropertiesIds(rawBtzDescription),
+    btzStartDate: filterPropertiesIds(rawBeginningProps),
+    btzFinishDate: filterPropertiesIds(rawFinishProps),
+  }
+
+  const sortedProps1 = sortProperties(filterProps, rawBtzDescription)
+  const sortedProps2 = sortPropertiesV2(rawPropsSet, parameterDict);
+
+  console.log(parameterDict)
+  console.log(rawPropsSet)
+
+  // const sortedProps = sortProperties(filterProps, rawBtzDescription)
+  renderBtzd(sortedProps1)
+  renderBtzdV2(sortedProps2)
 
   // console.log(await viewer.IFC.getProperties(0, 11615, false))
+  // console.log(rawPropsSet)
 }
 
 export function createNode(parent, text, children) {
