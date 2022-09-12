@@ -1,5 +1,5 @@
 import { highlightMaterial } from "./utils/highlight";
-import viewer from "./utils/initViewer";
+import viewer from "./config/initViewer";
 import loadIfc from "./utils/loadIfc";
 import { renderProps } from "./utils/renderStuff";
 import shortcuts from "./utils/shortcuts";
