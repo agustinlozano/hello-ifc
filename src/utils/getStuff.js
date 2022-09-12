@@ -1,4 +1,4 @@
-import viewer from "./initViewer"
+import viewer from "../config/initViewer"
 import { IFCSLAB, IFCPROPERTYSINGLEVALUE, IFCPROPERTYSET } from "web-ifc"
 
 const { ifcManager } = viewer.IFC.loader
@@ -29,20 +29,28 @@ export async function getPropSingleValue(parameter, modelID = 0) {
     }
   }
   if (parameter === 'beginning') {
-    const hasStartDate =
-      Name.value.toLowerCase() === 'btz-start-date' ||
-      Name.value.toLowerCase() === 'btz start date' ||
-      Name.value.toLowerCase() === 'btz start date (opctional)'
+    for (const id of lotOfID) {
+      const props = await ifcManager.getItemProperties(modelID, id)
+      const { Name } = props
+      const hasStartDate =
+        Name.value.toLowerCase() === 'btz-start-date' ||
+        Name.value.toLowerCase() === 'btz start date' ||
+        Name.value.toLowerCase() === 'btz start date (opctional)'
 
-    null
+      if (hasStartDate) rawProps.push(props)
+    }
   }
   if (parameter === 'ending') {
-    const hasEndDate =
-      Name.value.toLowerCase() === 'btz-finish-date' ||
-      Name.value.toLowerCase() === 'btz finish date' ||
-      Name.value.toLowerCase() === 'btz finish date (optional)'
+    for (const id of lotOfID) {
+      const props = await ifcManager.getItemProperties(modelID, id)
+      const { Name } = props
+      const hasEndDate =
+        Name.value.toLowerCase() === 'btz-finish-date' ||
+        Name.value.toLowerCase() === 'btz finish date' ||
+        Name.value.toLowerCase() === 'btz finish date (optional)'
 
-    null
+      if (hasEndDate) rawProps.push(props)      
+    }
   }
 
   return rawProps
@@ -105,4 +113,8 @@ export async function getAllSlabs(modelID = 0) {
   }
 
   return slabs
+}
+
+export const pickMyModel = async () => {
+  return await viewer.IFC.selector.pickIfcItem(true)
 }
