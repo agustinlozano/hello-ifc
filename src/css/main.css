@@ -44,6 +44,10 @@ body {
 }
 
 /* Nueva seccion para ifc-description */
+#btz-info-container {
+  display: flex;
+}
+
 #btz-information {
   padding: 1rem;
   min-height: 300px;
