@@ -1,49 +1,43 @@
 import viewer from "./initViewer"
 import { IFCSLAB, IFCPROPERTYSINGLEVALUE, IFCPROPERTYSET } from "web-ifc"
 
-const manager = viewer.IFC.loader.ifcManager
+const { ifcManager } = viewer.IFC.loader
 
 /**
- * Esta funcion encuentra todos los slabs de un modelo y
- * luego logea sus propiedades en la consola
- */
-export async function getAllSlabs(modelID = 0) {
-  const slabsID = await manager.getAllItemsOfType(modelID, IFCSLAB)
-    
-  for(const slab of slabsID) {
-    const slabProps = await manager.getItemProperties(modelID, slab)
-    console.log(slabProps)
-  }
-
-  return slabsID
-}
-
-/**
+ * @input  {String} con el nombre de la propiedad a buscar
+ * @input  {Number} con el ID del modelo
  * @output {Array} de objetos con las propiedades proventientes 
  * de la clase PropSingleValue
+ * 
+ * Es la funcion que usamos para obtener las propiedades del modelo IFC
+ * pasadas com parametros. Estas propiedades pueden ser, btz-description,
+ * fecha de inicio, fecha de finalizacion.
  */
 export async function getPropSingleValue(parameter, modelID = 0) {
-  const lotOfID = await manager.getAllItemsOfType(modelID, IFCPROPERTYSINGLEVALUE)
+  const lotOfID = await ifcManager.getAllItemsOfType(modelID, IFCPROPERTYSINGLEVALUE)
   const rawProps = []
 
   if (parameter === 'description') {
     for (const id of lotOfID) {
-      const props = await manager.getItemProperties(modelID, id)
+      const props = await ifcManager.getItemProperties(modelID, id)
       const { Name } = props
       const hasBtzDescription =
         Name.value.toLowerCase() === 'btz-description' ||
         Name.value.toLowerCase() === 'btz block description'
   
-      if (hasBtzDescription) {
-        rawProps.push(props)
-      }
+      if (hasBtzDescription) rawProps.push(props)
     }
   }
   if (parameter === 'beginning') {
+    const hasStartDate =
+      Name.value.toLowerCase() === 'btz-start-date' ||
+      Name.value.toLowerCase() === 'btz start date' ||
+      Name.value.toLowerCase() === 'btz start date (opctional)'
+
     null
   }
   if (parameter === 'ending') {
-    const hasBtzDate =
+    const hasEndDate =
       Name.value.toLowerCase() === 'btz-finish-date' ||
       Name.value.toLowerCase() === 'btz finish date' ||
       Name.value.toLowerCase() === 'btz finish date (optional)'
@@ -55,20 +49,24 @@ export async function getPropSingleValue(parameter, modelID = 0) {
 }
 
 /**
- * @input  {Array} de btz-description ids
- * @input  {Number} id de modelo
+ * @input  {Array} de IDs btz-description
+ * @input  {Number} ID de modelo
  * @output {Array} de objetos con las propiedades proventientes 
  * de la clase PropertySet
-*/
+ * 
+ * Esta funcion obtiene las propiedades provenientes de la clase
+ * PropertySet, la cual contiene informacion valiosa como, el GUID,
+ * los expressIds de las propiedades del bloque (btzd, beginning, end).
+ */
 export async function getPropertySet(btzdIds, modelID = 0) {
-  const lotOfID = await manager.getAllItemsOfType(modelID, IFCPROPERTYSET)
+  const lotOfID = await ifcManager.getAllItemsOfType(modelID, IFCPROPERTYSET)
   const rawProps = []
 
   for (const id of lotOfID) {
-    const props = await manager.getItemProperties(modelID, id)
-    const { HasProperties } = props
+    const props = await ifcManager.getItemProperties(modelID, id)
+    const { HasProperties: children } = props
 
-    for (const child of HasProperties) {
+    for (const child of children) {
       for (const btzdId of btzdIds) {
         if (child.value === btzdId) {
           rawProps.push(props)
@@ -82,12 +80,29 @@ export async function getPropertySet(btzdIds, modelID = 0) {
 
 /* Funcion sin implementacion */
 export async function getGuids(modelID, blockProps) {
+  const { getProperties } = viewer.IFC
+
   for (const block of blockProps) {
     for (const item of block) {
       const { expressID } = item
-      const props = await viewer.IFC.getProperties(modelID, expressID, false, false)
+      const props = await getProperties(modelID, expressID, false, false)
 
       console.log(props)
     }
   }
+}
+
+/**
+ * Esta funcion encuentra todos los slabs de un modelo IFC
+ */
+export async function getAllSlabs(modelID = 0) {
+  const slabsID = await ifcManager.getAllItemsOfType(modelID, IFCSLAB)
+  const slabs = []
+    
+  for(const slab of slabsID) {
+    const slabProps = await ifcManager.getItemProperties(modelID, slab)
+    slabs.push(slabProps)
+  }
+
+  return slabs
 }
