@@ -1,4 +1,4 @@
-import viewer from "./initViewer";
+import viewer from "../config/initViewer";
 
 const shortcuts = (event) => {
   if (event.code === "KeyP") {

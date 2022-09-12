@@ -1,4 +1,4 @@
-import viewer from "./initViewer"
+import viewer from "../config/initViewer";
 
 const setColorOfGrup = async (material, color = 0xcfcfcf) => {
   const manager = viewer.IFC.loader.ifcManager
