@@ -59,7 +59,7 @@ export function sortPropertiesV2 (rawPropsSet, dictionary) {
   return sortedProps
 }
 
-export const filterProps = (btzParameters) => {
+export function filterProps (btzParameters) {
   const propertyValues = []
 
   if (btzParameters.length === 0) return null
@@ -75,7 +75,7 @@ export const filterProps = (btzParameters) => {
   return propertyValues
 }
 
-export const filterPropertiesIds = (btzParameters) => {
+export function filterPropertiesIds (btzParameters) {
   const ids = []
 
   if (btzParameters.length === 0) return null
@@ -91,7 +91,7 @@ export const filterPropertiesIds = (btzParameters) => {
 }
 
 /* filter all btz-description IDs and store them into an array withh no duplicates */
-export const filterDescriptionsIds = (btzds) => {
+export function filterDescriptionsIds (btzds) {
   const btzdIds = []
 
   for (const btz of btzds) {
