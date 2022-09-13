@@ -1,4 +1,4 @@
-import viewer from "../config/initViewer";
+import viewer from '../config/initViewer'
 
 const setColorOfGrup = async (material, color = 0xcfcfcf) => {
   const manager = viewer.IFC.loader.ifcManager
@@ -8,6 +8,8 @@ const setColorOfGrup = async (material, color = 0xcfcfcf) => {
     const props = await manager.getItemProperties(0, ID)
     const { GlobalId } = props
 
-    //cambiar el color de los elementos
+    // cambiar el color de los elementos
   }
 }
+
+export default setColorOfGrup

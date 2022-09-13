@@ -3,21 +3,21 @@
  *         del IFC sin repetir
  * @input  {Array} de objetos con todas las propiedades del archivo IFC
  * @output {Array} de objetos (bloques) Bimtrazer
- * 
+ *
  * Esta funcion filtra las propiedades de un documento IFC y agrupa
  * la informacion para poder conseguir una estructura de datos en bloques
  */
-export function sortProperties(filterFieldFrom, rawProps) {
+export function sortProperties (filterFieldFrom, rawProps) {
   const sortedProps = []
 
   for (const field of filterFieldFrom(rawProps)) {
-    let block = []
+    const block = []
     for (const prop of rawProps) {
       const { expressID, NominalValue } = prop
       if (NominalValue.value === field) {
         block.push({
           expressID,
-          value: NominalValue.value 
+          value: NominalValue.value
         })
       }
     }
@@ -27,7 +27,7 @@ export function sortProperties(filterFieldFrom, rawProps) {
   return sortedProps
 }
 
-export function sortPropertiesV2(rawPropsSet, dictionary) {
+export function sortPropertiesV2 (rawPropsSet, dictionary) {
   const sortedProps = []
 
   for (const propSet of rawPropsSet) {
@@ -44,14 +44,14 @@ export function sortPropertiesV2(rawPropsSet, dictionary) {
         btzFinishDate?.includes(value)
 
       if (isValueInclude) {
-        block['expressID'] = expressID
-        block['type'] = ['PropertySet', 1451395588]
-        block['guid'] = GlobalId.value
+        block.expressID = expressID
+        block.type = ['PropertySet', 1451395588]
+        block.guid = GlobalId.value
         children.push(value)
-        block['propChildren'] = children
+        block.propChildren = children
       }
     }
-    
+
     children = []
     sortedProps.push(block)
   }
@@ -62,7 +62,7 @@ export function sortPropertiesV2(rawPropsSet, dictionary) {
 export const filterProps = (btzParameters) => {
   const propertyValues = []
 
-  if (btzParameters.length === 0 ) return null
+  if (btzParameters.length === 0) return null
 
   for (const param of btzParameters) {
     const { NominalValue } = param
@@ -78,7 +78,7 @@ export const filterProps = (btzParameters) => {
 export const filterPropertiesIds = (btzParameters) => {
   const ids = []
 
-  if (btzParameters.length === 0 ) return null
+  if (btzParameters.length === 0) return null
 
   for (const param of btzParameters) {
     const { expressID } = param
@@ -108,8 +108,8 @@ export const filterDescriptionsIds = (btzds) => {
  * @input  {Array} de arrays de objetos con propiedades IFC
  * @input  {Object} con la clave y el valor de la propiedad a incorporar
  */
-export function linkProperties(props, newField) {
+export function linkProperties (props, newField) {
   return props.map(prop => {
-    return { ...prop, ...newField };
-  });
+    return { ...prop, ...newField }
+  })
 }

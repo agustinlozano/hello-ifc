@@ -1,19 +1,19 @@
-import viewer from "../config/initViewer"
-import { IFCSLAB, IFCPROPERTYSINGLEVALUE, IFCPROPERTYSET } from "web-ifc"
+import viewer from '../config/initViewer'
+import { IFCSLAB, IFCPROPERTYSINGLEVALUE, IFCPROPERTYSET } from 'web-ifc'
 
 const { ifcManager } = viewer.IFC.loader
 
 /**
  * @input  {String} con el nombre de la propiedad a buscar
  * @input  {Number} con el ID del modelo
- * @output {Array} de objetos con las propiedades proventientes 
+ * @output {Array} de objetos con las propiedades proventientes
  * de la clase PropSingleValue
- * 
+ *
  * Es la funcion que usamos para obtener las propiedades del modelo IFC
  * pasadas com parametros. Estas propiedades pueden ser, btz-description,
  * fecha de inicio, fecha de finalizacion.
  */
-export async function getPropSingleValue(parameter, modelID = 0) {
+export async function getPropSingleValue (parameter, modelID = 0) {
   const lotOfID = await ifcManager.getAllItemsOfType(modelID, IFCPROPERTYSINGLEVALUE)
   const rawProps = []
 
@@ -24,7 +24,7 @@ export async function getPropSingleValue(parameter, modelID = 0) {
       const hasBtzDescription =
         Name.value.toLowerCase() === 'btz-description' ||
         Name.value.toLowerCase() === 'btz block description'
-  
+
       if (hasBtzDescription) rawProps.push(props)
     }
   }
@@ -49,7 +49,7 @@ export async function getPropSingleValue(parameter, modelID = 0) {
         Name.value.toLowerCase() === 'btz finish date' ||
         Name.value.toLowerCase() === 'btz finish date (optional)'
 
-      if (hasEndDate) rawProps.push(props)      
+      if (hasEndDate) rawProps.push(props)
     }
   }
 
@@ -59,14 +59,14 @@ export async function getPropSingleValue(parameter, modelID = 0) {
 /**
  * @input  {Array} de IDs btz-description
  * @input  {Number} ID de modelo
- * @output {Array} de objetos con las propiedades proventientes 
+ * @output {Array} de objetos con las propiedades proventientes
  * de la clase PropertySet
- * 
+ *
  * Esta funcion obtiene las propiedades provenientes de la clase
  * PropertySet, la cual contiene informacion valiosa como, el GUID,
  * los expressIds de las propiedades del bloque (btzd, beginning, end).
  */
-export async function getPropertySet(btzdIds, modelID = 0) {
+export async function getPropertySet (btzdIds, modelID = 0) {
   const lotOfID = await ifcManager.getAllItemsOfType(modelID, IFCPROPERTYSET)
   const rawProps = []
 
@@ -87,7 +87,7 @@ export async function getPropertySet(btzdIds, modelID = 0) {
 }
 
 /* Funcion sin implementacion */
-export async function getGuids(modelID, blockProps) {
+export async function getGuids (modelID, blockProps) {
   const { getProperties } = viewer.IFC
 
   for (const block of blockProps) {
@@ -103,11 +103,11 @@ export async function getGuids(modelID, blockProps) {
 /**
  * Esta funcion encuentra todos los slabs de un modelo IFC
  */
-export async function getAllSlabs(modelID = 0) {
+export async function getAllSlabs (modelID = 0) {
   const slabsID = await ifcManager.getAllItemsOfType(modelID, IFCSLAB)
   const slabs = []
-    
-  for(const slab of slabsID) {
+
+  for (const slab of slabsID) {
     const slabProps = await ifcManager.getItemProperties(modelID, slab)
     slabs.push(slabProps)
   }
