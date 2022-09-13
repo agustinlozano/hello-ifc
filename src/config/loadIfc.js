@@ -1,7 +1,12 @@
 import { getPropertySet, getPropSingleValue } from '../modules/getStuff'
 import viewer from './initViewer'
-import { renderBtzd, renderBtzdV2 } from '../utils/renderStuff'
-import { filterDescriptionsIds, filterPropertiesIds, filterProps, sortProperties, sortPropertiesV2 } from '../modules/sortStuff'
+import { renderJsonData } from '../utils/renderStuff'
+import { 
+  buildBtzBlocks,
+  filterPropertiesIds, 
+  filterProps, 
+  sortProperties, 
+} from '../modules/sortStuff'
 
 async function loadIfc (changed) {
   const file = changed.target.files[0]
@@ -20,32 +25,18 @@ async function loadIfc (changed) {
 
   // Clasificacion de informacion cruda del modelo IFC
   const rawBtzDescription = await getPropSingleValue('description')
-  const rawFinishProps = await getPropSingleValue('ending')
-  const rawBeginningProps = await getPropSingleValue('beginning')
 
-  // Pruebas de PropertiesSet
+  // Obtener las propiedades de la clase PropertiesSet
   const rawPropsSet = await getPropertySet(
-    filterDescriptionsIds(rawBtzDescription),
+    filterPropertiesIds(rawBtzDescription),
     myModel.modelID)
 
-  const parameterDict = {
-    btzDescription: filterPropertiesIds(rawBtzDescription),
-    btzStartDate: filterPropertiesIds(rawBeginningProps),
-    btzFinishDate: filterPropertiesIds(rawFinishProps)
-  }
-
-  const sortedProps1 = sortProperties(filterProps, rawBtzDescription)
-  const sortedProps2 = sortPropertiesV2(rawPropsSet, parameterDict)
-
-  console.log(parameterDict)
-  console.log(rawPropsSet)
+  const sortedBlocks = sortProperties(filterProps, rawBtzDescription)
+  const btzBlocks = buildBtzBlocks(rawPropsSet, sortedBlocks)
 
   // const sortedProps = sortProperties(filterProps, rawBtzDescription)
-  renderBtzd(sortedProps1)
-  renderBtzdV2(sortedProps2)
-
-  // console.log(await viewer.IFC.getProperties(0, 11615, false))
-  // console.log(rawPropsSet)
+  renderJsonData(btzBlocks, 'btzBlock')
+  renderJsonData(rawPropsSet, 'propSet')
 }
 
 export function createNode (parent, text, children) {
