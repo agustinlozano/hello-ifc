@@ -67,7 +67,7 @@ export function buildBtzBlocks (rawPropsSet, blocks) {
 
     for (const elm of block) {
       const { expressID: blockID } = elm
-      
+
       for (const propSet of rawPropsSet) {
         const { HasProperties } = propSet
 

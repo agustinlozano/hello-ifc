@@ -1,11 +1,11 @@
 import { getPropertySet, getPropSingleValue } from '../modules/getStuff'
 import viewer from './initViewer'
 import { renderJsonData } from '../utils/renderStuff'
-import { 
+import {
   buildBtzBlocks,
-  filterPropertiesIds, 
-  filterProps, 
-  sortProperties, 
+  filterPropertiesIds,
+  filterProps,
+  sortProperties
 } from '../modules/sortStuff'
 
 async function loadIfc (changed) {
