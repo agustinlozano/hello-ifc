@@ -115,6 +115,6 @@ export async function getAllSlabs (modelID = 0) {
   return slabs
 }
 
-export const pickMyModel = async () => {
+export async function pickMyModel () {
   return await viewer.IFC.selector.pickIfcItem(true)
 }
