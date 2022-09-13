@@ -2,11 +2,11 @@ const propsOutput = document.getElementById('props-output')
 const btzdOutput = document.getElementById('btzd-output')
 const propsSetOutput = document.getElementById('props-set-output')
 
-export const renderProps = (props) => {
+export function renderProps (props) {
   propsOutput.innerHTML = JSON.stringify(props, null, 2)
 }
 
-export const renderBtzd = (btzds) => {
+export function renderBtzd (btzds) {
   for (const btzd of btzds) {
     const li = document.createElement('li')
     const pre = document.createElement('pre')
@@ -17,7 +17,7 @@ export const renderBtzd = (btzds) => {
   }
 }
 
-export const renderBtzdV2 = (propsSet) => {
+export function renderBtzdV2 (propsSet) {
   for (const btzd of propsSet) {
     const li = document.createElement('li')
     const pre = document.createElement('pre')
