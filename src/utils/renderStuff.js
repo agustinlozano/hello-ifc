@@ -6,38 +6,34 @@ const $btzBlocksLength = document.getElementById('btz-blocks-length')
 const $propSetOutput = document.getElementById('prop-set-output')
 const $propSetLength = document.getElementById('prop-set-length')
 
-export function renderProps (props) {
+export function renderSelectedElm (props) {
   $propsOutput.innerHTML = JSON.stringify(props, null, 2)
 }
 
-export function renderBtzd (btzds) {
+export function renderJsonData (data, option) {
+  if (data.length === 0) return null
+  if (option === 'btzBlock') {
+    $btzBlocksLength.innerHTML = data.length
 
-  if (btzds.length === 0) return null
+    for (const btzd of data) {
+      const li = document.createElement('li')
+      const pre = document.createElement('pre')
 
-  $btzBlocksLength.innerHTML = btzds.length
-
-  for (const btzd of btzds) {
-    const li = document.createElement('li')
-    const pre = document.createElement('pre')
-
-    pre.innerHTML = JSON.stringify(btzd, null, 2)
-    li.appendChild(pre)
-    $btzBlocksOutput.appendChild(li)
+      pre.innerHTML = JSON.stringify(btzd, null, 2)
+      li.appendChild(pre)
+      $btzBlocksOutput.appendChild(li)
+    }
   }
-}
+  if (option === 'propSet') {
+    $propSetLength.innerHTML = data.length
 
-export function renderBtzdV2 (propsSet) {
+    for (const btzd of data) {
+      const li = document.createElement('li')
+      const pre = document.createElement('pre')
 
-  if (propsSet.length === 0) return null
-
-  $propSetLength.innerHTML = propsSet.length
-
-  for (const btzd of propsSet) {
-    const li = document.createElement('li')
-    const pre = document.createElement('pre')
-
-    pre.innerHTML = JSON.stringify(btzd, null, 2)
-    li.appendChild(pre)
-    $propSetOutput.appendChild(li)
+      pre.innerHTML = JSON.stringify(btzd, null, 2)
+      li.appendChild(pre)
+      $propSetOutput.appendChild(li)
+    }
   }
 }
