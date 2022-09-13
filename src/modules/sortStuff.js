@@ -17,7 +17,7 @@ export function sortProperties (filterFieldFrom, rawProps) {
       if (NominalValue.value === field) {
         block.push({
           expressID,
-          value: NominalValue.value
+          btzDescription: NominalValue.value
         })
       }
     }
@@ -49,7 +49,7 @@ export function sortPropertiesV2 (rawPropsSet, dictionary) {
         block.type = ['PropertySet', 1451395588]
         block.guid = GlobalId.value
         children = [...children, value]
-        block.propChildren = children
+        block.btzParams = children
       }
     }
 
@@ -57,6 +57,33 @@ export function sortPropertiesV2 (rawPropsSet, dictionary) {
   }
 
   return sortedProps
+}
+
+export function buildBtzBlocks (rawPropsSet, blocks) {
+  const btzBlocks = []
+
+  for (const block of blocks) {
+    const btzBlock = []
+
+    for (const elm of block) {
+      const { expressID: blockID } = elm
+      
+      for (const propSet of rawPropsSet) {
+        const { HasProperties } = propSet
+
+        for (const param of HasProperties) {
+          const { value: expressID } = param
+          if (expressID === blockID) {
+            btzBlock.push({ ...elm, ...propSet })
+          }
+        }
+      }
+    }
+
+    btzBlocks.push(btzBlock)
+  }
+
+  return btzBlocks
 }
 
 export function filterProps (btzParameters) {
