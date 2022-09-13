@@ -1,7 +1,7 @@
-import { getPropertySet, getPropSingleValue } from './getStuff'
-import viewer from '../config/initViewer'
-import { renderBtzd, renderBtzdV2 } from './renderStuff'
-import { filterDescriptionsIds, filterPropertiesIds, filterProps, sortProperties, sortPropertiesV2 } from './sortStuff'
+import { getPropertySet, getPropSingleValue } from '../modules/getStuff'
+import viewer from './initViewer'
+import { renderBtzd, renderBtzdV2 } from '../utils/renderStuff'
+import { filterDescriptionsIds, filterPropertiesIds, filterProps, sortProperties, sortPropertiesV2 } from '../modules/sortStuff'
 
 async function loadIfc (changed) {
   const file = changed.target.files[0]
