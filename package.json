@@ -5,7 +5,8 @@
   "main": "app.js",
   "scripts": {
     "build": "rollup -c ./rollup.config.js",
-    "watch": "rollup -w -c ./rollup.config.js"
+    "watch": "rollup -w -c ./rollup.config.js",
+    "test": "standard && node my-tests.js"
   },
   "keywords": [],
   "author": "",
@@ -15,6 +16,10 @@
   },
   "devDependencies": {
     "@rollup/plugin-node-resolve": "13.3.0",
-    "rollup": "2.78.1"
+    "rollup": "2.78.1",
+    "standard": "17.0.0"
+  },
+  "eslintConfig": {
+    "extends": "./node_modules/standard/eslintrc.json"
   }
 }
