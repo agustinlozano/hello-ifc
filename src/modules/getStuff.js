@@ -14,11 +14,13 @@ const { ifcManager } = viewer.IFC.loader
  * fecha de inicio, fecha de finalizacion.
  */
 export async function getPropSingleValue (parameter, modelID = 0) {
-  const lotOfID = await ifcManager.getAllItemsOfType(modelID, IFCPROPERTYSINGLEVALUE)
+  const lotOfIDs = await ifcManager.getAllItemsOfType(modelID, IFCPROPERTYSINGLEVALUE)
   const rawProps = []
 
+  if (parameter == null) return null
+
   if (parameter === 'description') {
-    for (const id of lotOfID) {
+    for (const id of lotOfIDs) {
       const props = await ifcManager.getItemProperties(modelID, id)
       const { Name } = props
       const hasBtzDescription =
@@ -29,7 +31,7 @@ export async function getPropSingleValue (parameter, modelID = 0) {
     }
   }
   if (parameter === 'beginning') {
-    for (const id of lotOfID) {
+    for (const id of lotOfIDs) {
       const props = await ifcManager.getItemProperties(modelID, id)
       const { Name } = props
       const hasStartDate =
@@ -41,7 +43,7 @@ export async function getPropSingleValue (parameter, modelID = 0) {
     }
   }
   if (parameter === 'ending') {
-    for (const id of lotOfID) {
+    for (const id of lotOfIDs) {
       const props = await ifcManager.getItemProperties(modelID, id)
       const { Name } = props
       const hasEndDate =
@@ -67,10 +69,12 @@ export async function getPropSingleValue (parameter, modelID = 0) {
  * los expressIds de las propiedades del bloque (btzd, beginning, end).
  */
 export async function getPropertySet (btzdIds, modelID = 0) {
-  const lotOfID = await ifcManager.getAllItemsOfType(modelID, IFCPROPERTYSET)
+  const lotOfIDs = await ifcManager.getAllItemsOfType(modelID, IFCPROPERTYSET)
   const rawProps = []
 
-  for (const id of lotOfID) {
+  if (btzdIds.length === 0) return null
+
+  for (const id of lotOfIDs) {
     const props = await ifcManager.getItemProperties(modelID, id)
     const { HasProperties: children } = props
 
@@ -104,11 +108,11 @@ export async function getGuids (modelID, blockProps) {
  * Esta funcion encuentra todos los slabs de un modelo IFC
  */
 export async function getAllSlabs (modelID = 0) {
-  const slabsID = await ifcManager.getAllItemsOfType(modelID, IFCSLAB)
+  const slabIDs = await ifcManager.getAllItemsOfType(modelID, IFCSLAB)
   const slabs = []
 
-  for (const slab of slabsID) {
-    const slabProps = await ifcManager.getItemProperties(modelID, slab)
+  for (const slabID of slabIDs) {
+    const slabProps = await ifcManager.getItemProperties(modelID, slabID)
     slabs.push(slabProps)
   }
 
