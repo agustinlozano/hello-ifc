@@ -1,7 +1,7 @@
 {
   "name": "hello-ifc",
   "version": "1.0.0",
-  "description": "",
+  "description": "IFC application",
   "main": "app.js",
   "scripts": {
     "build": "rollup -c ./rollup.config.js",
@@ -9,7 +9,7 @@
     "test": "standard && node my-tests.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Bimtrazer",
   "license": "ISC",
   "dependencies": {
     "web-ifc-viewer": "1.0.210"
