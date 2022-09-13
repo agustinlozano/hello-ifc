@@ -1,7 +1,7 @@
 import { highlightMaterial } from './utils/highlight'
 import viewer from './config/initViewer'
 import loadIfc from './config/loadIfc'
-import { renderProps } from './utils/renderStuff'
+import { renderSelectedElm } from './utils/renderStuff'
 import shortcuts from './utils/shortcuts'
 
 // Setear el efecto hover a los elementos
@@ -22,7 +22,7 @@ window.onclick = async () => {
     const { modelID, id } = await viewer.IFC.selector.pickIfcItem(true)
     const props = await viewer.IFC.getProperties(modelID, id, true, false)
 
-    renderProps(props)
+    renderSelectedElm(props)
   } catch (error) {
     return null
   }
