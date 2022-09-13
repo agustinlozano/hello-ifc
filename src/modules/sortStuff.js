@@ -21,6 +21,7 @@ export function sortProperties (filterFieldFrom, rawProps) {
         })
       }
     }
+
     sortedProps.push(block)
   }
 
@@ -47,12 +48,11 @@ export function sortPropertiesV2 (rawPropsSet, dictionary) {
         block.expressID = expressID
         block.type = ['PropertySet', 1451395588]
         block.guid = GlobalId.value
-        children.push(value)
+        children = [...children, value]
         block.propChildren = children
       }
     }
 
-    children = []
     sortedProps.push(block)
   }
 
@@ -88,20 +88,6 @@ export function filterPropertiesIds (btzParameters) {
   }
 
   return ids
-}
-
-/* filter all btz-description IDs and store them into an array withh no duplicates */
-export function filterDescriptionsIds (btzds) {
-  const btzdIds = []
-
-  for (const btz of btzds) {
-    const { expressID } = btz
-    if (!btzdIds.includes(expressID)) {
-      btzdIds.push(expressID)
-    }
-  }
-
-  return btzdIds
 }
 
 /**
