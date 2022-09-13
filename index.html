@@ -4,38 +4,44 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="src/css/main.css" />
-    <link rel="stylesheet" href="src/css/tree.css" />
-    <title>Hello IFC!</title>
+    <link rel="stylesheet" href="src/styles/main.css" />
+    <link rel="stylesheet" href="src/styles/tree.css" />
+    <title>Bimtrazer | Learning IFC</title>
   </head>
   <body>
-    <div id="load-model">
-      <label for="load">Select an IFC file </label>
+    <div id="load-model" class="border-bottom">
+      <label for="load" class="font-medium">Select an IFC file </label>
       <input type="file" name="load" id="file-input" />
     </div>
-    <div id="app-container">
+    <div id="model-container">
       <div id="viewer-container"></div>
       <div id="bim-app" class="border">
         <div class="tree-menu border-bottom">
-          <p>Model tree</p>
+          <p class="font-medium">Model tree</p>
           <ul id="tree"></ul>
         </div>
         <div class="props-container">
-          <p class="message">Properties:</p>
+          <p class="message font-medium">Selected element properties</p>
           <pre class="message" id="props-output">None</pre>
         </div>
       </div>
     </div>
     <div id="btz-info-container">
-      <div id="btz-information" class="border">
-        <p>Bimtrazer blocks</p>
-        <ul id="btzd-output">
+      <div class="btz-information border">
+        <div class="mb-md">
+          <p class="font-medium mb-sm">Bimtrazer blocks</p>
+          <p>Number of blocks: <span id="btz-blocks-length"></span></p>
+        </div>
+        <ul id="btz-blocks-output">
           <!-- Cool btz-description is gonna render here -->
         </ul>
       </div>
-      <div id="btz-information" class="border">
-        <p>JSON data from <span>sortPropertiesV2</span></p>
-        <ul id="props-set-output">
+      <div class="btz-information border">
+        <div class="mb-md">
+          <p class="font-medium mb-sm">JSON data from <i>PropertySet</i> class</p>
+          <p>Number of properties: <span id="prop-set-length"></span></p>
+        </div>
+        <ul id="prop-set-output">
           <!-- Cool btz-description is gonna render here -->
         </ul>
       </div>
