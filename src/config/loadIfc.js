@@ -1,24 +1,19 @@
 import { getPropertySet, getPropSingleValue } from '../modules/getStuff'
-import viewer from './initViewer'
-import { createNode, generateTreeLogic, renderJsonData } from '../utils/renderStuff'
+import { renderJsonData } from '../utils/renderStuff'
 import {
   buildBtzBlocks,
   filterPropertiesIds,
   filterProps,
   sortProperties
 } from '../modules/sortStuff'
+import viewer from './initViewer'
 
 async function loadIfc (changed) {
   const file = changed.target.files[0]
   const ifcURL = URL.createObjectURL(file)
   const myModel = await viewer.IFC.loadIfcUrl(ifcURL)
 
-  // Crear el arbol a partir del modelo
-  const ifcProject = await viewer.IFC.getSpatialStructure(myModel.modelID)
-  const listRoot = document.getElementById('tree')
-
-  createNode(listRoot, ifcProject.type, ifcProject.children)
-  generateTreeLogic()
+  console.log(myModel)
 
   // Clasificacion de informacion cruda del modelo IFC
   const rawBtzDescription = await getPropSingleValue('description')
