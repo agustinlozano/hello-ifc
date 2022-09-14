@@ -44,6 +44,14 @@ export function renderShadows (modelID) {
   viewer.shadowDropper.renderShadow(modelID)
 }
 
+export async function renderTree (modelID) {
+  const ifcProject = await viewer.IFC.getSpatialStructure(modelID)
+  const listRoot = document.getElementById('tree')
+
+  createNode(listRoot, ifcProject.type, ifcProject.children)
+  generateTreeLogic()
+}
+
 export function createNode (parent, text, children) {
   if (children.length === 0) {
     createLeafNode(parent, text)
