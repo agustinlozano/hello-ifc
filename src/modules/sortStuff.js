@@ -1,4 +1,40 @@
 /**
+ * @input  {Array de objetos} con propiedades de la clase IFC PropertySet en crudo
+ * @input  {Array de objetos} con los la informacion basica de los Bloques BTZ
+ * @output {Array de objetos} con la informacion en Bloques BTZ
+ *
+ * Esta funcion concluye la formacion de los bloques a partir de linkear las
+ * propiedades de la clase PropertySet con la informacion filtada en la clase
+ * IFC PropertySingleValue.
+ */
+export function buildBtzBlocks (rawPropsSet, blocks) {
+  const btzBlocks = []
+
+  for (const block of blocks) {
+    const btzBlock = []
+
+    for (const elm of block) {
+      const { expressID: blockID } = elm
+
+      for (const propSet of rawPropsSet) {
+        const { HasProperties } = propSet
+
+        for (const param of HasProperties) {
+          const { value: expressID } = param
+          if (expressID === blockID) {
+            btzBlock.push({ ...elm, ...propSet })
+          }
+        }
+      }
+    }
+
+    btzBlocks.push(btzBlock)
+  }
+
+  return btzBlocks
+}
+
+/**
  * @input  {Function} accede a todas las ocurrencias de un cierto campo
  *         del IFC sin repetir
  * @input  {Array} de objetos con todas las propiedades del archivo IFC
@@ -28,6 +64,53 @@ export function sortProperties (filterFieldFrom, rawProps) {
   return sortedProps
 }
 
+/**
+ * @input  {Array de objetos} con las propiedades en crudo
+ * @output {Array de strings}
+ *
+ * Filtra el contenido de texto en los parametros BTZ sin repeterir
+ */
+export function filterProps (rawBtzParams) {
+  const propertyValues = []
+
+  if (rawBtzParams.length === 0) return null
+
+  for (const param of rawBtzParams) {
+    const { NominalValue } = param
+    const value = NominalValue.value
+    if (!propertyValues.includes(value)) {
+      propertyValues.push(value)
+    }
+  }
+
+  return propertyValues
+}
+
+/**
+ * @input  {Array de objetos} con las propiedades en crudo
+ * @output {Array de numeros}
+ *
+ * Filtra los expressIDs de las propiedades BTZ
+ */
+export function filterPropertiesIds (rawBtzParams) {
+  const ids = []
+
+  if (rawBtzParams.length === 0) return null
+
+  for (const param of rawBtzParams) {
+    const { expressID } = param
+    if (!ids.includes(expressID)) {
+      ids.push(expressID)
+    }
+  }
+
+  return ids
+}
+
+/**
+ * @input {Array} con propiedades de la clase IFC PropertySet en crudo
+ * @input {Objecto de Arrays} con los IDs de cada parametro BTZ en un docuemento IFC
+*/
 export function sortPropertiesV2 (rawPropsSet, dictionary) {
   const sortedProps = []
 
@@ -59,64 +142,7 @@ export function sortPropertiesV2 (rawPropsSet, dictionary) {
   return sortedProps
 }
 
-export function buildBtzBlocks (rawPropsSet, blocks) {
-  const btzBlocks = []
-
-  for (const block of blocks) {
-    const btzBlock = []
-
-    for (const elm of block) {
-      const { expressID: blockID } = elm
-
-      for (const propSet of rawPropsSet) {
-        const { HasProperties } = propSet
-
-        for (const param of HasProperties) {
-          const { value: expressID } = param
-          if (expressID === blockID) {
-            btzBlock.push({ ...elm, ...propSet })
-          }
-        }
-      }
-    }
-
-    btzBlocks.push(btzBlock)
-  }
-
-  return btzBlocks
-}
-
-export function filterProps (btzParameters) {
-  const propertyValues = []
-
-  if (btzParameters.length === 0) return null
-
-  for (const param of btzParameters) {
-    const { NominalValue } = param
-    const value = NominalValue.value
-    if (!propertyValues.includes(value)) {
-      propertyValues.push(value)
-    }
-  }
-
-  return propertyValues
-}
-
-export function filterPropertiesIds (btzParameters) {
-  const ids = []
-
-  if (btzParameters.length === 0) return null
-
-  for (const param of btzParameters) {
-    const { expressID } = param
-    if (!ids.includes(expressID)) {
-      ids.push(expressID)
-    }
-  }
-
-  return ids
-}
-
+/* FUNCIONES SIN USO */
 /**
  * @input  {Array} de arrays de objetos con propiedades IFC
  * @input  {Object} con la clave y el valor de la propiedad a incorporar

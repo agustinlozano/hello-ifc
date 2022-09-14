@@ -4,9 +4,9 @@ import { IFCSLAB, IFCPROPERTYSINGLEVALUE, IFCPROPERTYSET } from 'web-ifc'
 const { ifcManager } = viewer.IFC.loader
 
 /**
- * @input  {String} con el nombre de la propiedad a buscar
+ * @input  {String} con el nombre del parametro a buscar
  * @input  {Number} con el ID del modelo
- * @output {Array} de objetos con las propiedades proventientes
+ * @output {Array de objetos} con las propiedades proventientes
  * de la clase PropSingleValue
  *
  * Es la funcion que usamos para obtener las propiedades del modelo IFC
@@ -61,7 +61,7 @@ export async function getPropSingleValue (parameter, modelID = 0) {
 /**
  * @input  {Array} de IDs btz-description
  * @input  {Number} ID de modelo
- * @output {Array} de objetos con las propiedades proventientes
+ * @output {Array de objetos} con las propiedades proventientes
  * de la clase PropertySet
  *
  * Esta funcion obtiene las propiedades provenientes de la clase
@@ -90,7 +90,7 @@ export async function getPropertySet (btzdIds, modelID = 0) {
   return rawProps
 }
 
-/* Funcion sin implementacion */
+/* FUNCIONES SIN USO */
 export async function getGuids (modelID, blockProps) {
   const { getProperties } = viewer.IFC
 
@@ -104,9 +104,6 @@ export async function getGuids (modelID, blockProps) {
   }
 }
 
-/**
- * Esta funcion encuentra todos los slabs de un modelo IFC
- */
 export async function getAllSlabs (modelID = 0) {
   const slabIDs = await ifcManager.getAllItemsOfType(modelID, IFCSLAB)
   const slabs = []
