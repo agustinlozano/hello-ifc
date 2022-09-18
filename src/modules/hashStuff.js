@@ -4,17 +4,27 @@
  * https://en.wikipedia.org/wiki/Hash_function
  */
 
-import SparkMD5 from 'spark-md5'
+export async function btzHash (str) {
+  // We transform the string into an arraybuffer.
+  const buffer = new TextEncoder('utf-8').encode(str)
+  const myHash = await crypto.subtle.digest('SHA-1', buffer)
+  return hex(myHash)
+}
 
-/**
- * SparkMD5 is a fast md5 implementation of the MD5 algorithm.
- * This script is based in the JKM md5 library which is the
- * fastest algorithm around. This is most suitable for browser usage,
- * because nodejs version might be faster.
- * https://github.com/satazor/js-spark-md5
- */
+function hex (buffer) {
+  const hexCodes = []
+  const view = new DataView(buffer)
+  for (let i = 0; i < view.byteLength; i += 4) {
+    // Using getUint32 reduces the number of iterations needed (we process 4 bytes each time)
+    const value = view.getUint32(i)
+    // toString(16) will give the hex representation of the number without padding
+    const stringValue = value.toString(16)
+    // We use concatenation and slice for padding
+    const padding = '00000000'
+    const paddedValue = (padding + stringValue).slice(-padding.length)
+    hexCodes.push(paddedValue)
+  }
 
-const spark = new SparkMD5()
-
-spark.append('Muro planta baja')
-spark.append('')
+  // Join all the hex strings into one
+  return hexCodes.join('')
+}
