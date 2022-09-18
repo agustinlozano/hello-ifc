@@ -7,13 +7,21 @@ import {
   sortProperties
 } from '../modules/sortStuff'
 import viewer from './initViewer'
+import concatAll from '../utils/concatAll'
+import { btzHash } from '../modules/hashStuff'
 
 async function loadIfc (changed) {
   const file = changed.target.files[0]
   const ifcURL = URL.createObjectURL(file)
   const myModel = await viewer.IFC.loadIfcUrl(ifcURL)
 
-  console.log(myModel)
+  const guids = ['1rj4YnIav09AtqlDAEtLZa', '1rj4YnIav09AtqlDAEtLco']
+  const aBtzDesc = 'Losa planta baja amarilla'
+
+  const concatened = concatAll(guids, aBtzDesc)
+
+  console.log(await btzHash(concatened))
+  console.log(concatened.length)
 
   // Clasificacion de informacion cruda del modelo IFC
   const rawBtzDescription = await getPropSingleValue('description')
