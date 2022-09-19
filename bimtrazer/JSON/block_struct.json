@@ -1,0 +1,34 @@
+{
+  "BtzCode": "1e9fc1e2d08ad9cf3796830066d1cb5bc3b973d1",
+  "BtzDescription": "Muro placa yeso PB",
+  "OwnerHistory": 41,
+  "Elements": [
+    {
+      "GlobalId": "1KBlFBdjz0Tf_GUS7xZ4Im",
+      "HasProperties": [
+        {
+          "type": 5,
+          "value": 24106
+        },
+        {
+          "type": 5,
+          "value": 24107
+        }
+      ]
+    },
+    {
+      "GlobalId": "1KBlFBdjz0Tf_GUS7xZ4jP",
+      "HasProperties": [
+        {
+          "type": 5,
+          "value": 24187
+        },
+        {
+          "type": 5,
+          "value": 24188
+        }
+      ]
+    }
+  ],
+  "Labels": []
+}
