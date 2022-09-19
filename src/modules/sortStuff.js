@@ -1,3 +1,6 @@
+import concatAll from '../utils/concatAll'
+import { btzHash } from './hashStuff'
+
 /**
  * @input  {Array de objetos} con propiedades de la clase IFC PropertySet en crudo
  * @input  {Array de objetos} con los la informacion basica de los Bloques BTZ
@@ -7,31 +10,67 @@
  * propiedades de la clase PropertySet con la informacion filtada en la clase
  * IFC PropertySingleValue.
  */
-export function buildBtzBlocks (rawPropsSet, blocks) {
+export async function buildBtzBlocks (rawPropsSet, blocks) {
   const btzBlocks = []
 
   for (const block of blocks) {
-    const btzBlock = []
+    const btzBlock = {}
+    const btzElements = []
+    const guids = []
+
+    let currentDescr = ''
+    let ownerHistory = ''
+    let classType = ''
 
     for (const elm of block) {
-      const { expressID: blockID } = elm
+      const { expressID: blockID, btzDescription } = elm
 
       for (const propSet of rawPropsSet) {
-        const { HasProperties } = propSet
+        const { HasProperties, GlobalId } = propSet
 
         for (const param of HasProperties) {
           const { value: expressID } = param
+
           if (expressID === blockID) {
-            btzBlock.push({ ...elm, ...propSet })
+            guids.push(GlobalId?.value)
+            currentDescr = btzDescription
+            ownerHistory = propSet.OwnerHistory?.value
+            classType = propSet.ObjectType?.value
+
+            const Elements = {
+              GlobalId:
+                propSet.GlobalId?.value || null,
+              HasProperties:
+                propSet.HasProperties
+            }
+
+            btzElements.push({ ...Elements })
           }
         }
       }
     }
 
+    const concatenedData = concatAll(guids, currentDescr)
+    const btzId = await btzHash(concatenedData)
+
+    btzBlock.BtzCode = btzId
+    btzBlock.BtzDescription = currentDescr
+    btzBlock.ClassType = classType
+    btzBlock.OwnerHistory = ownerHistory
+    btzBlock.Elements = btzElements
+    btzBlock.Labels = []
+
     btzBlocks.push(btzBlock)
+
+    resetStatus(guids, currentDescr)
   }
 
   return btzBlocks
+}
+
+function resetStatus (guids, description) {
+  guids = []
+  description = ''
 }
 
 /**
