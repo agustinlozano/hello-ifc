@@ -26,6 +26,11 @@ async function loadIfc (changed) {
   // Clasificacion de informacion cruda del modelo IFC
   const rawBtzDescription = await getPropSingleValue('description')
 
+  if (rawBtzDescription === null || rawBtzDescription.length === 0) {
+    console.error('From loadIFC: There is no btz parameter.')
+    return null
+  }
+
   // Obtener las propiedades de la clase PropertiesSet
   const rawPropsSet = await getPropertySet(
     filterPropertiesIds(rawBtzDescription),

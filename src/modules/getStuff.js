@@ -72,7 +72,10 @@ export async function getPropertySet (btzdIds, modelID = 0) {
   const lotOfIDs = await ifcManager.getAllItemsOfType(modelID, IFCPROPERTYSET)
   const rawProps = []
 
-  if (btzdIds.length === 0) return null
+  if (btzdIds === null || btzdIds.length === 0) {
+    console.error('There is no btz parameter.')
+    return null
+  }
 
   for (const id of lotOfIDs) {
     const props = await ifcManager.getItemProperties(modelID, id)
@@ -80,9 +83,7 @@ export async function getPropertySet (btzdIds, modelID = 0) {
 
     for (const child of children) {
       for (const btzdId of btzdIds) {
-        if (child.value === btzdId) {
-          rawProps.push(props)
-        }
+        if (child.value === btzdId) rawProps.push(props)
       }
     }
   }

@@ -46,6 +46,11 @@ export function buildBtzBlocks (rawPropsSet, blocks) {
 export function sortProperties (filterFieldFrom, rawProps) {
   const sortedProps = []
 
+  if (rawProps === null || rawProps.length === 0) {
+    console.error('There is no btz parameter.')
+    return null
+  }
+
   for (const field of filterFieldFrom(rawProps)) {
     const block = []
     for (const prop of rawProps) {
