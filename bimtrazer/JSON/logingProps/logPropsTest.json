@@ -1,0 +1,18 @@
+{
+  "expressID": 3875,
+  "type": [],
+  "Name": {
+    "type": 1,
+    "value": "BTZ Block Description"
+  },
+  "Description": null,
+  "NominalValue": {
+    "type": 2,
+    "label": "IFCTEXT",
+    "valueType": 1,
+    "value": "Puertas PB"
+  },
+  "Unit": null,
+  "psets": [],
+  "mats": []
+}

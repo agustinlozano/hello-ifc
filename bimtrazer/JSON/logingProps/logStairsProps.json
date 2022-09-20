@@ -1,0 +1,367 @@
+{
+  "expressID": 23867,
+  "type": [
+    {
+      "expressID": 23870,
+      "type": 1039846685,
+      "GlobalId": {
+        "type": 1,
+        "value": "1oEqESOSrApf32kSCq0mGH"
+      },
+      "OwnerHistory": {
+        "type": 5,
+        "value": 41
+      },
+      "Name": {
+        "type": 1,
+        "value": "Tramos : Tramo monol\\X2\\00ED\\X0\\tico : Huella 40 mm Mamperl\\X2\\00E1\\X0\\n 30 mm Contrahuella 15 mm"
+      },
+      "Description": null,
+      "ApplicableOccurrence": null,
+      "HasPropertySets": [
+        {
+          "type": 5,
+          "value": 24060
+        },
+        {
+          "type": 5,
+          "value": 24062
+        },
+        {
+          "type": 5,
+          "value": 24064
+        },
+        {
+          "type": 5,
+          "value": 24066
+        },
+        {
+          "type": 5,
+          "value": 24068
+        },
+        {
+          "type": 5,
+          "value": 24070
+        }
+      ],
+      "RepresentationMaps": null,
+      "Tag": {
+        "type": 1,
+        "value": "107010"
+      },
+      "ElementType": null,
+      "PredefinedType": {
+        "type": 3,
+        "value": "STRAIGHT"
+      }
+    }
+  ],
+  "GlobalId": {
+    "type": 1,
+    "value": "1KBlFBdjz0Tf_GVzdxZ44L"
+  },
+  "OwnerHistory": {
+    "type": 5,
+    "value": 41
+  },
+  "Name": {
+    "type": 1,
+    "value": "Escaleras : Escalera moldeada in situ : Escalera Run 1"
+  },
+  "Description": null,
+  "ObjectType": {
+    "type": 1,
+    "value": "Tramo monol\\X2\\00ED\\X0\\tico:Huella 40 mm Mamperl\\X2\\00E1\\X0\\n 30 mm Contrahuella 15 mm"
+  },
+  "ObjectPlacement": {
+    "type": 5,
+    "value": 21148
+  },
+  "Representation": {
+    "type": 5,
+    "value": 23865
+  },
+  "Tag": {
+    "type": 1,
+    "value": "172644"
+  },
+  "NumberOfRisers": {
+    "type": 4,
+    "value": 18
+  },
+  "NumberOfTreads": {
+    "type": 4,
+    "value": 17
+  },
+  "RiserHeight": {
+    "type": 4,
+    "value": 0.546806649168854
+  },
+  "TreadLength": {
+    "type": 4,
+    "value": 0.8202099737532811
+  },
+  "psets": [
+    {
+      "expressID": 23903,
+      "type": 1451395588,
+      "GlobalId": {
+        "type": 1,
+        "value": "2adNpLSonDEulvoLtw$ht8"
+      },
+      "OwnerHistory": {
+        "type": 5,
+        "value": 41
+      },
+      "Name": {
+        "type": 1,
+        "value": "Pset_QuantityTakeOff"
+      },
+      "Description": null,
+      "HasProperties": [
+        {
+          "type": 5,
+          "value": 23902
+        }
+      ]
+    },
+    {
+      "expressID": 23913,
+      "type": 1451395588,
+      "GlobalId": {
+        "type": 1,
+        "value": "0Yk1IgzAP35A9vgDcXieIK"
+      },
+      "OwnerHistory": {
+        "type": 5,
+        "value": 41
+      },
+      "Name": {
+        "type": 1,
+        "value": "Pset_StairFlightCommon"
+      },
+      "Description": null,
+      "HasProperties": [
+        {
+          "type": 5,
+          "value": 23902
+        },
+        {
+          "type": 5,
+          "value": 23905
+        },
+        {
+          "type": 5,
+          "value": 23906
+        },
+        {
+          "type": 5,
+          "value": 23907
+        },
+        {
+          "type": 5,
+          "value": 23908
+        },
+        {
+          "type": 5,
+          "value": 23909
+        },
+        {
+          "type": 5,
+          "value": 23910
+        },
+        {
+          "type": 5,
+          "value": 23911
+        },
+        {
+          "type": 5,
+          "value": 23912
+        }
+      ]
+    },
+    {
+      "expressID": 24035,
+      "type": 1451395588,
+      "GlobalId": {
+        "type": 1,
+        "value": "1KBlFBdjz0Tf_GUTtxZ44L"
+      },
+      "OwnerHistory": {
+        "type": 5,
+        "value": 41
+      },
+      "Name": {
+        "type": 1,
+        "value": "Construcci\\X2\\00F3\\X0\\n"
+      },
+      "Description": null,
+      "HasProperties": [
+        {
+          "type": 5,
+          "value": 24006
+        },
+        {
+          "type": 5,
+          "value": 24007
+        },
+        {
+          "type": 5,
+          "value": 24008
+        }
+      ]
+    },
+    {
+      "expressID": 24040,
+      "type": 1451395588,
+      "GlobalId": {
+        "type": 1,
+        "value": "1KBlFBdjz0Tf_GUTlxZ44L"
+      },
+      "OwnerHistory": {
+        "type": 5,
+        "value": 41
+      },
+      "Name": {
+        "type": 1,
+        "value": "Cotas"
+      },
+      "Description": null,
+      "HasProperties": [
+        {
+          "type": 5,
+          "value": 24009
+        },
+        {
+          "type": 5,
+          "value": 24010
+        },
+        {
+          "type": 5,
+          "value": 24011
+        },
+        {
+          "type": 5,
+          "value": 24012
+        },
+        {
+          "type": 5,
+          "value": 24013
+        }
+      ]
+    },
+    {
+      "expressID": 24045,
+      "type": 1451395588,
+      "GlobalId": {
+        "type": 1,
+        "value": "2AKrIHBIzE1OurXObNxJ1H"
+      },
+      "OwnerHistory": {
+        "type": 5,
+        "value": 41
+      },
+      "Name": {
+        "type": 1,
+        "value": "Otros"
+      },
+      "Description": null,
+      "HasProperties": [
+        {
+          "type": 5,
+          "value": 24014
+        },
+        {
+          "type": 5,
+          "value": 24015
+        },
+        {
+          "type": 5,
+          "value": 24016
+        },
+        {
+          "type": 5,
+          "value": 24017
+        },
+        {
+          "type": 5,
+          "value": 24018
+        }
+      ]
+    },
+    {
+      "expressID": 24050,
+      "type": 1451395588,
+      "GlobalId": {
+        "type": 1,
+        "value": "1KBlFBdjz0Tf_GUTRxZ44L"
+      },
+      "OwnerHistory": {
+        "type": 5,
+        "value": 41
+      },
+      "Name": {
+        "type": 1,
+        "value": "Proceso por fases"
+      },
+      "Description": null,
+      "HasProperties": [
+        {
+          "type": 5,
+          "value": 269
+        }
+      ]
+    },
+    {
+      "expressID": 24055,
+      "type": 1451395588,
+      "GlobalId": {
+        "type": 1,
+        "value": "1KBlFBdjz0Tf_GUStxZ44L"
+      },
+      "OwnerHistory": {
+        "type": 5,
+        "value": 41
+      },
+      "Name": {
+        "type": 1,
+        "value": "Restricciones"
+      },
+      "Description": null,
+      "HasProperties": [
+        {
+          "type": 5,
+          "value": 24002
+        },
+        {
+          "type": 5,
+          "value": 24003
+        },
+        {
+          "type": 5,
+          "value": 24004
+        },
+        {
+          "type": 5,
+          "value": 24005
+        }
+      ]
+    }
+  ],
+  "mats": [
+    {
+      "expressID": 23891,
+      "type": 2199411900,
+      "Materials": [
+        {
+          "type": 5,
+          "value": 23871
+        },
+        {
+          "type": 5,
+          "value": 23881
+        }
+      ]
+    }
+  ]
+}

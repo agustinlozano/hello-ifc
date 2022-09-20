@@ -1,0 +1,36 @@
+{
+  "BtzCode": "133a8a07af309b4c6d7487605ea39c08fd6b3ff6",
+  "BtzDescription": "Puertas PB",
+  "OwnerHistory": 41,
+  "Elements": [
+    {
+      "ExpressId": 3875,
+      "GlobalId": "1rj4YnIav09AtqlDAEtLgo",
+      "HasProperties": [
+        {
+          "type": 5,
+          "value": 3875
+        },
+        {
+          "type": 5,
+          "value": 3876
+        }
+      ]
+    },
+    {
+      "ExpressId": 7010,
+      "GlobalId": "1rj4YnIav09AtqlDAEtLgG",
+      "HasProperties": [
+        {
+          "type": 5,
+          "value": 7010
+        },
+        {
+          "type": 5,
+          "value": 7011
+        }
+      ]
+    }
+  ],
+  "Labels": []
+}
