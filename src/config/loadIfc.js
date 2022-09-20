@@ -16,6 +16,14 @@ async function loadIfc (changed) {
   // Clasificacion de informacion cruda del modelo IFC
   const rawBtzDescription = await getPropSingleValue('description')
 
+  // const rawBtzProps = {
+  //   rawBtzDescription: await getPropSingleValue('description'),
+  //   rawBtzStartDate: await getPropSingleValue('beginning'),
+  //   rawBtzEndDate: await getPropSingleValue('ending')
+  // }
+
+  // console.log(rawBtzProps)
+
   if (rawBtzDescription === null || rawBtzDescription.length === 0) {
     console.error('From loadIFC: There is no btz parameter.')
     return null
@@ -27,6 +35,7 @@ async function loadIfc (changed) {
     myModel.modelID)
 
   const sortedBlocks = sortProperties(filterProps, rawBtzDescription)
+  console.log(sortedBlocks)
   const btzBlocks = await buildBtzBlocks(rawPropsSet, sortedBlocks)
 
   renderJsonData(btzBlocks, 'btzBlock')
