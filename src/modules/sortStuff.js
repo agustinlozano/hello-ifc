@@ -1,4 +1,5 @@
 import concatAll from '../utils/concatAll'
+// import { getPropSingleValue } from './getStuff'
 import { btzHash } from './hashStuff'
 
 /**
@@ -21,6 +22,8 @@ export async function buildBtzBlocks (rawPropsSet, blocks) {
     let currentDescr = ''
     let ownerHistory = ''
     let classType = ''
+    // const startDate = ''
+    // const endDate = ''
 
     for (const elm of block) {
       const { expressID: blockID, btzDescription } = elm
@@ -36,6 +39,19 @@ export async function buildBtzBlocks (rawPropsSet, blocks) {
             currentDescr = btzDescription
             ownerHistory = propSet.OwnerHistory?.value
             classType = propSet.ObjectType?.value
+
+            // const modelID = 0
+            // const startDate = await getPropSingleValue('beginning', modelID)
+            // const endDate = await getPropSingleValue('ending', modelID)
+
+            // const holaFin = sortProperties(filterProps, endDate)
+            // console.log({ holaFin })
+            // const holaInicio = filterProps(startDate)
+
+            // console.log('buildBtzBlocks')
+            // console.log({ holaInicio })
+
+            // break
 
             const Elements = {
               GlobalId:
@@ -54,6 +70,8 @@ export async function buildBtzBlocks (rawPropsSet, blocks) {
     const btzId = await btzHash(concatenedData)
 
     btzBlock.BtzCode = btzId
+    // btzBlock.BtzStartDate
+    // btzBlock.BtzEndDate
     btzBlock.BtzDescription = currentDescr
     btzBlock.ClassType = classType
     btzBlock.OwnerHistory = ownerHistory
