@@ -10,7 +10,50 @@ const { ifcManager } = viewer.IFC.loader
  * de la clase PropSingleValue
  *
  * Es la funcion que usamos para obtener las propiedades del modelo IFC
- * pasadas com parametros. Estas propiedades pueden ser, btz-description,
+ * pasadas con parametros. Estas propiedades pueden ser, btz-description,
+ * fecha de inicio, fecha de finalizacion.
+ */
+export async function getAllBtzParams (modelID = 0) {
+  const lotOfIDs = await ifcManager.getAllItemsOfType(modelID, IFCPROPERTYSINGLEVALUE)
+  const descriptions = []
+  const startDates = []
+  const endDates = []
+
+  for (const id of lotOfIDs) {
+    const props = await ifcManager.getItemProperties(modelID, id)
+    const { Name } = props
+    const hasBtzDescription =
+      Name.value.toLowerCase() === 'btz-description' ||
+      Name.value.toLowerCase() === 'btz block description'
+    const hasStartDate =
+      Name.value.toLowerCase() === 'btz-start-date' ||
+      Name.value.toLowerCase() === 'btz start date' ||
+      Name.value.toLowerCase() === 'btz start date (opctional)'
+    const hasEndDate =
+      Name.value.toLowerCase() === 'btz-finish-date' ||
+      Name.value.toLowerCase() === 'btz finish date' ||
+      Name.value.toLowerCase() === 'btz finish date (optional)'
+
+    if (hasBtzDescription) descriptions.push(props)
+    if (hasStartDate) startDates.push(props)
+    if (hasEndDate) endDates.push(props)
+  }
+
+  return {
+    descriptions,
+    startDates,
+    endDates
+  }
+}
+
+/**
+ * @input  {String} con el nombre del parametro a buscar
+ * @input  {Number} con el ID del modelo
+ * @output {Array de objetos} con las propiedades proventientes
+ * de la clase PropSingleValue
+ *
+ * Es la funcion que usamos para obtener las propiedades del modelo IFC
+ * pasadas con parametros. Estas propiedades pueden ser, btz-description,
  * fecha de inicio, fecha de finalizacion.
  */
 export async function getPropSingleValue (parameter, modelID = 0) {
