@@ -25,5 +25,4 @@ Estos archivos contienen el codigo C++ compilado con la logica **_web-ifc_**.
 _"unexpected style type"_
 It means that there's something that hasn't been implemented in _web-ifc_ yet. You can create an issue in web-ifc to request for the implementation.
 
-_"Cannot destructure property 'modelID' of '(intermediate value)' as it is null."_
-Esto es por un evento window.onClick que esta pensado para obtener propiedades de una superficie del modelo.
+_Manejar los contenidos de descripciones con tildes_
