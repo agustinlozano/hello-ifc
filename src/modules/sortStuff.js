@@ -40,27 +40,14 @@ export async function buildBtzBlocks (rawPropsSet, blocks) {
             ownerHistory = propSet.OwnerHistory?.value
             classType = propSet.ObjectType?.value
 
-            // const modelID = 0
-            // const startDate = await getPropSingleValue('beginning', modelID)
-            // const endDate = await getPropSingleValue('ending', modelID)
-
-            // const holaFin = sortProperties(filterProps, endDate)
-            // console.log({ holaFin })
-            // const holaInicio = filterProps(startDate)
-
-            // console.log('buildBtzBlocks')
-            // console.log({ holaInicio })
-
-            // break
-
-            const Elements = {
+            btzElements.push({
               GlobalId:
                 propSet.GlobalId?.value || null,
+              ExpressId:
+                expressID,
               HasProperties:
                 propSet.HasProperties
-            }
-
-            btzElements.push({ ...Elements })
+            })
           }
         }
       }
@@ -148,6 +135,79 @@ export function filterProps (rawBtzParams) {
   return propertyValues
 }
 
+export function filterDictionary (dictionary) {
+  const {
+    descriptions,
+    startDates,
+    endDates
+  } = dictionary
+  const filteredDescriptions = []
+  const filteredStartDates = []
+  const filteredEndDates = []
+
+  if (startDates.length === 0) {
+    for (let i = 0; i < descriptions.length; i++) {
+      const { NominalValue: a } = descriptions[i]
+      const { NominalValue: b } = endDates[i]
+
+      if (!filteredDescriptions.includes(a.value)) {
+        filteredDescriptions.push(a.value)
+      }
+      if (!filteredEndDates.includes(b.value)) {
+        filteredEndDates.push(b.value)
+      }
+    }
+
+    return {
+      filteredDescriptions,
+      filteredStartDates,
+      filteredEndDates
+    }
+  }
+
+  if (endDates.length === 0) {
+    for (let i = 0; i < descriptions.length; i++) {
+      const { NominalValue: a } = descriptions[i]
+      const { NominalValue: b } = startDates[i]
+
+      if (!filteredDescriptions.includes(a.value)) {
+        filteredDescriptions.push(a.value)
+      }
+      if (!filteredStartDates.includes(b.value)) {
+        filteredStartDates.push(b.value)
+      }
+    }
+
+    return {
+      filteredDescriptions,
+      filteredStartDates,
+      filteredEndDates
+    }
+  }
+
+  for (let i = 0; i < descriptions.length; i++) {
+    const { NominalValue: a } = descriptions[i]
+    const { NominalValue: b } = startDates[i]
+    const { NominalValue: c } = endDates[i]
+
+    if (!filteredDescriptions.includes(a.value)) {
+      filteredDescriptions.push(a.value)
+    }
+    if (!filteredStartDates.includes(b.value)) {
+      filteredStartDates.push(b.value)
+    }
+    if (!filteredEndDates.includes(c.value)) {
+      filteredEndDates.push(c.value)
+    }
+  }
+
+  return {
+    filteredDescriptions,
+    filteredStartDates,
+    filteredEndDates
+  }
+}
+
 /**
  * @input  {Array de objetos} con las propiedades en crudo
  * @output {Array de numeros}
@@ -173,36 +233,20 @@ export function filterPropertiesIds (rawBtzParams) {
  * @input {Array} con propiedades de la clase IFC PropertySet en crudo
  * @input {Objecto de Arrays} con los IDs de cada parametro BTZ en un docuemento IFC
 */
-export function sortPropertiesV2 (rawPropsSet, dictionary) {
-  const sortedProps = []
+// export function sortPropertiesV2 (rawPropsSet, dictionary) {
+//   const {
+//     descriptions: rawBtzDescriptions,
+//     startDates: rawBtzStartDate,
+//     endDates: rawBtzEndDates
+//   } = dictionary
+//   const sortedProps = []
 
-  for (const propSet of rawPropsSet) {
-    const { HasProperties, GlobalId, expressID } = propSet
-    let children = []
-    const block = {}
+//   for (let i = 0; i < descriptions.length; i++) {
 
-    for (const prop of HasProperties) {
-      const { btzDescription, btzStartDate, btzFinishDate } = dictionary
-      const { value } = prop
-      const isValueInclude =
-        btzDescription?.includes(value) ||
-        btzStartDate?.includes(value) ||
-        btzFinishDate?.includes(value)
+//   }
 
-      if (isValueInclude) {
-        block.expressID = expressID
-        block.type = ['PropertySet', 1451395588]
-        block.guid = GlobalId.value
-        children = [...children, value]
-        block.btzParams = children
-      }
-    }
-
-    sortedProps.push(block)
-  }
-
-  return sortedProps
-}
+//   return sortedProps
+// }
 
 /* FUNCIONES SIN USO */
 /**
