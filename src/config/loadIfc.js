@@ -1,7 +1,8 @@
-import { getPropertySet, getPropSingleValue } from '../modules/getStuff'
+import { getPropertySet, getAllBtzParams } from '../modules/getStuff'
 import { renderJsonData } from '../utils/renderStuff'
 import {
   buildBtzBlocks,
+  filterDictionary,
   filterPropertiesIds,
   filterProps,
   sortProperties
@@ -14,32 +15,34 @@ async function loadIfc (changed) {
   const myModel = await viewer.IFC.loadIfcUrl(ifcURL)
 
   // Clasificacion de informacion cruda del modelo IFC
-  const rawBtzDescription = await getPropSingleValue('description')
+  const dictionary = await getAllBtzParams(myModel.modelID)
+  const { descriptions: rawBtzDescriptions } = dictionary
 
-  // const rawBtzProps = {
-  //   rawBtzDescription: await getPropSingleValue('description'),
-  //   rawBtzStartDate: await getPropSingleValue('beginning'),
-  //   rawBtzEndDate: await getPropSingleValue('ending')
-  // }
-
-  // console.log(rawBtzProps)
-
-  if (rawBtzDescription === null || rawBtzDescription.length === 0) {
+  if (rawBtzDescriptions === null || rawBtzDescriptions.length === 0) {
     console.error('From loadIFC: There is no btz parameter.')
     return null
   }
 
   // Obtener las propiedades de la clase PropertiesSet
   const rawPropsSet = await getPropertySet(
-    filterPropertiesIds(rawBtzDescription),
+    filterPropertiesIds(rawBtzDescriptions),
     myModel.modelID)
 
-  const sortedBlocks = sortProperties(filterProps, rawBtzDescription)
+  // Filtrar los contenidos de las descripciones btz
+  const sortedBlocks = sortProperties(filterProps, rawBtzDescriptions)
+
+  console.log('Sorted blocks:')
   console.log(sortedBlocks)
+
+  const filteredDic = filterDictionary(dictionary)
+  console.log('Filtered dictionary:')
+  console.log(filteredDic)
+
   const btzBlocks = await buildBtzBlocks(rawPropsSet, sortedBlocks)
 
   renderJsonData(btzBlocks, 'btzBlock')
-  renderJsonData(rawPropsSet, 'propSet')
+  // renderJsonData(rawPropsSet, 'propSet')
+  // renderJsonData(descriptions, 'propSet')
 }
 
 export default loadIfc
