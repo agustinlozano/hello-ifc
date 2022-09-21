@@ -1,12 +1,9 @@
 import { getPropertySet, getAllBtzParams } from '../modules/getStuff'
 import { renderJsonData } from '../utils/renderStuff'
 import {
-  buildBtzBlocks,
-  filterDictionary,
+  buildBtzBlocksV2,
   filterPropertiesIds,
-  filterProps,
-  sortProperties,
-  sortPropertiesV2
+  sortPropertiesV3
 } from '../modules/sortStuff'
 import viewer from './initViewer'
 
@@ -31,18 +28,17 @@ async function loadIfc (changed) {
     filterPropertiesIds(rawBtzDescriptions),
     myModel.modelID)
 
-  const prebuiltBlocksv1 = sortProperties(filterProps, rawBtzDescriptions)
-  console.log('prebuiltBlocksv1', prebuiltBlocksv1)
-
-  const prebuiltBlocks = sortPropertiesV2(filterDictionary, rawDictionary)
+  // Pre-costruir los bloques: se puede optimizar memoria
+  const prebuiltBlocks = sortPropertiesV3(rawDictionary)
   console.log('prebuiltBlocks', prebuiltBlocks)
 
-  const btzBlocks = await buildBtzBlocks(rawPropsSet, prebuiltBlocksv1)
+  // Terminar de construir el bloque
+  const btzBlocks = await buildBtzBlocksV2(rawPropsSet, prebuiltBlocks)
 
   console.log('btzBlocks', btzBlocks)
 
-  // renderJsonData(btzBlocks, 'btzBlock')
-  // renderJsonData(rawPropsSet, 'propSet')
+  renderJsonData(btzBlocks, 'btzBlock')
+  renderJsonData(rawPropsSet, 'propSet')
 }
 
 export default loadIfc
