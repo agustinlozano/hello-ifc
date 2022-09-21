@@ -3,7 +3,8 @@ import { renderJsonData } from '../utils/renderStuff'
 import {
   buildBtzBlocksV2,
   filterPropertiesIds,
-  sortPropertiesV3
+  sortPropertiesV3,
+  sortPropertiesV4
 } from '../modules/sortStuff'
 import viewer from './initViewer'
 
@@ -31,6 +32,9 @@ async function loadIfc (changed) {
   // Pre-costruir los bloques: se puede optimizar memoria
   const prebuiltBlocks = sortPropertiesV3(rawDictionary)
   console.log('prebuiltBlocks', prebuiltBlocks)
+
+  const prebuiltBlocksv4 = sortPropertiesV4(rawDictionary)
+  console.log('prebuiltBlocksV4', prebuiltBlocksv4)
 
   // Terminar de construir el bloque
   const btzBlocks = await buildBtzBlocksV2(rawPropsSet, prebuiltBlocks)
