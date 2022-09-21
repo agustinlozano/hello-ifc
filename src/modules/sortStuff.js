@@ -392,6 +392,99 @@ export function sortPropertiesV3 (rawDictionary) {
   return sortedProps
 }
 
+export function sortPropertiesV4 (rawDictionary) {
+  const sortedProps = []
+  const {
+    descriptions: rawBtzDescriptions,
+    startDates: rawBtzStartDates,
+    endDates: rawBtzEndDates
+  } = rawDictionary
+  const filteredDescriptions = filterProps(rawBtzDescriptions)
+
+  if (rawBtzStartDates.length !== 0 && rawBtzEndDates.length !== 0) {
+    for (let i = 0; i < filteredDescriptions.length; i++) {
+      const block = []
+      handleFullSortPropertyCase(
+        filteredDescriptions,
+        rawBtzDescriptions,
+        rawBtzStartDates,
+        rawBtzEndDates,
+        block,
+        i
+      )
+      sortedProps.push(block)
+    }
+  }
+  if (rawBtzStartDates.length === 0) {
+    for (let i = 0; i < filteredDescriptions.length; i++) {
+      const ids = []
+      const contents = {
+        descContent: '',
+        dateContent: ''
+      }
+
+      handleSortPropertyCaseV2(
+        filteredDescriptions,
+        rawBtzDescriptions,
+        rawBtzEndDates,
+        contents,
+        ids,
+        i
+      )
+
+      sortedProps.push({
+        btzDescription: contents.descContent,
+        btzEndtDate: contents.dateContent,
+        ids
+      })
+    }
+  }
+  if (rawBtzEndDates.length === 0) {
+    for (let i = 0; i < filteredDescriptions.length; i++) {
+      const ids = []
+      const contents = {
+        descContent: '',
+        dateContent: ''
+      }
+
+      handleSortPropertyCaseV2(
+        filteredDescriptions,
+        rawBtzDescriptions,
+        rawBtzStartDates,
+        contents,
+        ids,
+        i
+      )
+
+      sortedProps.push({
+        btzDescription: contents.descContent,
+        btzStartDate: contents.dateContent,
+        ids
+      })
+    }
+  }
+
+  return sortedProps
+}
+
+const handleSortPropertyCaseV2 = (filteredDesc, rawDesc, rawParams, contents, ids, i) => {
+  for (let j = 0; j < rawDesc.length; j++) {
+    const { expressID, NominalValue: desc } = rawDesc[j]
+    // const { descContent, dateContent } = contents
+
+    if (j === 0) {
+      contents.descContent = desc.value
+      contents.dateContent = rawParams[j].NominalValue.value
+    }
+
+    if (desc.value === filteredDesc[i]) {
+      ids.push({
+        expressID
+      })
+    }
+  }
+}
+
 const handleSortPropertyCase = (filteredDesc, rawDesc, rawParams, block, key, i) => {
   for (let j = 0; j < rawDesc.length; j++) {
     const { expressID, NominalValue: desc } = rawDesc[j]
