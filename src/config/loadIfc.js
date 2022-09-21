@@ -5,7 +5,8 @@ import {
   filterDictionary,
   filterPropertiesIds,
   filterProps,
-  sortProperties
+  sortProperties,
+  sortPropertiesV2
 } from '../modules/sortStuff'
 import viewer from './initViewer'
 
@@ -15,34 +16,33 @@ async function loadIfc (changed) {
   const myModel = await viewer.IFC.loadIfcUrl(ifcURL)
 
   // Clasificacion de informacion cruda del modelo IFC
-  const dictionary = await getAllBtzParams(myModel.modelID)
-  const { descriptions: rawBtzDescriptions } = dictionary
+  const rawDictionary = await getAllBtzParams(myModel.modelID)
+  const { descriptions: rawBtzDescriptions } = rawDictionary
 
   if (rawBtzDescriptions === null || rawBtzDescriptions.length === 0) {
     console.error('From loadIFC: There is no btz parameter.')
     return null
   }
 
+  console.log('rawDictionary', rawDictionary)
+
   // Obtener las propiedades de la clase PropertiesSet
   const rawPropsSet = await getPropertySet(
     filterPropertiesIds(rawBtzDescriptions),
     myModel.modelID)
 
-  // Filtrar los contenidos de las descripciones btz
-  const sortedBlocks = sortProperties(filterProps, rawBtzDescriptions)
+  const prebuiltBlocksv1 = sortProperties(filterProps, rawBtzDescriptions)
+  console.log('prebuiltBlocksv1', prebuiltBlocksv1)
 
-  console.log('Sorted blocks:')
-  console.log(sortedBlocks)
+  const prebuiltBlocks = sortPropertiesV2(filterDictionary, rawDictionary)
+  console.log('prebuiltBlocks', prebuiltBlocks)
 
-  const filteredDic = filterDictionary(dictionary)
-  console.log('Filtered dictionary:')
-  console.log(filteredDic)
+  const btzBlocks = await buildBtzBlocks(rawPropsSet, prebuiltBlocksv1)
 
-  const btzBlocks = await buildBtzBlocks(rawPropsSet, sortedBlocks)
+  console.log('btzBlocks', btzBlocks)
 
-  renderJsonData(btzBlocks, 'btzBlock')
+  // renderJsonData(btzBlocks, 'btzBlock')
   // renderJsonData(rawPropsSet, 'propSet')
-  // renderJsonData(descriptions, 'propSet')
 }
 
 export default loadIfc
