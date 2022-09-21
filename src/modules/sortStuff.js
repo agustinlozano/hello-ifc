@@ -55,8 +55,6 @@ export async function buildBtzBlocks (rawPropsSet, blocks) {
     const btzId = await btzHash(concatenedData)
 
     btzBlock.BtzCode = btzId
-    // btzBlock.BtzStartDate
-    // btzBlock.BtzEndDate
     btzBlock.BtzDescription = currentDescr
     btzBlock.ClassType = classType
     btzBlock.OwnerHistory = ownerHistory
@@ -76,9 +74,71 @@ function resetStatus (guids, description) {
   description = ''
 }
 
-// function async buildBtzBlocksV2 (rawPropsSet, ) {
+export async function buildBtzBlocksV2 (rawPropsSet, prebuiltBlocks) {
+  const btzBlocks = []
 
-// }
+  for (const block of prebuiltBlocks) {
+    const btzBlock = {}
+    const btzElements = []
+    const guids = []
+
+    let currentDescr = ''
+    let currentStartDate = ''
+    let currentEndDate = ''
+    let classType = ''
+
+    for (const elm of block) {
+      const {
+        expressID: blockID,
+        btzDescription,
+        btzStartDate,
+        btzEndDate
+      } = elm
+
+      for (const propSet of rawPropsSet) {
+        const { HasProperties, GlobalId, type } = propSet
+
+        for (const param of HasProperties) {
+          const { value: expressID } = param
+
+          if (expressID === blockID) {
+            guids.push(GlobalId?.value)
+            currentDescr = btzDescription
+            currentStartDate = btzStartDate
+            currentEndDate = btzEndDate
+            classType = type
+
+            btzElements.push({
+              GlobalId:
+                propSet.GlobalId?.value || null,
+              ExpressId:
+                expressID,
+              HasProperties:
+                propSet.HasProperties
+            })
+          }
+        }
+      }
+    }
+
+    const concatenedData = concatAll(guids, currentDescr)
+    const btzId = await btzHash(concatenedData)
+
+    btzBlock.BtzCode = btzId
+    btzBlock.BtzDescription = currentDescr
+    btzBlock.BtzStartDate = currentStartDate || null
+    btzBlock.BtzEndDate = currentEndDate || null
+    btzBlock.ClassType = classType
+    btzBlock.Elements = btzElements
+    btzBlock.Labels = []
+
+    btzBlocks.push(btzBlock)
+
+    resetStatus(guids, currentDescr)
+  }
+
+  return btzBlocks
+}
 
 /**
  * @input  {Function} accede a todas las ocurrencias de un cierto campo
@@ -173,17 +233,12 @@ export function filterDictionary (dictionary) {
     }
   }
 
-  for (let i = 0; i < descriptions.length; i++) {
-    const { NominalValue: a } = descriptions[i]
-    const { NominalValue: b } = startDates[i]
-    const { NominalValue: c } = endDates[i]
-
-    if (!filteredDescriptions.includes(a.value)) {
-      filteredDescriptions.push(a.value)
-      filteredStartDates.push(b.value)
-      filteredEndDates.push(c.value)
-    }
-  }
+  handleFullSortDictionaryCase(
+    filteredDescriptions,
+    descriptions,
+    startDates,
+    endDates
+  )
 
   return {
     filteredDescriptions,
@@ -204,6 +259,20 @@ const handleFilterDictionaryCase = (descriptions, filteredDesc, params, filtered
   }
 }
 
+const handleFullSortDictionaryCase = (filteredDesc, descriptions, startDates, endDates) => {
+  for (let i = 0; i < descriptions.length; i++) {
+    const { NominalValue: a } = descriptions[i]
+    const { NominalValue: b } = startDates[i]
+    const { NominalValue: c } = endDates[i]
+
+    if (!filteredDesc.includes(a.value)) {
+      filteredDesc.push(a.value)
+      filteredDesc.push(b.value)
+      filteredDesc.push(c.value)
+    }
+  }
+}
+
 /**
  * @input {Array} con propiedades de la clase IFC PropertySet en crudo
  * @input {Objecto de Arrays} con los IDs de cada parametro BTZ en un docuemento IFC
@@ -219,16 +288,12 @@ export function sortPropertiesV2 (filterDictionary, rawDictionary) {
   const sortedProps = []
 
   const {
-    filteredDescriptions,
-    filteredStartDates,
-    filteredEndDates
+    filteredDescriptions
   } = sortedDictionary
 
-  console.log('sortedDictionary', sortedDictionary)
-
   if (rawBtzStartDates.length !== 0 && rawBtzEndDates.length !== 0) {
-    const block = []
     for (let i = 0; i < filteredDescriptions.length; i++) {
+      const block = []
       handleFullSortPropertyCase(
         filteredDescriptions,
         rawBtzDescriptions,
@@ -241,26 +306,28 @@ export function sortPropertiesV2 (filterDictionary, rawDictionary) {
     }
   }
   if (rawBtzStartDates.length === 0) {
-    const block = []
     for (let i = 0; i < filteredDescriptions.length; i++) {
+      const block = []
       handleSortPropertyCase(
         filteredDescriptions,
         rawBtzDescriptions,
         rawBtzEndDates,
         block,
+        'btzEndDate',
         i
       )
       sortedProps.push(block)
     }
   }
   if (rawBtzEndDates.length === 0) {
-    const block = []
     for (let i = 0; i < filteredDescriptions.length; i++) {
+      const block = []
       handleSortPropertyCase(
         filteredDescriptions,
         rawBtzDescriptions,
         rawBtzStartDates,
         block,
+        'btzStartDate',
         i
       )
       sortedProps.push(block)
@@ -270,16 +337,71 @@ export function sortPropertiesV2 (filterDictionary, rawDictionary) {
   return sortedProps
 }
 
-const handleSortPropertyCase = (filteredDesc, rawDesc, rawParams, block, i) => {
-  for (let j = 0; j < filteredDesc.length; j++) {
-    const { expressID, NominalValue } = rawDesc[j]
+export function sortPropertiesV3 (rawDictionary) {
+  const sortedProps = []
+  const {
+    descriptions: rawBtzDescriptions,
+    startDates: rawBtzStartDates,
+    endDates: rawBtzEndDates
+  } = rawDictionary
+  const filteredDescriptions = filterProps(rawBtzDescriptions)
+
+  if (rawBtzStartDates.length !== 0 && rawBtzEndDates.length !== 0) {
+    for (let i = 0; i < filteredDescriptions.length; i++) {
+      const block = []
+      handleFullSortPropertyCase(
+        filteredDescriptions,
+        rawBtzDescriptions,
+        rawBtzStartDates,
+        rawBtzEndDates,
+        block,
+        i
+      )
+      sortedProps.push(block)
+    }
+  }
+  if (rawBtzStartDates.length === 0) {
+    for (let i = 0; i < filteredDescriptions.length; i++) {
+      const block = []
+      handleSortPropertyCase(
+        filteredDescriptions,
+        rawBtzDescriptions,
+        rawBtzEndDates,
+        block,
+        'btzEndDate',
+        i
+      )
+      sortedProps.push(block)
+    }
+  }
+  if (rawBtzEndDates.length === 0) {
+    for (let i = 0; i < filteredDescriptions.length; i++) {
+      const block = []
+      handleSortPropertyCase(
+        filteredDescriptions,
+        rawBtzDescriptions,
+        rawBtzStartDates,
+        block,
+        'btzStartDate',
+        i
+      )
+      sortedProps.push(block)
+    }
+  }
+
+  return sortedProps
+}
+
+const handleSortPropertyCase = (filteredDesc, rawDesc, rawParams, block, key, i) => {
+  for (let j = 0; j < rawDesc.length; j++) {
+    const { expressID, NominalValue: desc } = rawDesc[j]
     const { NominalValue: param } = rawParams[j]
 
-    if (NominalValue.value === filteredDesc[i]) {
+    if (desc.value === filteredDesc[i]) {
       block.push({
         expressID,
-        btzDescription: NominalValue.value,
-        btzStartDate: param.value
+        btzDescription: desc.value,
+        [key]: param.value
       })
     }
   }
