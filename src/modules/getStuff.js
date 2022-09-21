@@ -24,7 +24,8 @@ export async function getAllBtzParams (modelID = 0) {
     const { Name } = props
     const hasBtzDescription =
       Name.value.toLowerCase() === 'btz-description' ||
-      Name.value.toLowerCase() === 'btz block description'
+      Name.value.toLowerCase() === 'btz block description' ||
+      Name.value.toLowerCase() === 'descripci\\x2\\00f3\\x0\\n de bloque'
     const hasStartDate =
       Name.value.toLowerCase() === 'btz-start-date' ||
       Name.value.toLowerCase() === 'btz start date' ||
