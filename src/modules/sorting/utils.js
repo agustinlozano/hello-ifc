@@ -65,10 +65,8 @@ export const handleFullSortDictionaryCase = (filteredDesc, descriptions, startDa
   }
 }
 
-export function resetStatus (guids, description) {
+export function resetStatus (guids) {
   guids = []
-  description = ''
-
   return null
 }
 

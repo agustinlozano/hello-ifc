@@ -17,6 +17,11 @@ export function sortPropertiesV4 (rawDictionary) {
   } = rawDictionary
   const filteredDescriptions = filterProps(rawBtzDescriptions)
 
+  if (filteredDescriptions === null) {
+    console.error('There is no btz parameter.')
+    return null
+  }
+
   if (rawBtzStartDates.length !== 0 && rawBtzEndDates.length !== 0) {
     for (let i = 0; i < filteredDescriptions.length; i++) {
       console.log('Case 1')
@@ -134,6 +139,15 @@ export function sortPropertiesV4 (rawDictionary) {
 export async function buildBtzBlocksV3 (rawPropsSet, prebuiltBlocks) {
   const btzBlocks = []
 
+  if (prebuiltBlocks === null) {
+    console.error('There is no prebuilt blocks.')
+    return null
+  }
+  if (rawPropsSet === null) {
+    console.error('There is no raw properties set.')
+    return null
+  }
+
   for (const block of prebuiltBlocks) {
     const { btzDescription, btzStartDate, btzEndDate, ids } = block
 
@@ -174,6 +188,75 @@ export async function buildBtzBlocksV3 (rawPropsSet, prebuiltBlocks) {
     const btzId = await btzHash(concatenedData)
 
     btzBlock.BtzCode = btzId
+    btzBlock.BtzDescription = btzDescription
+    btzBlock.BtzStartDate = btzStartDate || null
+    btzBlock.BtzEndDate = btzEndDate || null
+    btzBlock.ClassType = classType
+    btzBlock.Elements = btzElements
+    btzBlock.Labels = []
+
+    btzBlocks.push(btzBlock)
+
+    resetStatus(guids)
+  }
+
+  return btzBlocks
+}
+
+/**
+ * @OBJETIVO En esta cuerta version de la funcion buildBtzBlock nos enfocaremos en
+ * Incorporar el BtzCode alfanumerico de 5 digitos a partir de una funcion
+ * de nuestro modulo blockCoding.
+ */
+export async function buildBtzBlocksV4 (rawPropsSet, prebuiltBlocks) {
+  const btzBlocks = []
+
+  if (prebuiltBlocks === null || prebuiltBlocks.length === 0) {
+    console.error('There is no prebuilt blocks.')
+    return null
+  }
+  if (rawPropsSet === null) {
+    console.error('There is no raw properties set.')
+    return null
+  }
+
+  console.log(rawPropsSet)
+  console.log(prebuiltBlocks)
+
+  for (const block of prebuiltBlocks) {
+    const { btzDescription, btzStartDate, btzEndDate, ids } = block
+    const btzBlock = {}
+    const btzElements = []
+    const guids = []
+    let classType = ''
+
+    for (const blockID of ids) {
+      for (const propSet of rawPropsSet) {
+        const { HasProperties, GlobalId, type } = propSet
+        for (const param of HasProperties) {
+          const { value: expressID } = param
+          if (expressID === blockID) {
+            guids.push(GlobalId?.value)
+            classType = type
+
+            btzElements.push({
+              GlobalId: propSet.GlobalId?.value || null,
+              ExpressId: expressID,
+              HasProperties: propSet.HasProperties
+            })
+          }
+        }
+      }
+    }
+
+    function findMatch (btzElements, propSet, guids, expressID) {
+
+    }
+
+    const concatenedData = concatAll(guids, btzDescription)
+
+    btzBlock.BtzCode = ''
+    btzBlock.BtzGuid = await btzHash(concatenedData)
     btzBlock.BtzDescription = btzDescription
     btzBlock.BtzStartDate = btzStartDate || null
     btzBlock.BtzEndDate = btzEndDate || null
@@ -246,11 +329,18 @@ export function filterProps (rawBtzParams) {
   return propertyValues
 }
 
+/* Funcion sin uso actualmente */
 export function filterDictionary (dictionary) {
   const { descriptions, startDates, endDates } = dictionary
   const filteredDescriptions = []
   const filteredStartDates = []
   const filteredEndDates = []
+
+  if (startDates.length === 0 && endDates.length === 0) {
+    // MANEJAR CASO
+    console.error('From filterDictionary: unhandled case, startDates and endDates are empty')
+    return null
+  }
 
   if (startDates.length === 0) {
     handleFilterDictionaryCase(
