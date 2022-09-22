@@ -113,6 +113,8 @@ export async function getPropSingleValue (parameter, modelID = 0) {
  * los expressIds de las propiedades del bloque (btzd, beginning, end).
  */
 export async function getPropertySet (btzdIds, modelID = 0) {
+  // INVESTIGAR SI getAllItemsOfType PUEDE MEJORAR LA PERFORMANCE
+  // AGREGANDO ALGUN PARAMETRO
   const lotOfIDs = await ifcManager.getAllItemsOfType(modelID, IFCPROPERTYSET)
   const rawProps = []
 
