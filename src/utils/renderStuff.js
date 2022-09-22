@@ -12,6 +12,36 @@ export function renderSelectedElm (props) {
   $propsOutput.innerHTML = JSON.stringify(props, null, 2)
 }
 
+export function renderFiveJsonData (data, option) {
+  if (data.length === 0) return null
+  if (option === 'btzBlock') {
+    $btzBlocksLength.innerHTML = data.length
+
+    for (let i = 0; i < 5; i++) {
+      const btzd = data[i]
+      const li = document.createElement('li')
+      const pre = document.createElement('pre')
+
+      pre.innerHTML = JSON.stringify(btzd, null, 2)
+      li.appendChild(pre)
+      $btzBlocksOutput.appendChild(li)
+    }
+  }
+  if (option === 'propSet') {
+    $propSetLength.innerHTML = data.length
+
+    for (let i = 0; i < 5; i++) {
+      const btzd = data[i]
+      const li = document.createElement('li')
+      const pre = document.createElement('pre')
+
+      pre.innerHTML = JSON.stringify(btzd, null, 2)
+      li.appendChild(pre)
+      $propSetOutput.appendChild(li)
+    }
+  }
+}
+
 export function renderJsonData (data, option) {
   if (data.length === 0) return null
   if (option === 'btzBlock') {
