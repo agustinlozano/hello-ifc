@@ -1,10 +1,11 @@
 import { getPropertySet, getAllBtzParams } from '../modules/getStuff'
 // import { renderJsonData } from '../utils/renderStuff'
 import {
-  buildBtzBlocksV3,
+  buildBtzBlocksV4,
   filterPropertiesIds,
   sortPropertiesV4
 } from '../modules/sorting/sortStuff'
+import { renderFiveJsonData } from '../utils/renderStuff'
 import viewer from './initViewer'
 
 async function loadIfc (changed) {
@@ -30,22 +31,18 @@ async function loadIfc (changed) {
       myModel.modelID)
     console.log('2. rawPropSet listo')
 
-    // Pre-costruir los bloques: se puede optimizar memoria
-    // const prebuiltBlocks = sortPropertiesV3(rawDictionary)
-    // console.log('prebuiltBlocks', prebuiltBlocks)
-
+    // Pre-costruir los bloques
     const prebuiltBlocksv4 = sortPropertiesV4(rawDictionary)
     console.log('prebuiltBlocksV4', prebuiltBlocksv4)
     console.log('3. PrebuiltBlockV4 listo')
 
     // Terminar de construir el bloque
-    // const btzBlocks = await buildBtzBlocksV2(rawPropsSet, prebuiltBlocks)
-    const btzBlockV3 = await buildBtzBlocksV3(rawPropsSet, prebuiltBlocksv4)
+    const btzBlockV3 = await buildBtzBlocksV4(rawPropsSet, prebuiltBlocksv4)
 
     console.log('4. btzBlocksV3', btzBlockV3)
 
-    // renderJsonData(btzBlockV3, 'btzBlock')
-    // renderJsonData(rawPropsSet, 'propSet')
+    renderFiveJsonData(btzBlockV3, 'btzBlock')
+    renderFiveJsonData(rawPropsSet, 'propSet')
   }, 3000)
 }
 
