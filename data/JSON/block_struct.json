@@ -1,57 +1,41 @@
 {
-  "btzCode": "",
-  "brzGuid": "78b4e5e8a575c87ab73c394814ab454155028d98",
-  "btzDescription": "Suelo PB",
-  "btzStartDate": null,
-  "btzEndDate": "10/01/2022",
+  "BtzCode": "",
+  "BtzGuid": "78b4e5e8a575c87ab73c394814ab454155028d98",
+  "BtzDescription": "Suelo PB",
+  "BtzStartDate": null,
+  "BtzEndDate": "10/01/2022",
   "ClassType": 1451395588,
   "Elements": [
     {
       "GlobalId": "1rj4YnIav09AtqlDAEtLco",
       "ExpressId": 455,
       "HasProperties": [
-        {
-          "value": 455
-        },
-        {
-          "value": 456
-        }
+        455,
+        456
       ]
     },
     {
       "GlobalId": "1rj4YnIav09AtqlDAEtLfX",
       "ExpressId": 585,
       "HasProperties": [
-        {
-          "value": 585
-        },
-        {
-          "value": 586
-        }
+        585,
+        586
       ]
     },
     {
       "GlobalId": "1rj4YnIav09AtqlDAEtLho",
       "ExpressId": 665,
       "HasProperties": [
-        {
-          "value": 665
-        },
-        {
-          "value": 666
-        }
+        665,
+        666
       ]
     },
     {
       "GlobalId": "1rj4YnIav09AtqlDAEtLh0",
       "ExpressId": 746,
       "HasProperties": [
-        {
-          "value": 746
-        },
-        {
-          "value": 747
-        }
+        746,
+        747
       ]
     }
   ],
