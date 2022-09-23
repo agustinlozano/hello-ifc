@@ -1,8 +1,10 @@
-import { highlightMaterial } from './utils/highlight'
 import viewer from './config/initViewer'
 import loadIfc from './config/loadIfc'
-import { renderSelectedElm } from './utils/renderStuff'
-import shortcuts from './utils/shortcuts'
+import {
+  renderSelectedElm,
+  shortcuts,
+  highlightMaterial
+} from './utils/'
 
 // Setear el efecto hover a los elementos
 const myOpacity = 0.7
