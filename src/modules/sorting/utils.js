@@ -1,10 +1,10 @@
 /* Documentar */
 export const fillBlock = (block, btzId, params, restOfParams) => {
-  block.btzCode = ''
-  block.brzGuid = btzId
-  block.btzDescription = params.btzDescription
-  block.btzStartDate = params.btzStartDate || null
-  block.btzEndDate = params.btzEndDate || null
+  block.BtzCode = ''
+  block.BtzGuid = btzId
+  block.BtzDescription = params.btzDescription
+  block.BtzStartDate = params.btzStartDate || null
+  block.BtzEndDate = params.btzEndDate || null
   block.ClassType = restOfParams.classType
   block.Elements = restOfParams.btzElements
   block.Labels = []
@@ -16,17 +16,23 @@ export const fillBlock = (block, btzId, params, restOfParams) => {
 export const findMatch = (restOfParams, expressID, blockID, propSet, guids) => {
   const { btzElements } = restOfParams
   const { HasProperties, GlobalId, type } = propSet
+  const filteredHasProperties = []
 
   if (expressID === blockID) {
     guids.push(GlobalId?.value)
     restOfParams.classType = type
+
+    for (const param of HasProperties) {
+      const { value } = param
+      filteredHasProperties.push(value)
+    }
 
     btzElements.push({
       GlobalId:
         GlobalId?.value || null,
       ExpressId:
         expressID,
-      HasProperties
+      HasProperties: filteredHasProperties
     })
   }
 }
