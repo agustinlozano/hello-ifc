@@ -1,4 +1,4 @@
-export const validateOne = (param, message) => {
+export const validate = (param, message) => {
   if (param === null) {
     console.error(message)
     return null

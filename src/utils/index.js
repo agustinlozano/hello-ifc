@@ -13,7 +13,7 @@ export {
 } from './renderStuff'
 
 export {
-  validateOne,
+  validate,
   validateAnArray
 } from './validate'
 
