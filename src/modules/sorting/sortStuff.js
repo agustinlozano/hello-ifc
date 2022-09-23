@@ -20,10 +20,7 @@ export function sortPropertiesV4 (rawDictionary) {
   } = rawDictionary
   const filteredDescriptions = filterProps(rawBtzDescriptions)
 
-  if (filteredDescriptions === null) {
-    console.error('There is no btz parameter.')
-    return null
-  }
+  validate(filteredDescriptions, 'There is no btz parameter.')
 
   if (rawBtzStartDates.length !== 0 && rawBtzEndDates.length !== 0) {
     for (let i = 0; i < filteredDescriptions.length; i++) {
@@ -140,7 +137,7 @@ export function sortPropertiesV4 (rawDictionary) {
 }
 
 /**
- * @OBJETIVO En esta cuerta version de la funcion buildBtzBlock nos enfocaremos en
+ * @OBJETIVO En esta cuarta version de la funcion buildBtzBlock nos enfocaremos en
  * Incorporar el BtzCode alfanumerico de 5 digitos a partir de una funcion
  * de nuestro modulo blockCoding.
  */
