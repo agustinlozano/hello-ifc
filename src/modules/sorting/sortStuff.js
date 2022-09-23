@@ -8,7 +8,7 @@ import {
   fillBlock,
   validate
 } from './utils'
-import { concatAll } from '../../utils'
+import { concatAll, validateAnArray } from '../../utils'
 import { btzHash } from '../hashStuff'
 
 export function sortPropertiesV4 (rawDictionary) {
@@ -192,10 +192,7 @@ export async function buildBtzBlocksV4 (rawPropsSet, prebuiltBlocks) {
 export function sortProperties (filterFieldFrom, rawProps) {
   const sortedProps = []
 
-  if (rawProps === null || rawProps.length === 0) {
-    console.error('There is no btz parameter.')
-    return null
-  }
+  validateAnArray(rawProps, 'There is no btz parameter.')
 
   for (const field of filterFieldFrom(rawProps)) {
     const block = []

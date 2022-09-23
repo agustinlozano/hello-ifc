@@ -1,5 +1,5 @@
 import { getPropertySet, getAllBtzParams } from '../getting'
-import { renderFiveJsonData } from '../../utils'
+import { renderFiveJsonData, validateAnArray } from '../../utils'
 import {
   buildBtzBlocksV4,
   filterPropertiesIds,
@@ -10,19 +10,31 @@ export async function bimtrazerSort (modelID) {
   const rawDictionary = await getAllBtzParams(modelID)
   const { descriptions: rawBtzDescriptions } = rawDictionary
 
-  if (rawBtzDescriptions === null || rawBtzDescriptions.length === 0) {
-    console.error('From loadIFC: There is no btz parameter.')
-    return null
-  }
+  validateAnArray(
+    rawBtzDescriptions,
+    'From loadIFC: There is no btz parameter.')
 
   const rawPropsSet = await getPropertySet(
     filterPropertiesIds(rawBtzDescriptions),
     modelID)
 
-  const prebuiltBlocksv4 = sortPropertiesV4(rawDictionary)
-  const btzBlockV3 = await buildBtzBlocksV4(rawPropsSet, prebuiltBlocksv4)
+  validateAnArray(
+    rawPropsSet,
+    'From loadIFC: There was a problem while filtering the parameter')
 
-  renderFiveJsonData(btzBlockV3, 'btzBlock')
+  const prebuiltBlocksv4 = sortPropertiesV4(rawDictionary)
+
+  validateAnArray(
+    prebuiltBlocksv4,
+    'From loadIFC: There was a problem while prebuilding the blocks')
+
+  const btzBlocksV4 = await buildBtzBlocksV4(rawPropsSet, prebuiltBlocksv4)
+
+  validateAnArray(
+    btzBlocksV4,
+    'From loadIFC: There was a problem while building the blocks')
+
+  renderFiveJsonData(btzBlocksV4, 'btzBlock')
   renderFiveJsonData(rawPropsSet, 'propSet')
 }
 
@@ -31,10 +43,9 @@ export async function bimtrazerSortDev (modelID) {
   const { descriptions: rawBtzDescriptions } = rawDictionary
   console.log('1. Diccionario listo')
 
-  if (rawBtzDescriptions === null || rawBtzDescriptions.length === 0) {
-    console.error('From loadIFC: There is no btz parameter.')
-    return null
-  }
+  validateAnArray(
+    rawBtzDescriptions,
+    'From loadIFC: There is no btz parameter.')
 
   // Obtener las propiedades de la clase PropertiesSet
   const rawPropsSet = await getPropertySet(

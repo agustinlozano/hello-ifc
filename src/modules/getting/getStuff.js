@@ -1,5 +1,6 @@
 import viewer from '../../config/initViewer'
 import { IFCSLAB, IFCPROPERTYSINGLEVALUE, IFCPROPERTYSET } from 'web-ifc'
+import { validateAnArray } from '../../utils'
 
 const { ifcManager } = viewer.IFC.loader
 
@@ -114,23 +115,20 @@ export async function getPropSingleValue (parameter, modelID = 0) {
  * PropertySet, la cual contiene informacion valiosa como, el GUID,
  * los expressIds de las propiedades del bloque (btzd, beginning, end).
  */
-export async function getPropertySet (btzdIds, modelID = 0) {
+export async function getPropertySet (paramIds, modelID = 0) {
   // INVESTIGAR SI getAllItemsOfType PUEDE MEJORAR LA PERFORMANCE
   // AGREGANDO ALGUN PARAMETRO
   const lotOfIDs = await ifcManager.getAllItemsOfType(modelID, IFCPROPERTYSET)
   const rawProps = []
 
-  if (btzdIds === null || btzdIds.length === 0) {
-    console.error('There is no btz parameter.')
-    return null
-  }
+  validateAnArray(paramIds, 'There is no btz parameter.')
 
   for (const id of lotOfIDs) {
     const props = await ifcManager.getItemProperties(modelID, id)
     const { HasProperties: children } = props
 
     for (const child of children) {
-      for (const btzdId of btzdIds) {
+      for (const btzdId of paramIds) {
         if (child.value === btzdId) rawProps.push(props)
       }
     }
