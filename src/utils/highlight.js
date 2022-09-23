@@ -1,6 +1,6 @@
 import { MeshLambertMaterial } from 'three'
 
-export const highlightMaterial = (myOpacity = 0.6, myColor = 0xc488ff) => {
+const highlightMaterial = (myOpacity = 0.6, myColor = 0xc488ff) => {
   // Creates subset material
   return new MeshLambertMaterial({
     transparent: true,
@@ -9,3 +9,5 @@ export const highlightMaterial = (myOpacity = 0.6, myColor = 0xc488ff) => {
     depthTest: false
   })
 }
+
+export default highlightMaterial
