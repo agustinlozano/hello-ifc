@@ -12,4 +12,9 @@ export {
   generateTreeLogic
 } from './renderStuff'
 
+export {
+  validateOne,
+  validateAnArray
+} from './validate'
+
 export { concatAll, highlightMaterial, shortcuts }

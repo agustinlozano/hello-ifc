@@ -1,10 +1,3 @@
-export const validate = (param, message) => {
-  if (param === null) {
-    console.error(message)
-    return null
-  }
-}
-
 /* Documentar */
 export const fillBlock = (block, btzId, params, restOfParams) => {
   block.btzCode = ''
