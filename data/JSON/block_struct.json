@@ -1,31 +1,56 @@
 {
-  "BtzCode": "1e9fc1e2d08ad9cf3796830066d1cb5bc3b973d1",
-  "BtzDescription": "Muro placa yeso PB",
-  "OwnerHistory": 41,
+  "btzCode": "",
+  "brzGuid": "78b4e5e8a575c87ab73c394814ab454155028d98",
+  "btzDescription": "Suelo PB",
+  "btzStartDate": null,
+  "btzEndDate": "10/01/2022",
+  "ClassType": 1451395588,
   "Elements": [
     {
-      "GlobalId": "1KBlFBdjz0Tf_GUS7xZ4Im",
+      "GlobalId": "1rj4YnIav09AtqlDAEtLco",
+      "ExpressId": 455,
       "HasProperties": [
         {
-          "type": 5,
-          "value": 24106
+          "value": 455
         },
         {
-          "type": 5,
-          "value": 24107
+          "value": 456
         }
       ]
     },
     {
-      "GlobalId": "1KBlFBdjz0Tf_GUS7xZ4jP",
+      "GlobalId": "1rj4YnIav09AtqlDAEtLfX",
+      "ExpressId": 585,
       "HasProperties": [
         {
-          "type": 5,
-          "value": 24187
+          "value": 585
         },
         {
-          "type": 5,
-          "value": 24188
+          "value": 586
+        }
+      ]
+    },
+    {
+      "GlobalId": "1rj4YnIav09AtqlDAEtLho",
+      "ExpressId": 665,
+      "HasProperties": [
+        {
+          "value": 665
+        },
+        {
+          "value": 666
+        }
+      ]
+    },
+    {
+      "GlobalId": "1rj4YnIav09AtqlDAEtLh0",
+      "ExpressId": 746,
+      "HasProperties": [
+        {
+          "value": 746
+        },
+        {
+          "value": 747
         }
       ]
     }
