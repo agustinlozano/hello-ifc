@@ -50,7 +50,7 @@ export async function bimtrazerSortDev (modelID) {
   // Terminar de construir el bloque
   const btzBlockV3 = await buildBtzBlocksV4(rawPropsSet, prebuiltBlocksv4)
 
-  console.log('4. btzBlocksV3', btzBlockV3)
+  console.log('4. btzBlocksV4', btzBlockV3)
 
   renderFiveJsonData(btzBlockV3, 'btzBlock')
   renderFiveJsonData(rawPropsSet, 'propSet')
