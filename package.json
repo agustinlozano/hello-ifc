@@ -1,7 +1,7 @@
 {
-  "name": "hello-ifc",
+  "name": "proto-ifc-viewer",
   "version": "1.0.0",
-  "description": "IFC application",
+  "description": "IFC viewer application",
   "main": "app.js",
   "scripts": {
     "build": "rollup -c ./rollup.config.js",
