@@ -5,10 +5,9 @@ import {
   handleFullSortDictionaryCase,
   resetStatus,
   findMatch,
-  fillBlock,
-  validate
+  fillBlock
 } from './utils'
-import { concatAll, validateAnArray } from '../../utils'
+import { concatAll, validateAnArray, validate } from '../../utils'
 import { btzHash } from '../hashStuff'
 
 export function sortPropertiesV4 (rawDictionary) {
