@@ -1,3 +1,43 @@
+export const validate = (param, message) => {
+  if (param === null) {
+    console.error(message)
+    return null
+  }
+}
+
+/* Documentar */
+export const fillBlock = (block, btzId, params, restOfParams) => {
+  block.btzCode = ''
+  block.brzGuid = btzId
+  block.btzDescription = params.btzDescription
+  block.btzStartDate = params.btzStartDate || null
+  block.btzEndDate = params.btzEndDate || null
+  block.ClassType = restOfParams.classType
+  block.Elements = restOfParams.btzElements
+  block.Labels = []
+
+  return block
+}
+
+/* Documentar */
+export const findMatch = (restOfParams, expressID, blockID, propSet, guids) => {
+  const { btzElements } = restOfParams
+  const { HasProperties, GlobalId, type } = propSet
+
+  if (expressID === blockID) {
+    guids.push(GlobalId?.value)
+    restOfParams.classType = type
+
+    btzElements.push({
+      GlobalId:
+        GlobalId?.value || null,
+      ExpressId:
+        expressID,
+      HasProperties
+    })
+  }
+}
+
 /* Documentar */
 export const handleFullSortPropertyCase = (filteredDesc, rawDesc, rawStartDates, rawEndDates, contents, ids, i) => {
   for (let j = 0; j < filteredDesc.length; j++) {
@@ -65,7 +105,7 @@ export const handleFullSortDictionaryCase = (filteredDesc, descriptions, startDa
   }
 }
 
-export function resetStatus (guids) {
+export const resetStatus = (guids) => {
   guids = []
   return null
 }

@@ -3,9 +3,12 @@ import {
   handleSortPropertyCaseV2,
   handleFilterDictionaryCase,
   handleFullSortDictionaryCase,
-  resetStatus
+  resetStatus,
+  findMatch,
+  fillBlock,
+  validate
 } from './utils'
-import concatAll from '../../utils/concatAll'
+import { concatAll } from '../../utils'
 import { btzHash } from '../hashStuff'
 
 export function sortPropertiesV4 (rawDictionary) {
@@ -136,50 +139,35 @@ export function sortPropertiesV4 (rawDictionary) {
   return sortedProps
 }
 
-export async function buildBtzBlocksV3 (rawPropsSet, prebuiltBlocks) {
+/**
+ * @OBJETIVO En esta cuerta version de la funcion buildBtzBlock nos enfocaremos en
+ * Incorporar el BtzCode alfanumerico de 5 digitos a partir de una funcion
+ * de nuestro modulo blockCoding.
+ */
+export async function buildBtzBlocksV4 (rawPropsSet, prebuiltBlocks) {
   const btzBlocks = []
 
-  if (prebuiltBlocks === null) {
-    console.error('There is no prebuilt blocks.')
-    return null
-  }
-  if (rawPropsSet === null) {
-    console.error('There is no raw properties set.')
-    return null
-  }
+  validate(prebuiltBlocks, 'There is no prebuilt blocks.')
+  validate(rawPropsSet, 'There is no raw properties set.')
 
   for (const block of prebuiltBlocks) {
-    const { btzDescription, btzStartDate, btzEndDate, ids } = block
-
+    const { btzDescription, ids } = block
+    const restOfParams = { btzElements: [] }
     const btzBlock = {}
-    const btzElements = []
     const guids = []
-    let classType = ''
 
-    for (const elm of ids) {
-      const {
-        expressID: blockID
-      } = elm
-
+    for (const blockID of ids) {
       for (const propSet of rawPropsSet) {
-        const { HasProperties, GlobalId, type } = propSet
-
+        const { HasProperties } = propSet
         for (const param of HasProperties) {
           const { value: expressID } = param
-
-          if (expressID === blockID) {
-            guids.push(GlobalId?.value)
-            classType = type
-
-            btzElements.push({
-              GlobalId:
-                propSet.GlobalId?.value || null,
-              ExpressId:
-                expressID,
-              HasProperties:
-                propSet.HasProperties
-            })
-          }
+          findMatch(
+            restOfParams,
+            expressID,
+            blockID,
+            propSet,
+            guids
+          )
         }
       }
     }
@@ -187,28 +175,15 @@ export async function buildBtzBlocksV3 (rawPropsSet, prebuiltBlocks) {
     const concatenedData = concatAll(guids, btzDescription)
     const btzId = await btzHash(concatenedData)
 
-    btzBlock.BtzCode = btzId
-    btzBlock.BtzDescription = btzDescription
-    btzBlock.BtzStartDate = btzStartDate || null
-    btzBlock.BtzEndDate = btzEndDate || null
-    btzBlock.ClassType = classType
-    btzBlock.Elements = btzElements
-    btzBlock.Labels = []
-
+    fillBlock(btzBlock, btzId, block, restOfParams)
     btzBlocks.push(btzBlock)
-
     resetStatus(guids)
   }
 
   return btzBlocks
 }
 
-/**
- * @OBJETIVO En esta cuerta version de la funcion buildBtzBlock nos enfocaremos en
- * Incorporar el BtzCode alfanumerico de 5 digitos a partir de una funcion
- * de nuestro modulo blockCoding.
- */
-export async function buildBtzBlocksV4 (rawPropsSet, prebuiltBlocks) {
+export async function buildBtzBlocksV3 (rawPropsSet, prebuiltBlocks) {
   const btzBlocks = []
 
   if (prebuiltBlocks === null || prebuiltBlocks.length === 0) {
@@ -230,7 +205,8 @@ export async function buildBtzBlocksV4 (rawPropsSet, prebuiltBlocks) {
     const guids = []
     let classType = ''
 
-    for (const blockID of ids) {
+    for (const elm of ids) {
+      const { expressID: blockID } = elm
       for (const propSet of rawPropsSet) {
         const { HasProperties, GlobalId, type } = propSet
         for (const param of HasProperties) {
@@ -247,10 +223,6 @@ export async function buildBtzBlocksV4 (rawPropsSet, prebuiltBlocks) {
           }
         }
       }
-    }
-
-    function findMatch (btzElements, propSet, guids, expressID) {
-
     }
 
     const concatenedData = concatAll(guids, btzDescription)
