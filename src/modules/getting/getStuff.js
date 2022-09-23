@@ -1,4 +1,4 @@
-import viewer from '../config/initViewer'
+import viewer from '../../config/initViewer'
 import { IFCSLAB, IFCPROPERTYSINGLEVALUE, IFCPROPERTYSET } from 'web-ifc'
 
 const { ifcManager } = viewer.IFC.loader
@@ -74,6 +74,7 @@ export async function getPropSingleValue (parameter, modelID = 0) {
       if (hasBtzDescription) rawProps.push(props)
     }
   }
+
   if (parameter === 'beginning') {
     for (const id of lotOfIDs) {
       const props = await ifcManager.getItemProperties(modelID, id)
@@ -86,6 +87,7 @@ export async function getPropSingleValue (parameter, modelID = 0) {
       if (hasStartDate) rawProps.push(props)
     }
   }
+
   if (parameter === 'ending') {
     for (const id of lotOfIDs) {
       const props = await ifcManager.getItemProperties(modelID, id)
