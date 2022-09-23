@@ -183,67 +183,6 @@ export async function buildBtzBlocksV4 (rawPropsSet, prebuiltBlocks) {
   return btzBlocks
 }
 
-export async function buildBtzBlocksV3 (rawPropsSet, prebuiltBlocks) {
-  const btzBlocks = []
-
-  if (prebuiltBlocks === null || prebuiltBlocks.length === 0) {
-    console.error('There is no prebuilt blocks.')
-    return null
-  }
-  if (rawPropsSet === null) {
-    console.error('There is no raw properties set.')
-    return null
-  }
-
-  console.log(rawPropsSet)
-  console.log(prebuiltBlocks)
-
-  for (const block of prebuiltBlocks) {
-    const { btzDescription, btzStartDate, btzEndDate, ids } = block
-    const btzBlock = {}
-    const btzElements = []
-    const guids = []
-    let classType = ''
-
-    for (const elm of ids) {
-      const { expressID: blockID } = elm
-      for (const propSet of rawPropsSet) {
-        const { HasProperties, GlobalId, type } = propSet
-        for (const param of HasProperties) {
-          const { value: expressID } = param
-          if (expressID === blockID) {
-            guids.push(GlobalId?.value)
-            classType = type
-
-            btzElements.push({
-              GlobalId: propSet.GlobalId?.value || null,
-              ExpressId: expressID,
-              HasProperties: propSet.HasProperties
-            })
-          }
-        }
-      }
-    }
-
-    const concatenedData = concatAll(guids, btzDescription)
-
-    btzBlock.BtzCode = ''
-    btzBlock.BtzGuid = await btzHash(concatenedData)
-    btzBlock.BtzDescription = btzDescription
-    btzBlock.BtzStartDate = btzStartDate || null
-    btzBlock.BtzEndDate = btzEndDate || null
-    btzBlock.ClassType = classType
-    btzBlock.Elements = btzElements
-    btzBlock.Labels = []
-
-    btzBlocks.push(btzBlock)
-
-    resetStatus(guids)
-  }
-
-  return btzBlocks
-}
-
 /**
  * @input  {Function} accede a todas las ocurrencias de un cierto campo
  *         del IFC sin repetir
