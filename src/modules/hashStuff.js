@@ -4,6 +4,11 @@
  * https://en.wikipedia.org/wiki/Hash_function
  */
 
+/**
+ * Crypto API Reference
+ * https://developer.mozilla.org/es/docs/Web/API/Crypto
+ */
+
 export async function btzHash (str) {
   // We transform the string into an arraybuffer.
   const buffer = new TextEncoder('utf-8').encode(str)
