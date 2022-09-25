@@ -1,3 +1,5 @@
+import { validate } from '../../utils'
+
 /* Documentar */
 export const fillBlock = (block, btzId, params, restOfParams) => {
   block.BtzCode = ''
@@ -44,13 +46,12 @@ export const handleFullSortPropertyCase = (filteredDesc, dictionary, contents, i
   for (let j = 0; j < filteredDesc.length; j++) {
     const { expressID, NominalValue } = rawDesc[j]
 
-    if (j === 0) {
-      contents.descContent = NominalValue.value
-      contents.startDate = rawStartDates[j] || null
-      contents.endDate = rawEndDates[j] || null
-    }
-
     if (NominalValue.value === filteredDesc[i]) {
+      if (!isDesciptionSet(contents.descContent, NominalValue.value)) {
+        contents.descContent = NominalValue.value
+        contents.startDate = rawStartDates[j] || null
+        contents.endDate = rawEndDates[j] || null
+      }
       ids.push(expressID)
     }
   }
@@ -59,24 +60,24 @@ export const handleFullSortPropertyCase = (filteredDesc, dictionary, contents, i
 /* Documentar */
 export const handleSortPropertyCaseV2 = (filteredDesc, rawDesc, rawParams, contents, ids, i) => {
   for (let j = 0; j < rawDesc.length; j++) {
-    if (rawDesc[j] == null) {
-      console.error('Raw description cannot be null')
-      return null
-    }
+    validate(rawDesc[j], 'Raw description cannot be null')
 
     const { expressID, NominalValue: desc } = rawDesc[j]
 
-    if (j === 0) {
-      contents.descContent = desc.value
-      if (rawParams) {
-        contents.dateContent = rawParams[j]?.NominalValue.value || null
-      }
-    }
-
     if (desc.value === filteredDesc[i]) {
+      if (!isDesciptionSet(contents.descContent, desc.value)) {
+        contents.descContent = desc.value
+        if (rawParams) {
+          contents.dateContent = rawParams[j]?.NominalValue.value || null
+        }
+      }
       ids.push(expressID)
     }
   }
+}
+
+const isDesciptionSet = (descContent, currentValue) => {
+  return (descContent !== '' && descContent === currentValue)
 }
 
 // Para el diccionario
@@ -110,6 +111,17 @@ export const resetStatus = (guids) => {
   guids = []
   return null
 }
+
+export const isCurrentSplitterPresent = (day, month, year, date) => {
+  return (
+    day !== undefined &&
+    month !== undefined &&
+    year !== undefined &&
+    day.length !== date.length
+  )
+}
+
+export const isOrderChanged = (day) => day.length === 4
 
 /**
  * @input  {Array} de arrays de objetos con propiedades IFC
