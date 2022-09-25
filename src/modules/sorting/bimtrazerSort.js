@@ -1,14 +1,17 @@
 import { getPropertySet, getAllBtzParams } from '../getting'
-import { renderFiveJsonData, validateAnArray } from '../../utils'
+import { renderFiveJsonData, renderJsonData, validateAnArray } from '../../utils'
 import {
   buildBtzBlocksV4,
   filterPropertiesIds,
+  formatDates,
   sortPropertiesV4
 } from './sortStuff'
 
 export async function bimtrazerSort (modelID) {
   const rawDictionary = await getAllBtzParams(modelID)
   const { descriptions: rawBtzDescriptions } = rawDictionary
+
+  formatDates(rawDictionary.endDates)
 
   validateAnArray(
     rawBtzDescriptions,
@@ -40,6 +43,10 @@ export async function bimtrazerSort (modelID) {
 
 export async function bimtrazerSortDev (modelID) {
   const rawDictionary = await getAllBtzParams(modelID)
+  console.log('rawDictionary', rawDictionary)
+
+  formatDates(rawDictionary.endDates)
+
   const { descriptions: rawBtzDescriptions } = rawDictionary
   console.log('1. Diccionario listo')
 
@@ -63,6 +70,6 @@ export async function bimtrazerSortDev (modelID) {
 
   console.log('4. btzBlocksV4', btzBlockV3)
 
-  renderFiveJsonData(btzBlockV3, 'btzBlock')
+  renderJsonData(btzBlockV3, 'btzBlock')
   renderFiveJsonData(rawPropsSet, 'propSet')
 }
