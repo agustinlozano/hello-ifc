@@ -1,5 +1,5 @@
 export const validate = (param, message) => {
-  if (param === null) {
+  if (param === null || param === undefined || param === '') {
     console.error(message)
     return null
   }
