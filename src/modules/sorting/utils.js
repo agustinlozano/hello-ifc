@@ -38,7 +38,9 @@ export const findMatch = (restOfParams, expressID, blockID, propSet, guids) => {
 }
 
 /* Documentar */
-export const handleFullSortPropertyCase = (filteredDesc, rawDesc, rawStartDates, rawEndDates, contents, ids, i) => {
+export const handleFullSortPropertyCase = (filteredDesc, dictionary, contents, ids, i) => {
+  const { rawDesc, rawStartDates, rawEndDates } = dictionary
+
   for (let j = 0; j < filteredDesc.length; j++) {
     const { expressID, NominalValue } = rawDesc[j]
 
