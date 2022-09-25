@@ -1,13 +1,13 @@
-// index file for exporting all sorting functions
 export { bimtrazerSort, bimtrazerSortDev } from './bimtrazerSort'
 export {
   sortPropertiesV4,
-  buildBtzBlocksV3,
   buildBtzBlocksV4,
   sortProperties,
   filterProps,
   filterDictionary,
-  filterPropertiesIds
+  filterPropertiesIds,
+  formatDates,
+  formatDate
 } from './sortStuff'
 
 export {
