@@ -5,7 +5,9 @@ import {
   handleFullSortDictionaryCase,
   resetStatus,
   findMatch,
-  fillBlock
+  fillBlock,
+  isCurrentSplitterPresent,
+  isOrderChanged
 } from './utils'
 import { concatAll, validateAnArray, validate } from '../../utils'
 import { btzHash } from '../hashStuff'
@@ -33,9 +35,7 @@ export function sortPropertiesV4 (rawDictionary) {
 
       handleFullSortPropertyCase(
         filteredDescriptions,
-        rawBtzDescriptions,
-        rawBtzStartDates,
-        rawBtzEndDates,
+        rawDictionary,
         contents,
         ids,
         i
@@ -55,10 +55,7 @@ export function sortPropertiesV4 (rawDictionary) {
     for (let i = 0; i < filteredDescriptions.length; i++) {
       console.log('Case 2')
       const ids = []
-      const contents = {
-        descContent: '',
-        dateContent: ''
-      }
+      const contents = { descContent: '' }
 
       handleSortPropertyCaseV2(
         filteredDescriptions,
@@ -138,7 +135,7 @@ export function sortPropertiesV4 (rawDictionary) {
 /**
  * @OBJETIVO En esta cuarta version de la funcion buildBtzBlock nos enfocaremos en
  * Incorporar el BtzCode alfanumerico de 5 digitos a partir de una funcion
- * de nuestro modulo blockCoding.
+ * de consumir un servicio externo.
  */
 export async function buildBtzBlocksV4 (rawPropsSet, prebuiltBlocks) {
   const btzBlocks = []
@@ -309,4 +306,43 @@ export function filterPropertiesIds (rawBtzParams) {
   }
 
   return ids
+}
+
+export function formatDate (date) {
+  let [day, month, year] = date.split('/')
+
+  if (isCurrentSplitterPresent(day, month, year, date)) {
+    return isOrderChanged(day)
+      ? `${day}-${month}-${year}`
+      : `${year}-${month}-${day}`
+  }
+
+  [month, day, year] = date.split('-')
+
+  if (isCurrentSplitterPresent(day, month, year, date)) {
+    return isOrderChanged(day)
+      ? `${day}-${month}-${year}`
+      : `${year}-${month}-${day}`
+  }
+
+  [month, day, year] = date.split(' ')
+
+  if (isCurrentSplitterPresent(day, month, year, date)) {
+    return isOrderChanged(day)
+      ? `${day}-${month}-${year}`
+      : `${year}-${month}-${day}`
+  }
+
+  return null
+}
+
+export function formatDates (rawProps) {
+  validateAnArray(rawProps, 'There is no dates to format.')
+
+  for (const prop of rawProps) {
+    const { NominalValue: date } = prop
+    prop.NominalValue.value = formatDate(date.value)
+  }
+
+  return rawProps
 }
