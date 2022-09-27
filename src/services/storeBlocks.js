@@ -1,5 +1,5 @@
-export async function storeBlocks (projectId, blocks, serviceType) {
-  const URL = 'http://projects.bimtrazer.com/api/StoreBlocks'
+export async function storeBlocks (projectId, data, serviceType) {
+  const URL = 'http://projects.bimtrazer.com/api/PostDataProj'
   const options = {
     method: 'POST',
     headers: {
@@ -8,7 +8,7 @@ export async function storeBlocks (projectId, blocks, serviceType) {
     body: {
       PROJ: projectId,
       ID: serviceType,
-      DATA: JSON.stringify(blocks)
+      DATA: JSON.stringify(data)
     }
   }
 
