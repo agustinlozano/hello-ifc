@@ -1,6 +1,3 @@
-// node --experimental-fetch .\index.js
-// const { type, status, statusText } = res
-
 export async function getBlockCodes (numberOfBlocks) {
   const URL = `http://projects.bimtrazer.com/api/GetBlocks/${numberOfBlocks}`
   const options = {
@@ -9,12 +6,14 @@ export async function getBlockCodes (numberOfBlocks) {
 
   try {
     const res = await fetch(URL, options)
-    const jsonResponse = await res.json()
+    const {
+      DATA: data,
+      DESCRIPCION: status,
+      ID: id
+    } = await res.json()
 
-    console.log(jsonResponse)
-
-    if (jsonResponse.DESCRIPCION === 'Successful' && jsonResponse.ID === '00') {
-      return jsonResponse
+    if (status === 'Successful' && id === '00') {
+      return data
     }
 
     return null
