@@ -1,5 +1,5 @@
 import { getPropertySet, getAllBtzParams } from '../getting'
-import { renderFiveJsonData, renderJsonData, validateAnArray } from '../../utils'
+import { renderFiveJsonObjects, validate, validateAnArray } from '../../utils'
 import {
   buildBtzBlocksV4,
   filterPropertiesIds,
@@ -10,13 +10,14 @@ import { storeBlocks } from '../../services/storeBlocks'
 
 export async function bimtrazerSort (modelID) {
   const rawDictionary = await getAllBtzParams(modelID)
-  const { descriptions: rawBtzDescriptions } = rawDictionary
 
   formatDates(rawDictionary.endDates)
 
+  const { descriptions: rawBtzDescriptions } = rawDictionary
+
   validateAnArray(
     rawBtzDescriptions,
-    'From loadIFC: There is no btz parameter.')
+    'BimtrazerSort: There is no btz parameter.')
 
   const rawPropsSet = await getPropertySet(
     filterPropertiesIds(rawBtzDescriptions),
@@ -24,22 +25,24 @@ export async function bimtrazerSort (modelID) {
 
   validateAnArray(
     rawPropsSet,
-    'From loadIFC: There was a problem while filtering the parameter')
+    'BimtrazerSort: There was a problem while filtering the parameter')
 
   const prebuiltBlocksv4 = sortPropertiesV4(rawDictionary)
 
   validateAnArray(
     prebuiltBlocksv4,
-    'From loadIFC: There was a problem while prebuilding the blocks')
+    'BimtrazerSort: There was a problem while prebuilding the blocks')
 
   const btzBlocksV4 = await buildBtzBlocksV4(rawPropsSet, prebuiltBlocksv4)
 
   validateAnArray(
     btzBlocksV4,
-    'From loadIFC: There was a problem while building the blocks')
+    'BimtrazerSort: There was a problem while building the blocks')
 
-  renderFiveJsonData(btzBlocksV4, 'btzBlock')
-  renderFiveJsonData(rawPropsSet, 'propSet')
+  await storeBlocks('01', btzBlocksV4, 'BlocksIFC')
+
+  renderFiveJsonObjects(btzBlocksV4, 'btzBlock')
+  renderFiveJsonObjects(rawPropsSet, 'propSet')
 }
 
 export async function bimtrazerSortDev (modelID) {
@@ -53,7 +56,7 @@ export async function bimtrazerSortDev (modelID) {
 
   validateAnArray(
     rawBtzDescriptions,
-    'From loadIFC: There is no btz parameter.')
+    'BimtrazerSort: There is no btz parameter.')
 
   // Obtener las propiedades de la clase PropertiesSet
   const rawPropsSet = await getPropertySet(
@@ -61,18 +64,32 @@ export async function bimtrazerSortDev (modelID) {
     modelID)
   console.log('2. rawPropSet listo')
 
+  validateAnArray(
+    rawPropsSet,
+    'BimtrazerSort: There was a problem while filtering the parameter')
+
   // Pre-costruir los bloques
   const prebuiltBlocksv4 = sortPropertiesV4(rawDictionary)
   console.log('prebuiltBlocksV4', prebuiltBlocksv4)
   console.log('3. PrebuiltBlockV4 listo')
 
+  validateAnArray(
+    prebuiltBlocksv4,
+    'BimtrazerSort: There was a problem while prebuilding the blocks')
+
   // Terminar de construir el bloque
-  const btzBlockV4 = await buildBtzBlocksV4(rawPropsSet, prebuiltBlocksv4)
+  const btzBlocksV4 = await buildBtzBlocksV4(rawPropsSet, prebuiltBlocksv4)
+  console.log('4. btzBlocksV4', btzBlocksV4)
 
-  console.log('4. btzBlocksV4', btzBlockV4)
+  validateAnArray(
+    btzBlocksV4,
+    'BimtrazerSort: There was a problem while building the blocks')
 
-  await storeBlocks('01', btzBlockV4, 'BlocksIFC')
+  const res = await storeBlocks('01', btzBlocksV4, 'BlocksIFC')
+  console.log('5. storeBlocks response: ', res)
 
-  renderJsonData(btzBlockV4, 'btzBlock')
-  renderFiveJsonData(rawPropsSet, 'propSet')
+  validate(res, 'BimtrazerSort: There was a problem while storing the blocks')
+
+  renderFiveJsonObjects(btzBlocksV4, 'btzBlock')
+  renderFiveJsonObjects(rawPropsSet, 'propSet')
 }
