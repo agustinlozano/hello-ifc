@@ -4,7 +4,7 @@ import shortcuts from './shortcuts'
 
 export {
   renderSelectedElm,
-  renderFiveJsonData,
+  renderFiveJsonObjects,
   renderJsonData,
   renderShadows,
   renderTree,

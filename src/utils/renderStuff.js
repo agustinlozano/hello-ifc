@@ -12,7 +12,7 @@ export function renderSelectedElm (props) {
   $propsOutput.innerHTML = JSON.stringify(props, null, 2)
 }
 
-export function renderFiveJsonData (data, option) {
+export function renderFiveJsonObjects (data, option) {
   if (data.length === 0) return null
   if (option === 'btzBlock') {
     $btzBlocksLength.innerHTML = data.length
