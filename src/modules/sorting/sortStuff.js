@@ -11,6 +11,7 @@ import {
 } from './utils'
 import { concatAll, validateAnArray, validate } from '../../utils'
 import { btzHash } from '../hashStuff'
+import { getBlockCodes } from '../../services/getBlockCodes'
 
 export function sortPropertiesV4 (rawDictionary) {
   const sortedProps = []
@@ -143,7 +144,15 @@ export async function buildBtzBlocksV4 (rawPropsSet, prebuiltBlocks) {
   validate(prebuiltBlocks, 'There is no prebuilt blocks.')
   validate(rawPropsSet, 'There is no raw properties set.')
 
-  for (const block of prebuiltBlocks) {
+  const btzCodes = await getBlockCodes(prebuiltBlocks.length) ||
+  [
+    '12345', '67890', '54321', '09876', '11111',
+    '22222', '33333', '44444', '55555', '66666',
+    '77777', '88888', '99999', '00000', '12312'
+  ]
+
+  for (let i = 0; i < prebuiltBlocks.length; i++) {
+    const block = prebuiltBlocks[i]
     const { btzDescription, ids } = block
     const restOfParams = { btzElements: [] }
     const btzBlock = {}
@@ -167,8 +176,9 @@ export async function buildBtzBlocksV4 (rawPropsSet, prebuiltBlocks) {
 
     const concatenedData = concatAll(guids, btzDescription)
     const btzId = await btzHash(concatenedData)
+    const code = btzCodes[i]
 
-    fillBlock(btzBlock, btzId, block, restOfParams)
+    fillBlock(btzBlock, code, btzId, block, restOfParams)
     btzBlocks.push(btzBlock)
     resetStatus(guids)
   }

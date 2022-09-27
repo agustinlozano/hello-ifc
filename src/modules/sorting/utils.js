@@ -1,13 +1,13 @@
 import { validate } from '../../utils'
 
 /* Documentar */
-export const fillBlock = (block, btzId, params, restOfParams) => {
-  block.BtzCode = ''
+export const fillBlock = (block, code, btzId, params, restOfParams) => {
+  block.BtzCode = code
   block.BtzGuid = btzId
   block.BtzDescription = params.btzDescription
   block.BtzStartDate = params.btzStartDate || null
   block.BtzEndDate = params.btzEndDate || null
-  block.ClassType = restOfParams.classType
+  block.ClassType = restOfParams?.classType
   block.Elements = restOfParams.btzElements
   block.Labels = []
 
