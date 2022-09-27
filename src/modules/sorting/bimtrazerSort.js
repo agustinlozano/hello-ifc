@@ -6,6 +6,7 @@ import {
   formatDates,
   sortPropertiesV4
 } from './sortStuff'
+import { storeBlocks } from '../../services/storeBlocks'
 
 export async function bimtrazerSort (modelID) {
   const rawDictionary = await getAllBtzParams(modelID)
@@ -66,10 +67,12 @@ export async function bimtrazerSortDev (modelID) {
   console.log('3. PrebuiltBlockV4 listo')
 
   // Terminar de construir el bloque
-  const btzBlockV3 = await buildBtzBlocksV4(rawPropsSet, prebuiltBlocksv4)
+  const btzBlockV4 = await buildBtzBlocksV4(rawPropsSet, prebuiltBlocksv4)
 
-  console.log('4. btzBlocksV4', btzBlockV3)
+  console.log('4. btzBlocksV4', btzBlockV4)
 
-  renderJsonData(btzBlockV3, 'btzBlock')
+  await storeBlocks('01', btzBlockV4, 'BlocksIFC')
+
+  renderJsonData(btzBlockV4, 'btzBlock')
   renderFiveJsonData(rawPropsSet, 'propSet')
 }
