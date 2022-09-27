@@ -144,7 +144,9 @@ export async function buildBtzBlocksV4 (rawPropsSet, prebuiltBlocks) {
   validate(prebuiltBlocks, 'There is no prebuilt blocks.')
   validate(rawPropsSet, 'There is no raw properties set.')
 
-  const btzCodes = await getBlockCodes(prebuiltBlocks.length)
+  const codes = await getBlockCodes(prebuiltBlocks.length)
+
+  validate(codes, 'There was an error getting the block codes.')
 
   for (let i = 0; i < prebuiltBlocks.length; i++) {
     const block = prebuiltBlocks[i]
@@ -171,9 +173,8 @@ export async function buildBtzBlocksV4 (rawPropsSet, prebuiltBlocks) {
 
     const concatenedData = concatAll(guids, btzDescription)
     const btzId = await btzHash(concatenedData)
-    const code = btzCodes[i]
 
-    fillBlock(btzBlock, code, btzId, block, restOfParams)
+    fillBlock(btzBlock, codes.at(i), btzId, block, restOfParams)
     btzBlocks.push(btzBlock)
     resetStatus(guids)
   }
