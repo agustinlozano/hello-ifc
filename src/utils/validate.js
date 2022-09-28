@@ -3,6 +3,7 @@ export const validate = (param, message) => {
     console.error(message)
     return null
   }
+  return param
 }
 
 export const validateAnArray = (param, message) => {
@@ -10,6 +11,7 @@ export const validateAnArray = (param, message) => {
     console.error(message)
     return null
   }
+  return param
 }
 
 // A function that throws an error (exception) if the parameter is null or undefined
