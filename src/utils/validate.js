@@ -11,3 +11,12 @@ export const validateAnArray = (param, message) => {
     return null
   }
 }
+
+// A function that throws an error (exception) if the parameter is null or undefined
+export const checkException = (param, message) => {
+  if (param === null || param === undefined || param === '') {
+    throw new Error(message)
+  }
+
+  return param
+}
