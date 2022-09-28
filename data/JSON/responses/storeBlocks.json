@@ -1,0 +1,74 @@
+{
+  "ID": "00",
+  "DESCRIPCION": "Successful",
+  "DATA": {
+    "CantBlockIn": 12,
+    "Msg": [
+      {
+        "code": "0008P",
+        "msg": "Insertado bien",
+        "case": 1
+      },
+      {
+        "code": "0008Q",
+        "msg": "Insertado bien",
+        "case": 1
+      },
+      {
+        "code": "0008R",
+        "msg": "Insertado bien",
+        "case": 1
+      },
+      {
+        "code": "0008S",
+        "msg": "Insertado bien",
+        "case": 1
+      },
+      {
+        "code": "0008T",
+        "msg": "Insertado bien",
+        "case": 1
+      },
+      {
+        "code": "0008U",
+        "msg": "Insertado bien",
+        "case": 1
+      },
+      {
+        "code": "0008V",
+        "msg": "Insertado bien",
+        "case": 1
+      },
+      {
+        "code": "0008W",
+        "msg": "Insertado bien",
+        "case": 1
+      },
+      {
+        "code": "0008X",
+        "msg": "Insertado bien",
+        "case": 1
+      },
+      {
+        "code": "0008Y",
+        "msg": "Insertado bien",
+        "case": 1
+      },
+      {
+        "code": "0008Z",
+        "msg": "Insertado bien",
+        "case": 1
+      },
+      {
+        "code": "00090",
+        "msg": "Insertado bien",
+        "case": 1
+      },
+      {
+        "code": "00078 00079 0007A 0007B 0007C 0007D 0007E 0007F 0007G 0007H 0007I 0007J 0007K 0007L 0007M 0007N 0007O 0007P 0007Q 0007R 0007S 0007T 0007U 0007V 0007W 0007X 0007Y 0007Z 00080 00081 00082 00083 00084 00085 00086 00087",
+        "msg": "De 36 bloques se almacenaron  0",
+        "case": 2
+      }
+    ]
+  }
+}
