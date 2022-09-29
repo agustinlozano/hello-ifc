@@ -1,6 +1,7 @@
 import concatAll from './concatAll'
 import highlightMaterial from './highlight'
 import shortcuts from './shortcuts'
+import generateRandomId from './generateRandomProj'
 
 export {
   renderSelectedElm,
@@ -14,7 +15,8 @@ export {
 
 export {
   validate,
-  validateAnArray
+  validateAnArray,
+  checkException
 } from './validate'
 
-export { concatAll, highlightMaterial, shortcuts }
+export { concatAll, highlightMaterial, shortcuts, generateRandomId }
