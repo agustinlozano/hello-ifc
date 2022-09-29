@@ -1,5 +1,11 @@
 import { getPropertySet, getAllBtzParams } from '../getting'
-import { renderFiveJsonObjects, validate, validateAnArray } from '../../utils'
+import {
+  renderFiveJsonObjects,
+  validate,
+  validateAnArray,
+  generateRandomId,
+  checkException
+} from '../../utils'
 import {
   buildBtzBlocksV4,
   filterPropertiesIds,
@@ -7,7 +13,6 @@ import {
   sortPropertiesV4
 } from './sortStuff'
 import { storeBlocks } from '../../services/storeBlocks'
-import { checkException } from '../../utils/validate'
 
 export async function bimtrazerSort (modelID) {
   const rawDictionary = await getAllBtzParams(modelID)
@@ -90,7 +95,8 @@ export async function bimtrazerSortDev (modelID) {
     btzBlocksV4,
     'BimtrazerSort: There was a problem while building the blocks.')
 
-  const res = await storeBlocks('01', btzBlocksV4, 'BlocksIFC')
+  const projId = generateRandomId()
+  const res = await storeBlocks(projId, btzBlocksV4, 'BlocksIFC')
   console.log('5. storeBlocks response: ', res)
 
   validate(res, 'BimtrazerSort: There was a problem while storing the blocks.')
