@@ -1,0 +1,108 @@
+[
+  {
+    "btzDescription": "Suelo PB",
+    "btzEndDate": "2022-01-10",
+    "ids": [
+      263
+    ]
+  },
+  {
+    "btzDescription": "Muros exteriores PB",
+    "btzEndDate": "2022-01-11",
+    "ids": [
+      455,
+      585,
+      665,
+      746
+    ]
+  },
+  {
+    "btzDescription": "Puertas PB",
+    "btzEndDate": "2023-01-03",
+    "ids": [
+      3875,
+      7010
+    ]
+  },
+  {
+    "btzDescription": "Ventanas PB",
+    "btzEndDate": "2023-01-04",
+    "ids": [
+      11614,
+      11721,
+      11784,
+      11847,
+      17603,
+      17666
+    ]
+  },
+  {
+    "btzDescription": "Losa sobre PB",
+    "btzEndDate": "2023-01-01",
+    "ids": [
+      11975
+    ]
+  },
+  {
+    "btzDescription": "Muros exteriores N1",
+    "btzEndDate": "2023-01-04",
+    "ids": [
+      12101,
+      12186,
+      12304,
+      12384
+    ]
+  },
+  {
+    "btzDescription": "Ventanas N1",
+    "btzEndDate": "2023-01-06",
+    "ids": [
+      12463,
+      12527,
+      12590,
+      12653,
+      12716,
+      12779,
+      12842,
+      17409,
+      17477,
+      17540
+    ]
+  },
+  {
+    "btzDescription": "Muros placa yeso N1",
+    "btzEndDate": "2023-01-07",
+    "ids": [
+      17741
+    ]
+  },
+  {
+    "btzDescription": "Puertas N1",
+    "btzEndDate": "2023-01-08",
+    "ids": [
+      20883
+    ]
+  },
+  {
+    "btzDescription": "Cubierta de chapa",
+    "btzEndDate": "2023-01-09",
+    "ids": [
+      21068
+    ]
+  },
+  {
+    "btzDescription": "Escalera de hormig\\X2\\00F3\\X0\\n",
+    "btzEndDate": "2023-01-02",
+    "ids": [
+      23929
+    ]
+  },
+  {
+    "btzDescription": "Muro placa yeso PB",
+    "btzEndDate": "2023-01-06",
+    "ids": [
+      24106,
+      24187
+    ]
+  }
+]

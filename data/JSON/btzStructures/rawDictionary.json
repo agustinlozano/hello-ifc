@@ -1,0 +1,1095 @@
+{
+  "descriptions": [
+    {
+      "expressID": 263,
+      "type": 3650150729,
+      "Name": {
+        "type": 1,
+        "value": "BTZ Block Description"
+      },
+      "Description": null,
+      "NominalValue": {
+        "type": 2,
+        "label": "IFCTEXT",
+        "valueType": 1,
+        "value": "Suelo PB"
+      },
+      "Unit": null
+    },
+    {
+      "expressID": 455,
+      "type": 3650150729,
+      "Name": {
+        "type": 1,
+        "value": "BTZ Block Description"
+      },
+      "Description": null,
+      "NominalValue": {
+        "type": 2,
+        "label": "IFCTEXT",
+        "valueType": 1,
+        "value": "Muros exteriores PB"
+      },
+      "Unit": null
+    },
+    {
+      "expressID": 585,
+      "type": 3650150729,
+      "Name": {
+        "type": 1,
+        "value": "BTZ Block Description"
+      },
+      "Description": null,
+      "NominalValue": {
+        "type": 2,
+        "label": "IFCTEXT",
+        "valueType": 1,
+        "value": "Muros exteriores PB"
+      },
+      "Unit": null
+    },
+    {
+      "expressID": 665,
+      "type": 3650150729,
+      "Name": {
+        "type": 1,
+        "value": "BTZ Block Description"
+      },
+      "Description": null,
+      "NominalValue": {
+        "type": 2,
+        "label": "IFCTEXT",
+        "valueType": 1,
+        "value": "Muros exteriores PB"
+      },
+      "Unit": null
+    },
+    {
+      "expressID": 746,
+      "type": 3650150729,
+      "Name": {
+        "type": 1,
+        "value": "BTZ Block Description"
+      },
+      "Description": null,
+      "NominalValue": {
+        "type": 2,
+        "label": "IFCTEXT",
+        "valueType": 1,
+        "value": "Muros exteriores PB"
+      },
+      "Unit": null
+    },
+    {
+      "expressID": 3875,
+      "type": 3650150729,
+      "Name": {
+        "type": 1,
+        "value": "BTZ Block Description"
+      },
+      "Description": null,
+      "NominalValue": {
+        "type": 2,
+        "label": "IFCTEXT",
+        "valueType": 1,
+        "value": "Puertas PB"
+      },
+      "Unit": null
+    },
+    {
+      "expressID": 7010,
+      "type": 3650150729,
+      "Name": {
+        "type": 1,
+        "value": "BTZ Block Description"
+      },
+      "Description": null,
+      "NominalValue": {
+        "type": 2,
+        "label": "IFCTEXT",
+        "valueType": 1,
+        "value": "Puertas PB"
+      },
+      "Unit": null
+    },
+    {
+      "expressID": 11614,
+      "type": 3650150729,
+      "Name": {
+        "type": 1,
+        "value": "BTZ Block Description"
+      },
+      "Description": null,
+      "NominalValue": {
+        "type": 2,
+        "label": "IFCTEXT",
+        "valueType": 1,
+        "value": "Ventanas PB"
+      },
+      "Unit": null
+    },
+    {
+      "expressID": 11721,
+      "type": 3650150729,
+      "Name": {
+        "type": 1,
+        "value": "BTZ Block Description"
+      },
+      "Description": null,
+      "NominalValue": {
+        "type": 2,
+        "label": "IFCTEXT",
+        "valueType": 1,
+        "value": "Ventanas PB"
+      },
+      "Unit": null
+    },
+    {
+      "expressID": 11784,
+      "type": 3650150729,
+      "Name": {
+        "type": 1,
+        "value": "BTZ Block Description"
+      },
+      "Description": null,
+      "NominalValue": {
+        "type": 2,
+        "label": "IFCTEXT",
+        "valueType": 1,
+        "value": "Ventanas PB"
+      },
+      "Unit": null
+    },
+    {
+      "expressID": 11847,
+      "type": 3650150729,
+      "Name": {
+        "type": 1,
+        "value": "BTZ Block Description"
+      },
+      "Description": null,
+      "NominalValue": {
+        "type": 2,
+        "label": "IFCTEXT",
+        "valueType": 1,
+        "value": "Ventanas PB"
+      },
+      "Unit": null
+    },
+    {
+      "expressID": 11975,
+      "type": 3650150729,
+      "Name": {
+        "type": 1,
+        "value": "BTZ Block Description"
+      },
+      "Description": null,
+      "NominalValue": {
+        "type": 2,
+        "label": "IFCTEXT",
+        "valueType": 1,
+        "value": "Losa sobre PB"
+      },
+      "Unit": null
+    },
+    {
+      "expressID": 12101,
+      "type": 3650150729,
+      "Name": {
+        "type": 1,
+        "value": "BTZ Block Description"
+      },
+      "Description": null,
+      "NominalValue": {
+        "type": 2,
+        "label": "IFCTEXT",
+        "valueType": 1,
+        "value": "Muros exteriores N1"
+      },
+      "Unit": null
+    },
+    {
+      "expressID": 12186,
+      "type": 3650150729,
+      "Name": {
+        "type": 1,
+        "value": "BTZ Block Description"
+      },
+      "Description": null,
+      "NominalValue": {
+        "type": 2,
+        "label": "IFCTEXT",
+        "valueType": 1,
+        "value": "Muros exteriores N1"
+      },
+      "Unit": null
+    },
+    {
+      "expressID": 12304,
+      "type": 3650150729,
+      "Name": {
+        "type": 1,
+        "value": "BTZ Block Description"
+      },
+      "Description": null,
+      "NominalValue": {
+        "type": 2,
+        "label": "IFCTEXT",
+        "valueType": 1,
+        "value": "Muros exteriores N1"
+      },
+      "Unit": null
+    },
+    {
+      "expressID": 12384,
+      "type": 3650150729,
+      "Name": {
+        "type": 1,
+        "value": "BTZ Block Description"
+      },
+      "Description": null,
+      "NominalValue": {
+        "type": 2,
+        "label": "IFCTEXT",
+        "valueType": 1,
+        "value": "Muros exteriores N1"
+      },
+      "Unit": null
+    },
+    {
+      "expressID": 12463,
+      "type": 3650150729,
+      "Name": {
+        "type": 1,
+        "value": "BTZ Block Description"
+      },
+      "Description": null,
+      "NominalValue": {
+        "type": 2,
+        "label": "IFCTEXT",
+        "valueType": 1,
+        "value": "Ventanas N1"
+      },
+      "Unit": null
+    },
+    {
+      "expressID": 12527,
+      "type": 3650150729,
+      "Name": {
+        "type": 1,
+        "value": "BTZ Block Description"
+      },
+      "Description": null,
+      "NominalValue": {
+        "type": 2,
+        "label": "IFCTEXT",
+        "valueType": 1,
+        "value": "Ventanas N1"
+      },
+      "Unit": null
+    },
+    {
+      "expressID": 12590,
+      "type": 3650150729,
+      "Name": {
+        "type": 1,
+        "value": "BTZ Block Description"
+      },
+      "Description": null,
+      "NominalValue": {
+        "type": 2,
+        "label": "IFCTEXT",
+        "valueType": 1,
+        "value": "Ventanas N1"
+      },
+      "Unit": null
+    },
+    {
+      "expressID": 12653,
+      "type": 3650150729,
+      "Name": {
+        "type": 1,
+        "value": "BTZ Block Description"
+      },
+      "Description": null,
+      "NominalValue": {
+        "type": 2,
+        "label": "IFCTEXT",
+        "valueType": 1,
+        "value": "Ventanas N1"
+      },
+      "Unit": null
+    },
+    {
+      "expressID": 12716,
+      "type": 3650150729,
+      "Name": {
+        "type": 1,
+        "value": "BTZ Block Description"
+      },
+      "Description": null,
+      "NominalValue": {
+        "type": 2,
+        "label": "IFCTEXT",
+        "valueType": 1,
+        "value": "Ventanas N1"
+      },
+      "Unit": null
+    },
+    {
+      "expressID": 12779,
+      "type": 3650150729,
+      "Name": {
+        "type": 1,
+        "value": "BTZ Block Description"
+      },
+      "Description": null,
+      "NominalValue": {
+        "type": 2,
+        "label": "IFCTEXT",
+        "valueType": 1,
+        "value": "Ventanas N1"
+      },
+      "Unit": null
+    },
+    {
+      "expressID": 12842,
+      "type": 3650150729,
+      "Name": {
+        "type": 1,
+        "value": "BTZ Block Description"
+      },
+      "Description": null,
+      "NominalValue": {
+        "type": 2,
+        "label": "IFCTEXT",
+        "valueType": 1,
+        "value": "Ventanas N1"
+      },
+      "Unit": null
+    },
+    {
+      "expressID": 17409,
+      "type": 3650150729,
+      "Name": {
+        "type": 1,
+        "value": "BTZ Block Description"
+      },
+      "Description": null,
+      "NominalValue": {
+        "type": 2,
+        "label": "IFCTEXT",
+        "valueType": 1,
+        "value": "Ventanas N1"
+      },
+      "Unit": null
+    },
+    {
+      "expressID": 17477,
+      "type": 3650150729,
+      "Name": {
+        "type": 1,
+        "value": "BTZ Block Description"
+      },
+      "Description": null,
+      "NominalValue": {
+        "type": 2,
+        "label": "IFCTEXT",
+        "valueType": 1,
+        "value": "Ventanas N1"
+      },
+      "Unit": null
+    },
+    {
+      "expressID": 17540,
+      "type": 3650150729,
+      "Name": {
+        "type": 1,
+        "value": "BTZ Block Description"
+      },
+      "Description": null,
+      "NominalValue": {
+        "type": 2,
+        "label": "IFCTEXT",
+        "valueType": 1,
+        "value": "Ventanas N1"
+      },
+      "Unit": null
+    },
+    {
+      "expressID": 17603,
+      "type": 3650150729,
+      "Name": {
+        "type": 1,
+        "value": "BTZ Block Description"
+      },
+      "Description": null,
+      "NominalValue": {
+        "type": 2,
+        "label": "IFCTEXT",
+        "valueType": 1,
+        "value": "Ventanas PB"
+      },
+      "Unit": null
+    },
+    {
+      "expressID": 17666,
+      "type": 3650150729,
+      "Name": {
+        "type": 1,
+        "value": "BTZ Block Description"
+      },
+      "Description": null,
+      "NominalValue": {
+        "type": 2,
+        "label": "IFCTEXT",
+        "valueType": 1,
+        "value": "Ventanas PB"
+      },
+      "Unit": null
+    },
+    {
+      "expressID": 17741,
+      "type": 3650150729,
+      "Name": {
+        "type": 1,
+        "value": "BTZ Block Description"
+      },
+      "Description": null,
+      "NominalValue": {
+        "type": 2,
+        "label": "IFCTEXT",
+        "valueType": 1,
+        "value": "Muros placa yeso N1"
+      },
+      "Unit": null
+    },
+    {
+      "expressID": 20883,
+      "type": 3650150729,
+      "Name": {
+        "type": 1,
+        "value": "BTZ Block Description"
+      },
+      "Description": null,
+      "NominalValue": {
+        "type": 2,
+        "label": "IFCTEXT",
+        "valueType": 1,
+        "value": "Puertas N1"
+      },
+      "Unit": null
+    },
+    {
+      "expressID": 21068,
+      "type": 3650150729,
+      "Name": {
+        "type": 1,
+        "value": "BTZ Block Description"
+      },
+      "Description": null,
+      "NominalValue": {
+        "type": 2,
+        "label": "IFCTEXT",
+        "valueType": 1,
+        "value": "Cubierta de chapa"
+      },
+      "Unit": null
+    },
+    {
+      "expressID": 23929,
+      "type": 3650150729,
+      "Name": {
+        "type": 1,
+        "value": "BTZ Block Description"
+      },
+      "Description": null,
+      "NominalValue": {
+        "type": 2,
+        "label": "IFCTEXT",
+        "valueType": 1,
+        "value": "Escalera de hormig\\X2\\00F3\\X0\\n"
+      },
+      "Unit": null
+    },
+    {
+      "expressID": 24106,
+      "type": 3650150729,
+      "Name": {
+        "type": 1,
+        "value": "BTZ Block Description"
+      },
+      "Description": null,
+      "NominalValue": {
+        "type": 2,
+        "label": "IFCTEXT",
+        "valueType": 1,
+        "value": "Muro placa yeso PB"
+      },
+      "Unit": null
+    },
+    {
+      "expressID": 24187,
+      "type": 3650150729,
+      "Name": {
+        "type": 1,
+        "value": "BTZ Block Description"
+      },
+      "Description": null,
+      "NominalValue": {
+        "type": 2,
+        "label": "IFCTEXT",
+        "valueType": 1,
+        "value": "Muro placa yeso PB"
+      },
+      "Unit": null
+    }
+  ],
+  "startDates": [],
+  "endDates": [
+    {
+      "expressID": 264,
+      "type": 3650150729,
+      "Name": {
+        "type": 1,
+        "value": "BTZ Finish Date (Optional)"
+      },
+      "Description": null,
+      "NominalValue": {
+        "type": 2,
+        "label": "IFCTEXT",
+        "valueType": 1,
+        "value": "2022-01-10"
+      },
+      "Unit": null
+    },
+    {
+      "expressID": 456,
+      "type": 3650150729,
+      "Name": {
+        "type": 1,
+        "value": "BTZ Finish Date (Optional)"
+      },
+      "Description": null,
+      "NominalValue": {
+        "type": 2,
+        "label": "IFCTEXT",
+        "valueType": 1,
+        "value": "2022-01-11"
+      },
+      "Unit": null
+    },
+    {
+      "expressID": 586,
+      "type": 3650150729,
+      "Name": {
+        "type": 1,
+        "value": "BTZ Finish Date (Optional)"
+      },
+      "Description": null,
+      "NominalValue": {
+        "type": 2,
+        "label": "IFCTEXT",
+        "valueType": 1,
+        "value": "2022-01-11"
+      },
+      "Unit": null
+    },
+    {
+      "expressID": 666,
+      "type": 3650150729,
+      "Name": {
+        "type": 1,
+        "value": "BTZ Finish Date (Optional)"
+      },
+      "Description": null,
+      "NominalValue": {
+        "type": 2,
+        "label": "IFCTEXT",
+        "valueType": 1,
+        "value": "2022-01-11"
+      },
+      "Unit": null
+    },
+    {
+      "expressID": 747,
+      "type": 3650150729,
+      "Name": {
+        "type": 1,
+        "value": "BTZ Finish Date (Optional)"
+      },
+      "Description": null,
+      "NominalValue": {
+        "type": 2,
+        "label": "IFCTEXT",
+        "valueType": 1,
+        "value": "2022-01-11"
+      },
+      "Unit": null
+    },
+    {
+      "expressID": 3876,
+      "type": 3650150729,
+      "Name": {
+        "type": 1,
+        "value": "BTZ Finish Date (Optional)"
+      },
+      "Description": null,
+      "NominalValue": {
+        "type": 2,
+        "label": "IFCTEXT",
+        "valueType": 1,
+        "value": "2023-01-03"
+      },
+      "Unit": null
+    },
+    {
+      "expressID": 7011,
+      "type": 3650150729,
+      "Name": {
+        "type": 1,
+        "value": "BTZ Finish Date (Optional)"
+      },
+      "Description": null,
+      "NominalValue": {
+        "type": 2,
+        "label": "IFCTEXT",
+        "valueType": 1,
+        "value": "2023-01-03"
+      },
+      "Unit": null
+    },
+    {
+      "expressID": 11615,
+      "type": 3650150729,
+      "Name": {
+        "type": 1,
+        "value": "BTZ Finish Date (Optional)"
+      },
+      "Description": null,
+      "NominalValue": {
+        "type": 2,
+        "label": "IFCTEXT",
+        "valueType": 1,
+        "value": "2023-01-04"
+      },
+      "Unit": null
+    },
+    {
+      "expressID": 11722,
+      "type": 3650150729,
+      "Name": {
+        "type": 1,
+        "value": "BTZ Finish Date (Optional)"
+      },
+      "Description": null,
+      "NominalValue": {
+        "type": 2,
+        "label": "IFCTEXT",
+        "valueType": 1,
+        "value": "2023-01-04"
+      },
+      "Unit": null
+    },
+    {
+      "expressID": 11785,
+      "type": 3650150729,
+      "Name": {
+        "type": 1,
+        "value": "BTZ Finish Date (Optional)"
+      },
+      "Description": null,
+      "NominalValue": {
+        "type": 2,
+        "label": "IFCTEXT",
+        "valueType": 1,
+        "value": "2023-01-04"
+      },
+      "Unit": null
+    },
+    {
+      "expressID": 11848,
+      "type": 3650150729,
+      "Name": {
+        "type": 1,
+        "value": "BTZ Finish Date (Optional)"
+      },
+      "Description": null,
+      "NominalValue": {
+        "type": 2,
+        "label": "IFCTEXT",
+        "valueType": 1,
+        "value": "2023-01-04"
+      },
+      "Unit": null
+    },
+    {
+      "expressID": 11976,
+      "type": 3650150729,
+      "Name": {
+        "type": 1,
+        "value": "BTZ Finish Date (Optional)"
+      },
+      "Description": null,
+      "NominalValue": {
+        "type": 2,
+        "label": "IFCTEXT",
+        "valueType": 1,
+        "value": "2023-01-01"
+      },
+      "Unit": null
+    },
+    {
+      "expressID": 12102,
+      "type": 3650150729,
+      "Name": {
+        "type": 1,
+        "value": "BTZ Finish Date (Optional)"
+      },
+      "Description": null,
+      "NominalValue": {
+        "type": 2,
+        "label": "IFCTEXT",
+        "valueType": 1,
+        "value": "2023-01-04"
+      },
+      "Unit": null
+    },
+    {
+      "expressID": 12187,
+      "type": 3650150729,
+      "Name": {
+        "type": 1,
+        "value": "BTZ Finish Date (Optional)"
+      },
+      "Description": null,
+      "NominalValue": {
+        "type": 2,
+        "label": "IFCTEXT",
+        "valueType": 1,
+        "value": "2023-01-04"
+      },
+      "Unit": null
+    },
+    {
+      "expressID": 12305,
+      "type": 3650150729,
+      "Name": {
+        "type": 1,
+        "value": "BTZ Finish Date (Optional)"
+      },
+      "Description": null,
+      "NominalValue": {
+        "type": 2,
+        "label": "IFCTEXT",
+        "valueType": 1,
+        "value": "2023-01-04"
+      },
+      "Unit": null
+    },
+    {
+      "expressID": 12385,
+      "type": 3650150729,
+      "Name": {
+        "type": 1,
+        "value": "BTZ Finish Date (Optional)"
+      },
+      "Description": null,
+      "NominalValue": {
+        "type": 2,
+        "label": "IFCTEXT",
+        "valueType": 1,
+        "value": "2023-01-04"
+      },
+      "Unit": null
+    },
+    {
+      "expressID": 12464,
+      "type": 3650150729,
+      "Name": {
+        "type": 1,
+        "value": "BTZ Finish Date (Optional)"
+      },
+      "Description": null,
+      "NominalValue": {
+        "type": 2,
+        "label": "IFCTEXT",
+        "valueType": 1,
+        "value": "2023-01-06"
+      },
+      "Unit": null
+    },
+    {
+      "expressID": 12528,
+      "type": 3650150729,
+      "Name": {
+        "type": 1,
+        "value": "BTZ Finish Date (Optional)"
+      },
+      "Description": null,
+      "NominalValue": {
+        "type": 2,
+        "label": "IFCTEXT",
+        "valueType": 1,
+        "value": "2023-01-06"
+      },
+      "Unit": null
+    },
+    {
+      "expressID": 12591,
+      "type": 3650150729,
+      "Name": {
+        "type": 1,
+        "value": "BTZ Finish Date (Optional)"
+      },
+      "Description": null,
+      "NominalValue": {
+        "type": 2,
+        "label": "IFCTEXT",
+        "valueType": 1,
+        "value": "2023-01-06"
+      },
+      "Unit": null
+    },
+    {
+      "expressID": 12654,
+      "type": 3650150729,
+      "Name": {
+        "type": 1,
+        "value": "BTZ Finish Date (Optional)"
+      },
+      "Description": null,
+      "NominalValue": {
+        "type": 2,
+        "label": "IFCTEXT",
+        "valueType": 1,
+        "value": "2023-01-06"
+      },
+      "Unit": null
+    },
+    {
+      "expressID": 12717,
+      "type": 3650150729,
+      "Name": {
+        "type": 1,
+        "value": "BTZ Finish Date (Optional)"
+      },
+      "Description": null,
+      "NominalValue": {
+        "type": 2,
+        "label": "IFCTEXT",
+        "valueType": 1,
+        "value": "2023-01-06"
+      },
+      "Unit": null
+    },
+    {
+      "expressID": 12780,
+      "type": 3650150729,
+      "Name": {
+        "type": 1,
+        "value": "BTZ Finish Date (Optional)"
+      },
+      "Description": null,
+      "NominalValue": {
+        "type": 2,
+        "label": "IFCTEXT",
+        "valueType": 1,
+        "value": "2023-01-06"
+      },
+      "Unit": null
+    },
+    {
+      "expressID": 12843,
+      "type": 3650150729,
+      "Name": {
+        "type": 1,
+        "value": "BTZ Finish Date (Optional)"
+      },
+      "Description": null,
+      "NominalValue": {
+        "type": 2,
+        "label": "IFCTEXT",
+        "valueType": 1,
+        "value": "2023-01-06"
+      },
+      "Unit": null
+    },
+    {
+      "expressID": 17410,
+      "type": 3650150729,
+      "Name": {
+        "type": 1,
+        "value": "BTZ Finish Date (Optional)"
+      },
+      "Description": null,
+      "NominalValue": {
+        "type": 2,
+        "label": "IFCTEXT",
+        "valueType": 1,
+        "value": "2023-01-06"
+      },
+      "Unit": null
+    },
+    {
+      "expressID": 17478,
+      "type": 3650150729,
+      "Name": {
+        "type": 1,
+        "value": "BTZ Finish Date (Optional)"
+      },
+      "Description": null,
+      "NominalValue": {
+        "type": 2,
+        "label": "IFCTEXT",
+        "valueType": 1,
+        "value": "2023-01-06"
+      },
+      "Unit": null
+    },
+    {
+      "expressID": 17541,
+      "type": 3650150729,
+      "Name": {
+        "type": 1,
+        "value": "BTZ Finish Date (Optional)"
+      },
+      "Description": null,
+      "NominalValue": {
+        "type": 2,
+        "label": "IFCTEXT",
+        "valueType": 1,
+        "value": "2023-01-06"
+      },
+      "Unit": null
+    },
+    {
+      "expressID": 17604,
+      "type": 3650150729,
+      "Name": {
+        "type": 1,
+        "value": "BTZ Finish Date (Optional)"
+      },
+      "Description": null,
+      "NominalValue": {
+        "type": 2,
+        "label": "IFCTEXT",
+        "valueType": 1,
+        "value": "2023-01-04"
+      },
+      "Unit": null
+    },
+    {
+      "expressID": 17667,
+      "type": 3650150729,
+      "Name": {
+        "type": 1,
+        "value": "BTZ Finish Date (Optional)"
+      },
+      "Description": null,
+      "NominalValue": {
+        "type": 2,
+        "label": "IFCTEXT",
+        "valueType": 1,
+        "value": "2023-01-04"
+      },
+      "Unit": null
+    },
+    {
+      "expressID": 17742,
+      "type": 3650150729,
+      "Name": {
+        "type": 1,
+        "value": "BTZ Finish Date (Optional)"
+      },
+      "Description": null,
+      "NominalValue": {
+        "type": 2,
+        "label": "IFCTEXT",
+        "valueType": 1,
+        "value": "2023-01-07"
+      },
+      "Unit": null
+    },
+    {
+      "expressID": 20884,
+      "type": 3650150729,
+      "Name": {
+        "type": 1,
+        "value": "BTZ Finish Date (Optional)"
+      },
+      "Description": null,
+      "NominalValue": {
+        "type": 2,
+        "label": "IFCTEXT",
+        "valueType": 1,
+        "value": "2023-01-08"
+      },
+      "Unit": null
+    },
+    {
+      "expressID": 21069,
+      "type": 3650150729,
+      "Name": {
+        "type": 1,
+        "value": "BTZ Finish Date (Optional)"
+      },
+      "Description": null,
+      "NominalValue": {
+        "type": 2,
+        "label": "IFCTEXT",
+        "valueType": 1,
+        "value": "2023-01-09"
+      },
+      "Unit": null
+    },
+    {
+      "expressID": 23930,
+      "type": 3650150729,
+      "Name": {
+        "type": 1,
+        "value": "BTZ Finish Date (Optional)"
+      },
+      "Description": null,
+      "NominalValue": {
+        "type": 2,
+        "label": "IFCTEXT",
+        "valueType": 1,
+        "value": "2023-01-02"
+      },
+      "Unit": null
+    },
+    {
+      "expressID": 24107,
+      "type": 3650150729,
+      "Name": {
+        "type": 1,
+        "value": "BTZ Finish Date (Optional)"
+      },
+      "Description": null,
+      "NominalValue": {
+        "type": 2,
+        "label": "IFCTEXT",
+        "valueType": 1,
+        "value": "2023-01-06"
+      },
+      "Unit": null
+    },
+    {
+      "expressID": 24188,
+      "type": 3650150729,
+      "Name": {
+        "type": 1,
+        "value": "BTZ Finish Date (Optional)"
+      },
+      "Description": null,
+      "NominalValue": {
+        "type": 2,
+        "label": "IFCTEXT",
+        "valueType": 1,
+        "value": "2023-01-06"
+      },
+      "Unit": null
+    }
+  ]
+}

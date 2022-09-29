@@ -1,0 +1,406 @@
+[
+  {
+    "BtzCode": "000E1",
+    "BtzGuid": "8cb147d064ccdfe345c7446098a5dd0c59917ad6",
+    "BtzDescription": "Suelo PB",
+    "BtzStartDate": null,
+    "BtzEndDate": "2022-01-10",
+    "ClassType": 1451395588,
+    "Elements": [
+      {
+        "GlobalId": "1rj4YnIav09AtqlDAEtLZa",
+        "ExpressId": 263,
+        "HasProperties": [
+          263,
+          264
+        ]
+      }
+    ],
+    "Labels": []
+  },
+  {
+    "BtzCode": "000E2",
+    "BtzGuid": "c76bd9b0940ea13251ca8cf96e7cd811f095da88",
+    "BtzDescription": "Muros exteriores PB",
+    "BtzStartDate": null,
+    "BtzEndDate": "2022-01-11",
+    "ClassType": 1451395588,
+    "Elements": [
+      {
+        "GlobalId": "1rj4YnIav09AtqlDAEtLco",
+        "ExpressId": 455,
+        "HasProperties": [
+          455,
+          456
+        ]
+      },
+      {
+        "GlobalId": "1rj4YnIav09AtqlDAEtLfX",
+        "ExpressId": 585,
+        "HasProperties": [
+          585,
+          586
+        ]
+      },
+      {
+        "GlobalId": "1rj4YnIav09AtqlDAEtLho",
+        "ExpressId": 665,
+        "HasProperties": [
+          665,
+          666
+        ]
+      },
+      {
+        "GlobalId": "1rj4YnIav09AtqlDAEtLh0",
+        "ExpressId": 746,
+        "HasProperties": [
+          746,
+          747
+        ]
+      }
+    ],
+    "Labels": []
+  },
+  {
+    "BtzCode": "000E3",
+    "BtzGuid": "133a8a07af309b4c6d7487605ea39c08fd6b3ff6",
+    "BtzDescription": "Puertas PB",
+    "BtzStartDate": null,
+    "BtzEndDate": "2023-01-03",
+    "ClassType": 1451395588,
+    "Elements": [
+      {
+        "GlobalId": "1rj4YnIav09AtqlDAEtLgo",
+        "ExpressId": 3875,
+        "HasProperties": [
+          3875,
+          3876
+        ]
+      },
+      {
+        "GlobalId": "1rj4YnIav09AtqlDAEtLgG",
+        "ExpressId": 7010,
+        "HasProperties": [
+          7010,
+          7011
+        ]
+      }
+    ],
+    "Labels": []
+  },
+  {
+    "BtzCode": "000E4",
+    "BtzGuid": "a7d7b44a912388579c64a3c12e356835eb182c75",
+    "BtzDescription": "Ventanas PB",
+    "BtzStartDate": null,
+    "BtzEndDate": "2023-01-04",
+    "ClassType": 1451395588,
+    "Elements": [
+      {
+        "GlobalId": "1rj4YnIav09AtqlDAEtLqM",
+        "ExpressId": 11614,
+        "HasProperties": [
+          11614,
+          11615
+        ]
+      },
+      {
+        "GlobalId": "1rj4YnIav09AtqlDAEtLtn",
+        "ExpressId": 11721,
+        "HasProperties": [
+          11721,
+          11722
+        ]
+      },
+      {
+        "GlobalId": "1rj4YnIav09AtqlDAEtLtD",
+        "ExpressId": 11784,
+        "HasProperties": [
+          11784,
+          11785
+        ]
+      },
+      {
+        "GlobalId": "1rj4YnIav09AtqlDAEtLsd",
+        "ExpressId": 11847,
+        "HasProperties": [
+          11847,
+          11848
+        ]
+      },
+      {
+        "GlobalId": "1KBlFBdjz0Tf_GUS7xZ7tE",
+        "ExpressId": 17603,
+        "HasProperties": [
+          17603,
+          17604
+        ]
+      },
+      {
+        "GlobalId": "1KBlFBdjz0Tf_GUS7xZ7sn",
+        "ExpressId": 17666,
+        "HasProperties": [
+          17666,
+          17667
+        ]
+      }
+    ],
+    "Labels": []
+  },
+  {
+    "BtzCode": "000E5",
+    "BtzGuid": "defe425f4d9a5c78d39304d21f7d7ab70fd070e5",
+    "BtzDescription": "Losa sobre PB",
+    "BtzStartDate": null,
+    "BtzEndDate": "2023-01-01",
+    "ClassType": 1451395588,
+    "Elements": [
+      {
+        "GlobalId": "1rj4YnIav09AtqlDAEtL4o",
+        "ExpressId": 11975,
+        "HasProperties": [
+          11975,
+          11976
+        ]
+      }
+    ],
+    "Labels": []
+  },
+  {
+    "BtzCode": "000E6",
+    "BtzGuid": "21f8038bbdd6344646e7a1d4084719166955319f",
+    "BtzDescription": "Muros exteriores N1",
+    "BtzStartDate": null,
+    "BtzEndDate": "2023-01-04",
+    "ClassType": 1451395588,
+    "Elements": [
+      {
+        "GlobalId": "1KBlFBdjz0Tf_GUS7xZ7Y6",
+        "ExpressId": 12101,
+        "HasProperties": [
+          12101,
+          12102
+        ]
+      },
+      {
+        "GlobalId": "1KBlFBdjz0Tf_GUS7xZ7z6",
+        "ExpressId": 12186,
+        "HasProperties": [
+          12186,
+          12187
+        ]
+      },
+      {
+        "GlobalId": "1KBlFBdjz0Tf_GUS7xZ7y5",
+        "ExpressId": 12304,
+        "HasProperties": [
+          12304,
+          12305
+        ]
+      },
+      {
+        "GlobalId": "1KBlFBdjz0Tf_GUS7xZ7$2",
+        "ExpressId": 12384,
+        "HasProperties": [
+          12384,
+          12385
+        ]
+      }
+    ],
+    "Labels": []
+  },
+  {
+    "BtzCode": "000E7",
+    "BtzGuid": "a14fd8ccc3758e6bc7598d1f55f73b759575c0e8",
+    "BtzDescription": "Ventanas N1",
+    "BtzStartDate": null,
+    "BtzEndDate": "2023-01-06",
+    "ClassType": 1451395588,
+    "Elements": [
+      {
+        "GlobalId": "1KBlFBdjz0Tf_GUS7xZ7_o",
+        "ExpressId": 12463,
+        "HasProperties": [
+          12463,
+          12464
+        ]
+      },
+      {
+        "GlobalId": "1KBlFBdjz0Tf_GUS7xZ7_I",
+        "ExpressId": 12527,
+        "HasProperties": [
+          12527,
+          12528
+        ]
+      },
+      {
+        "GlobalId": "1KBlFBdjz0Tf_GUS7xZ7_F",
+        "ExpressId": 12590,
+        "HasProperties": [
+          12590,
+          12591
+        ]
+      },
+      {
+        "GlobalId": "1KBlFBdjz0Tf_GUS7xZ7vQ",
+        "ExpressId": 12653,
+        "HasProperties": [
+          12653,
+          12654
+        ]
+      },
+      {
+        "GlobalId": "1KBlFBdjz0Tf_GUS7xZ7xv",
+        "ExpressId": 12716,
+        "HasProperties": [
+          12716,
+          12717
+        ]
+      },
+      {
+        "GlobalId": "1KBlFBdjz0Tf_GUS7xZ7rl",
+        "ExpressId": 12779,
+        "HasProperties": [
+          12779,
+          12780
+        ]
+      },
+      {
+        "GlobalId": "1KBlFBdjz0Tf_GUS7xZ7rN",
+        "ExpressId": 12842,
+        "HasProperties": [
+          12842,
+          12843
+        ]
+      },
+      {
+        "GlobalId": "1KBlFBdjz0Tf_GUS7xZ7tg",
+        "ExpressId": 17409,
+        "HasProperties": [
+          17409,
+          17410
+        ]
+      },
+      {
+        "GlobalId": "1KBlFBdjz0Tf_GUS7xZ7tj",
+        "ExpressId": 17477,
+        "HasProperties": [
+          17477,
+          17478
+        ]
+      },
+      {
+        "GlobalId": "1KBlFBdjz0Tf_GUS7xZ7ti",
+        "ExpressId": 17540,
+        "HasProperties": [
+          17540,
+          17541
+        ]
+      }
+    ],
+    "Labels": []
+  },
+  {
+    "BtzCode": "000E8",
+    "BtzGuid": "95c03c329282070b3c26537b5e000e5a36ec19b1",
+    "BtzDescription": "Muros placa yeso N1",
+    "BtzStartDate": null,
+    "BtzEndDate": "2023-01-07",
+    "ClassType": 1451395588,
+    "Elements": [
+      {
+        "GlobalId": "1KBlFBdjz0Tf_GUS7xZ7nw",
+        "ExpressId": 17741,
+        "HasProperties": [
+          17741,
+          17742
+        ]
+      }
+    ],
+    "Labels": []
+  },
+  {
+    "BtzCode": "000E9",
+    "BtzGuid": "8c955da330251a1614b5374fe5fd20e39cd3f928",
+    "BtzDescription": "Puertas N1",
+    "BtzStartDate": null,
+    "BtzEndDate": "2023-01-08",
+    "ClassType": 1451395588,
+    "Elements": [
+      {
+        "GlobalId": "1KBlFBdjz0Tf_GUS7xZ7nA",
+        "ExpressId": 20883,
+        "HasProperties": [
+          20883,
+          20884
+        ]
+      }
+    ],
+    "Labels": []
+  },
+  {
+    "BtzCode": "000EA",
+    "BtzGuid": "83ef7010f5d1a40064fff2543f5d923fcc7dc13d",
+    "BtzDescription": "Cubierta de chapa",
+    "BtzStartDate": null,
+    "BtzEndDate": "2023-01-09",
+    "ClassType": 1451395588,
+    "Elements": [
+      {
+        "GlobalId": "1KBlFBdjz0Tf_GUS7xZ4Fe",
+        "ExpressId": 21068,
+        "HasProperties": [
+          21068,
+          21069
+        ]
+      }
+    ],
+    "Labels": []
+  },
+  {
+    "BtzCode": "000EB",
+    "BtzGuid": "d7ef79bd36fbeb9fc858789aa072a25aa2876254",
+    "BtzDescription": "Escalera de hormig\\X2\\00F3\\X0\\n",
+    "BtzStartDate": null,
+    "BtzEndDate": "2023-01-02",
+    "ClassType": 1451395588,
+    "Elements": [
+      {
+        "GlobalId": "1KBlFBdjz0Tf_GUS7xZ4AJ",
+        "ExpressId": 23929,
+        "HasProperties": [
+          23929,
+          23930
+        ]
+      }
+    ],
+    "Labels": []
+  },
+  {
+    "BtzCode": "000EC",
+    "BtzGuid": "1e9fc1e2d08ad9cf3796830066d1cb5bc3b973d1",
+    "BtzDescription": "Muro placa yeso PB",
+    "BtzStartDate": null,
+    "BtzEndDate": "2023-01-06",
+    "ClassType": 1451395588,
+    "Elements": [
+      {
+        "GlobalId": "1KBlFBdjz0Tf_GUS7xZ4Im",
+        "ExpressId": 24106,
+        "HasProperties": [
+          24106,
+          24107
+        ]
+      },
+      {
+        "GlobalId": "1KBlFBdjz0Tf_GUS7xZ4jP",
+        "ExpressId": 24187,
+        "HasProperties": [
+          24187,
+          24188
+        ]
+      }
+    ],
+    "Labels": []
+  }
+]
