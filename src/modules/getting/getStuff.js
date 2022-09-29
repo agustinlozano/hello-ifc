@@ -1,5 +1,10 @@
 import viewer from '../../config/initViewer'
-import { IFCSLAB, IFCPROPERTYSINGLEVALUE, IFCPROPERTYSET } from 'web-ifc'
+import {
+  IFCSLAB,
+  IFCPROPERTYSINGLEVALUE,
+  IFCPROPERTYSET,
+  IFCRELASSIGNSTOGROUP
+} from 'web-ifc'
 import { validateAnArray } from '../../utils'
 
 const { ifcManager } = viewer.IFC.loader
@@ -135,6 +140,24 @@ export async function getPropertySet (paramIds, modelID = 0) {
   }
 
   return rawProps
+}
+
+export async function getItemsOfGroup (modelID, groupID) {
+  const relIDs = await ifcManager.getAllItemsOfType(modelID, IFCRELASSIGNSTOGROUP)
+  const guIDs = []
+
+  for (const relID of relIDs) {
+    const groupRel = await ifcManager.getItemProperties(modelID, relID)
+    if (groupRel.GlobalId.value === groupID) {
+      for (const relObj of groupRel.RelatedObjects) {
+        const props = await ifcManager.getItemProperties(modelID, relObj.value)
+        guIDs[guIDs.length] = props.GlobalId.value
+      }
+      return guIDs
+    }
+  }
+
+  return guIDs
 }
 
 /* FUNCIONES SIN USO */
