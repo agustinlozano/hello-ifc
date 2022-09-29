@@ -1,5 +1,7 @@
+const BASE_URL = 'http://projects.bimtrazer.com/api/'
+
 export async function storeBlocks (projectId, data, serviceType) {
-  const URL = 'http://projects.bimtrazer.com/api/PostDataProj'
+  const URL = BASE_URL + 'PostDataProj'
   const options = {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
