@@ -7,6 +7,8 @@ async function loadIfc (changed) {
   const myModel = await viewer.IFC.loadIfcUrl(ifcURL)
   console.log('0. MyModel listo')
 
+  URL.revokeObjectURL(ifcURL)
+
   setTimeout(async () => { bimtrazerSortDev(myModel.modelID) }, 1500)
 }
 
