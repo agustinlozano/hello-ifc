@@ -1,4 +1,4 @@
-## Proto IFC Viewer
+## 🏢 Proto IFC Viewer
 This is a really cool project that I made with 💛
 
 ### Directory tree
@@ -39,7 +39,7 @@ This is a really cool project that I made with 💛
  ┣ 📜app.js <br/>
  ┗ 📜bundle.js <br/>
 
-### Super cool functions
+### ⚙ Super cool functions
 
 #### Modules / Sorting
 
