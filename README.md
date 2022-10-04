@@ -58,9 +58,9 @@ Existen dos variaciones de esta función, `bimtrazerSort` y `bimtrazerSortDev`. 
   /**
    * @param {Object} rawDictionary - Es un conjuntos de arreglos que contiene toda la 
    * información del los parametros Bimtrazer introduccidos en un modelo IFC. Estos son,
-   * 1. rawDictionary.descriptions
-   * 2. rawDictionary.startDates
-   * 3. rawDictionary.endDates
+   *   1. rawDictionary.descriptions
+   *   2. rawDictionary.startDates
+   *   3. rawDictionary.endDates
    * @returns {Array<Object>} - Un array de objetos que almacena parte de la
    * información de un bloque por cada posición.
    */
@@ -73,7 +73,6 @@ Esta cuarta versión se utiliza para pre-construir los bloques, es decír, conti
    * @param {Array<Object>} rawPropsSet - Un subconjunto de todas las clases PROPERTYSET en el
    * documento IFC las cuales fueron filtradas anteriormente. Estos objetos tienen información
    * ligada a aquellos elementos con parametros Bimtrazer.
-   * 
    * @param {Array<Object>} prebuiltBlocks - Es un array de objetos que almacena parte de la
    * información de un bloque por cada posición.
    * @returns {Array<Array<Object>>}
